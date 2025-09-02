@@ -1,1 +1,16 @@
 .obsidian/
+
+# Cosas de python
+__pycache__/
+.pytest_cache/
+.ipynb_checkpoints
+.vscode/
+.env
+.venv/
+env/
+venv/
+
+# Archivos de Jupyter
+.ipynb_checkpoints
+
+
