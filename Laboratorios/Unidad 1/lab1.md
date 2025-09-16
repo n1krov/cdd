@@ -35,8 +35,8 @@ Porque antes de limpiar tenés que **diagnosticar**. Es como un médico: primero
 - **Puerto de embarque (`embarked`) → rellenan con la moda**.
     
     - Porque es categórica.
-	    -  categorica significa que toma valores de un conjunto limitado y fijo de posibles valores.
-        
+	   - Una variable categórica es aquella cuyos valores indican una cualidad o categoría, y no un valor numérico medible.
+
     - Si 70% de los pasajeros salió de Southampton, lo lógico es asumir que un valor faltante era también de ahí.
         
 - **`deck` → la eliminan.**
