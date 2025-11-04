@@ -8,21 +8,52 @@ El laboratorio se centra en el **Procesamiento del Lenguaje Natural (NLP)** apli
 
 El propósito del laboratorio es mostrar cómo transformar la **información textual no estructurada** (como descripciones o comentarios) en **características predictivas numéricas**.
 
+
+> En este contexto, una **característica** (o _feature_) es una **variable numérica y medible** que se extrae del texto crudo para que pueda ser utilizada como _input_ en un modelo de _machine learning_.
+
 - **Texto a Números:** Dado que los modelos de _machine learning_ solo operan con datos numéricos, el texto debe ser cuantificado para poder ser utilizado como _input_ en estos modelos.
-    
 
 ### 🛠️ Las Técnicas
 
 El enfoque del capítulo es utilizar métodos de ingeniería de características que permiten extraer información rápidamente de **textos cortos**, capturando su complejidad a través de parámetros estadísticos.
 
-Las técnicas se dividen en dos grandes grupos:
 
-1. **Características Estructurales/Estilísticas:** Crean características a partir de parámetros estadísticos del texto, como la longitud de las palabras, el número de palabras únicas o el conteo de oraciones. (Cubierto en Recetas 1 y 2).
+##### 1. Características Estructurales/Estilísticas 📏
+
+Estas características se centran en la **estructura física y el estilo de escritura** del texto, ignorando el significado específico de las palabras. Miden **cómo está escrito** el texto.
+
+- **Pregunta Clave:** ¿Cómo está organizada la información?
     
-2. **Características de Contenido/Sintácticas:** Representan el contenido del texto, enfocándose en qué palabras se usan y qué tan importantes son, a través de métodos de vectorización como Bag-of-Words y TF-IDF. (Cubierto en Recetas 3, 4 y 5).
+- **Qué Miden:** **Parámetros estadísticos** del texto.
+    
+    - **Longitud:** ¿Es un texto largo o corto? (Número de caracteres, número de palabras).
+        
+    - **Diversidad:** ¿Qué tan variado es el vocabulario? (Número de palabras únicas).
+        
+    - **Puntuación/Estructura:** ¿Cuántas ideas completas contiene? (Conteo de oraciones).
+        
+- **Analogía:** Es como clasificar un libro por su número de páginas, el tamaño de la letra o la cantidad de capítulos, sin leer la trama.
+    
+- **Recetas del Laboratorio:** Cubiertas en la **Receta 1** (Conteo de palabras/caracteres) y **Receta 2** (Conteo de oraciones).
     
 
----
+##### 2. Características de Contenido/Sintácticas 🧠
+
+Estas características se centran en el **contenido semántico** del texto y la **importancia de las palabras**. Miden **de qué trata** el texto.
+
+- **Pregunta Clave:** ¿Qué palabras se usan y qué tan importantes son?
+    
+- **Qué Miden:** La presencia, la frecuencia y el peso de las palabras.
+    
+    - **Contenido:** Se registra qué palabras aparecen y cuántas veces (Bag-of-Words - BoW).
+        
+    - **Importancia:** Se pondera la relevancia de cada palabra en relación con el conjunto completo de documentos (TF-IDF).
+        
+- **Analogía:** Es como clasificar un libro por las 100 palabras clave más importantes que utiliza ("magia," "dragón," "profecía").
+    
+- **Recetas del Laboratorio:** Cubiertas en la **Receta 3** (Bag-of-Words), **Receta 4** (TF-IDF), y la **Receta 5** (Limpieza y Stemming, que es un paso de preparación crucial para el contenido).
+
+
 
 ## 👩‍🏫 Profundización en Cada Receta
 
@@ -37,26 +68,78 @@ Esta es la forma más básica de cuantificar un texto y se realiza usando las fu
     - **Número de Caracteres:** `df["text"].str.strip().str.len()`
         
     - **Número de Palabras:** `df["text"].str.split().str.len()`
-        
-    - **Número de Vocabulario (Únicas):** Se aplica `.str.lower()` (para unificar mayúsculas/minúsculas) y luego se calcula la longitud del conjunto (`set`) de las palabras divididas.
-        
-    - **Diversidad Léxica:** Se calcula como `Número total de palabras / Número de palabras únicas`.
-        
-- **Utilidad:** Las descripciones más largas y ricas en vocabulario único suelen contener más información y pueden ser un predictor fuerte en algunos problemas.
+
+	- 1. Número de Vocabulario (Palabras Únicas)
+		Esta es una **medida absoluta** de la riqueza del vocabulario
+		- **Definición:** Es el **conteo directo** de cuántas palabras diferentes aparecen en el texto.
+		- **Implementación:** Se usa `len(set(palabras))`. El conjunto (`set`) elimina duplicados, dejando solo las palabras únicas.
+		- **Ejemplo:** En la frase: "La casa azul, la casa es grande", el vocabulario único es {'la', 'casa', 'azul', 'es', 'grande'}, dando un **Número de Vocabulario = 5**.
     
+
+	-  2. Diversidad Léxica
+
+		Esta es una **medida relativa** que indica la tasa de **repetición** o **variedad** de palabras.
+
+		- Definición: Es un cociente entre el número total de palabras y el número de palabras únicas.
+	    $$\text{Diversidad Léxica} = \frac{\text{Número total de palabras}}{\text{Número de palabras únicas}}$$
+		- **Interpretación:**
+		    - Un valor **cercano a 1** indica **mucha diversidad**, es decir, se repiten muy pocas palabras (casi todas las palabras usadas son únicas).
+		    - Un valor **alto** (mayor que 1, a menudo 2, 3 o más) indica **poca diversidad**; el texto es repetitivo y reutiliza las mismas palabras con frecuencia.
+        
+- **Ejemplo (Continuación):**
+    
+    - Número total de palabras (contando repeticiones): 7 ("La", "casa", "azul", "la", "casa", "es", "grande")
+    - Número de Vocabulario (Únicas): 5
+    - **Diversidad Léxica:** $7 / 5 = 1.4$. Un valor moderado que indica cierta repetición de palabras como 'la' y 'casa'.        
+
+¡Claro! La Receta 2 es muy sencilla y se enfoca en una idea: **contar cuántas ideas completas tiene un texto** para medir su complejidad o densidad de información.
 
 ---
 
-### 2. Receta 2: Estimación de la Complejidad por Conteo de Oraciones
+#### 📜 Receta 2: Contar las Ideas (Conteo de Oraciones)
 
-Aquí se utiliza la librería **NLTK** para realizar la **tokenización de oraciones**.
+##### 🎯 El Objetivo
 
-- **Concepto Clave:** La `sent_tokenize` de NLTK divide el texto en oraciones individuales basándose en la puntuación (puntos, signos de exclamación/interrogación).
+El objetivo de esta receta es crear una **característica numérica** que represente la **cantidad de oraciones** que hay en un documento.
+
+- **¿Por qué importa?** Un texto con diez oraciones probablemente contiene más información o es más complejo que un texto con solo una oración.
     
-- **Implementación en Python:** Se define una función que usa `nltk.tokenize.sent_tokenize(text)` y devuelve el número de elementos en la lista resultante. Esta función se aplica a la columna de texto del DataFrame usando `.apply()`.
+
+##### 🔑 El Proceso: Tokenización de Oraciones
+
+Para contar las oraciones, se usa una técnica de NLP llamada **Tokenización de Oraciones**.
+
+1. **Herramienta:** Se utiliza la función `sent_tokenize` de la librería **NLTK** (Natural Language Toolkit).
     
-- **Nota Importante:** Este paso **debe hacerse antes** de cualquier eliminación de puntuación o cambio de caso.
+2. **Mecanismo:** Esta función "rompe" o divide el texto cada vez que encuentra un signo de puntuación que marca el final de una oración (como un punto `.`, un signo de interrogación `?` o un signo de exclamación `!`).
     
+3. **Resultado:** `sent_tokenize` devuelve una **lista** donde cada elemento es una oración completa.
+    
+
+##### 💻 Implementación Fácil (El Código)
+
+El código simplemente hace esto:
+
+1. Aplica `sent_tokenize` al texto para obtener la lista de oraciones.
+    
+2. Cuenta **cuántos elementos tiene esa lista** (`len()`).
+    
+3. Ese conteo es el valor numérico de la nueva característica (`num_sent`) para ese documento.
+    
+
+|**Texto Original**|**Oraciones Tokenizadas (Lista)**|**Característica Numérica**|
+|---|---|---|
+|"Hoy es martes. ¿Vendrás al laboratorio?"|`['Hoy es martes.', '¿Vendrás al laboratorio?']`|**2**|
+
+##### 🛑 La Regla de Oro
+
+La **Nota Importante** es crucial: **Este conteo debe hacerse primero.**
+
+- **La razón:** Si haces la limpieza de texto (Receta 5) antes, eliminarías los puntos, signos de interrogación y exclamación. Si no hay puntuación, la función `sent_tokenize` no tendrá cómo saber dónde termina una idea y comienza la siguiente, y el conteo será incorrecto.
+    
+
+**En resumen:** La Receta 2 nos da el número de "ideas" que tiene el texto, y debe ser el primer paso de preprocesamiento que involucre la puntuación.
+
 
 ---
 
@@ -69,7 +152,6 @@ Este método convierte el texto en una gran matriz de conteos. Se utiliza el `Co
     1. **Limpieza Previa:** Se recomienda eliminar puntuación y números del texto antes de la vectorización.
         
     2. **Vectorización:**
-        
         - `CountVectorizer` crea el vocabulario (todas las palabras únicas) a partir de los documentos.
             
         - Cada palabra del vocabulario se convierte en una **columna** de la matriz resultante.
