@@ -30,7 +30,7 @@ Estas características se centran en la **estructura física y el estilo de escr
         
     - **Diversidad:** ¿Qué tan variado es el vocabulario? (Número de palabras únicas).
         
-    - **Puntuación/Estructura:** ¿Cuántas ideas completas contiene? (Conteo de oraciones).
+    - **Estructura:** ¿Cuántas ideas completas contiene? (Conteo de oraciones).
         
 - **Analogía:** Es como clasificar un libro por su número de páginas, el tamaño de la letra o la cantidad de capítulos, sin leer la trama.
     
