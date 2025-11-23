@@ -51,14 +51,43 @@ A pesar de estas diferencias, el autor propone una metáfora fundamental para es
 
 Este diseño consta de:
 
-1.  **Capa 1: Proveedores de Datos (Data Providers):** Son las diversas fuentes de donde se extrae la información. Se caracterizan por tener una mezcla de tipos de datos, formatos y ubicaciones dispersas.
-2.  **Capa 2: Capa de Distribución (Distribution Layer):** Representa la plataforma de distribución. Es compleja debido a la inmensa cantidad de herramientas y tecnologías disponibles (propietarias y open source) para la integración.
-3.  **Capa 3: Consumidores de Datos (Data Consumers):** Quienes consumen los servicios de datos. Incluye Business Intelligence (BI), Machine Learning (ML) e Inteligencia Artificial (AI) para predicciones y automatización.
-4.  **Capa Transversal:** Metadatos y Gobernanza, crucial para supervisar toda la arquitectura.
+### 1. 🧑‍💻 Capa 1: Proveedores de Datos (**Data Providers**)
 
-El desafío actual es el **"Modern Data Stack"** (pila de datos moderna). Aunque ofrece herramientas open source adaptables, no es una plataforma completa por sí sola. Requiere integrar muchos servicios independientes, cada uno con sus propios estándares y protocolos, lo cual crea una barrera de entrada significativa.
+- **¿Qué es?** Son los **puntos de origen** de todos los datos.
+    
+- **En la práctica:** Es donde está la información bruta: tus bases de datos operacionales, los archivos de texto, los datos que vienen de sensores, los registros de aplicaciones, etc.
+    
+- **Desafío:** Vienen en **muchos formatos y ubicaciones diferentes** (la "mezcla de tipos de datos, formatos y ubicaciones dispersas").
 
-Para solucionar esto, tecnologías como **Apache Spark** y **Delta Lake** han estandarizado el desarrollo, llevando a la creación de la **Arquitectura Medallion**.
+### Capa 2: Capa de Distribución (**Distribution Layer**)
+
+- **¿Qué es?** Es el **sistema de transporte y procesamiento**. Es la plataforma donde los datos se mueven, se limpian, se transforman y se preparan.
+    
+- **En la práctica:** Aquí es donde se usan herramientas complejas (como **Apache Spark**) para integrar y procesar grandes volúmenes de datos crudos, convirtiéndolos en algo útil.
+    
+- **Desafío:** Es la parte **más compleja** porque hay muchísimas tecnologías diferentes para hacer esta integración (el "Modern Data Stack").
+
+### 3. 📊 Capa 3: Consumidores de Datos (**Data Consumers**)
+
+- **¿Qué es?** Son los **usuarios finales** y las **aplicaciones** que necesitan la información lista para tomar decisiones.
+    
+- **En la práctica:** Son los paneles de control (**BI**), los modelos de **Machine Learning (ML)** para hacer predicciones, y los sistemas de **Inteligencia Artificial (AI)** que automatizan acciones.
+
+
+### Capa Transversal: 🛡️ Metadatos y Gobernanza
+
+- **¿Qué es?** Es la **supervisión y las reglas** que controlan todas las capas.
+    
+- **En la práctica:** Se asegura de que los datos sean **seguros**, que sean de **calidad** (no tengan errores) y que todo el mundo sepa **qué significa** cada dato (metadatos).
+    
+
+### El Desafío Actual
+
+El texto menciona el **"Modern Data Stack"** como el problema clave hoy en día.
+
+- **Problema:** Este "Stack" está hecho de **muchas herramientas individuales** (para almacenamiento, procesamiento, etc.) que no siempre se hablan bien entre sí. Esto hace que sea muy **difícil y costoso** para las empresas crear una plataforma de distribución funcional.
+    
+- **Solución:** La **Arquitectura Medallion** (que usa tecnologías como Spark y Delta Lake) surge como una forma de **estandarizar** esta Capa de Distribución, simplificando el proceso y mejorando la calidad de los datos. En resumen: **Los datos nacen (Proveedores), se preparan (Distribución) y se usan (Consumidores), todo bajo la vigilancia de la Gobernanza.**
 
 ## ¿Qué es una Arquitectura Medallion?
 
