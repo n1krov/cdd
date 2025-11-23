@@ -54,7 +54,7 @@ Para definirla, el libro primero revisa definiciones existentes que varían desd
 Los autores sintetizan las definiciones en un patrón claro: un ingeniero de datos obtiene datos, los almacena y los prepara para su consumo.
 
 > **Definición Formal:**
-> La ingeniería de datos es el desarrollo, implementación y mantenimiento de sistemas y procesos que toman datos crudos y producen información consistente y de alta calidad que soporta casos de uso posteriores (downstream), como el análisis y el aprendizaje automático (ML).
+> La ingeniería de datos ***es el desarrollo, implementación y mantenimiento de sistemas y procesos que toman datos crudos y producen información consistente y de alta calidad que soporta casos de uso posteriores*** (downstream), como el análisis y el aprendizaje automático (ML).
 >
 > La ingeniería de datos es la intersección de:
 >
