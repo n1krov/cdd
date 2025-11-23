@@ -9,7 +9,7 @@ puedes poner ejemplos que se entiendan.
 es par estudiar de manera eficiente y que pueda entender todo.
 
 la jerarquia de encabezados empieza del h3 hacia abajo (h4, h5.. etc)
-
+no añadas separadores "---" a menos que sea muy muyy importante, pero casi seimpre no es necesario
 puedes usar >[!alerts,note,warning....etc] etc para dar indiicaciones
 
 Aqui va el texto:
