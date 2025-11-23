@@ -246,33 +246,69 @@ Los Data Lakes surgieron a mediados de los 2000 como solución a las limitacione
 
 ![Figura 1-6: Arquitectura típica de data lake con copias crudas de datos](f16%201.png)
 
-### Hadoop y sus Componentes
-El ecosistema Hadoop fue la base de la primera generación de Data Lakes:
+Aquí tienes la explicación simplificada de los componentes clave que dieron origen a los primeros **Data Lakes** y cómo evolucionaron.
 
-1.  **HDFS (Hadoop Distributed File System):**
-    *   Sistema de archivos distribuido. Divide archivos grandes en bloques (ej. 128 MB) y los replica en varios nodos para tolerancia a fallos.
-    *   Escala horizontalmente (añadir más máquinas baratas).
-    *   **Problema de archivos pequeños:** HDFS está optimizado para archivos grandes. Muchos archivos pequeños (KB) saturan la memoria del *NameNode* (que guarda los metadatos) y matan el rendimiento.
-    *   **Inmutabilidad:** Los bloques son inmutables (solo *append*). No se puede hacer un "UPDATE" de SQL tradicional; se debe reescribir el archivo o gestionar logs complejos, dificultando la implementación de SCDs.
+### La Primera Generación de Data Lakes (Hadoop)
 
-2.  **MapReduce:**
-    *   Modelo de programación para procesar datos en paralelo. Fases: *Map* (dividir), *Shuffle* (ordenar/transferir), *Reduce* (agregar).
-    *   **Problema:** Muy lento debido a la intensa lectura/escritura en disco en cada etapa.
+El ecosistema **Hadoop** fue la base de los Data Lakes originales. Permitió almacenar y procesar **grandes volúmenes de datos crudos** a bajo costo.
 
-3.  **Apache Hive:**
-    *   Capa SQL sobre Hadoop. Traduce consultas *HiveQL* a trabajos MapReduce.
-    *   **Schema-on-read:** Permite guardar datos sin esquema definido y aplicarlo al leer. Esto da flexibilidad pero **NO** elimina la necesidad de modelado de datos (un error común). Sin modelado, el rendimiento y la integración sufren.
-    *   **Metastore:** Repositorio central de metadatos (tablas, columnas, ubicación) que persiste hasta hoy en arquitecturas modernas.
+##### 1. HDFS (Hadoop Distributed File System)
 
-### Proyecto Spark
-Nacido en 2009 en UC Berkeley para solucionar la lentitud de MapReduce.
+- **¿Qué es?** Es el **sistema de almacenamiento distribuido**.
+    
+- **Funcionamiento Sencillo:** Toma un archivo gigante, lo parte en **pequeños bloques** (ej. 128 MB) y guarda copias de esos bloques en varias máquinas baratas (**escala horizontal**). Si una máquina falla, el dato sigue seguro.
+    
+- **Problema Principal:**
+    
+    - **Archivos Pequeños:** Funciona mal si tienes millones de archivos muy pequeños (unos pocos KB), porque el sistema que rastrea los metadatos (_NameNode_) se satura y se vuelve muy lento.
+        
+    - **Inmutabilidad:** Los datos son casi **inmutables** (solo puedes añadir al final, no puedes actualizar o borrar fácilmente un dato en medio del archivo). Esto es un dolor de cabeza para tareas como llevar el historial de clientes (**SCDs**).
+        
 
-*   **Diferencia clave:** Procesamiento **en memoria**. Lee del disco una vez, procesa en RAM y escribe el resultado. Hasta 100 veces más rápido que MapReduce.
-*   **Spark SQL:** Reemplazó a Shark, manteniendo compatibilidad con Hive Metastore.
-*   **Limitación:** Tiene un tiempo de inicio (*cold start*). Necesita cargar datos del disco a memoria antes de ser rápido.
+##### 2. MapReduce
 
-### Aprendizajes de los Data Lakes
-Los Data Lakes son excelentes para almacenar volúmenes masivos de datos crudos (estructurados y no estructurados) a bajo costo. Sin embargo, transformarlos para entregar valor de negocio es complejo. Tienen problemas de latencia, falta de soporte transaccional (ACID) y rendimiento de consultas. Esto llevó al patrón de "dos niveles": Data Lake para almacenamiento + Data Warehouse para consumo, lo cual es complejo de mantener.
+- **¿Qué es?** El **modelo de programación** para procesar los datos almacenados en HDFS.
+    
+- **Funcionamiento Sencillo:** Divide la tarea en tres etapas: **Map** (divide el problema), **Shuffle** (intercambia datos entre las máquinas), y **Reduce** (combina los resultados).
+    
+- **Problema Principal:** Es **muy lento** porque en cada etapa tiene que leer y escribir datos en el **disco duro** (E/S intensa).
+    
+
+##### 3. Apache Hive
+
+- **¿Qué es?** Un **traductor de SQL** para Hadoop.
+    
+- **Funcionamiento Sencillo:** Te permite escribir consultas **SQL** (_HiveQL_) y Hive las traduce automáticamente a los lentos trabajos **MapReduce**.
+    
+- **Concepto Clave (Schema-on-read):** Los datos se almacenan sin un esquema estricto, y el esquema se aplica **solo cuando los lees**. Esto te da flexibilidad, pero si no modelas bien los datos, el análisis será caótico y lento.
+    
+- **Metastore:** Es el **índice central** que dice dónde están guardadas las tablas y qué columnas tienen. Esto sigue siendo vital hoy.
+    
+
+
+#### 🚀 El Proyecto Spark (La Evolución)
+
+**Apache Spark** nació para resolver la principal limitación de Hadoop: la lentitud de MapReduce.
+
+- **Diferencia Clave:** Utiliza el procesamiento **en memoria (RAM)**. En lugar de leer y escribir en el disco en cada paso (como hacía MapReduce), Spark lee los datos una vez, hace todo el procesamiento en la RAM (que es **mucho más rápida**), y solo escribe el resultado final al disco.
+    
+- **Resultado:** Es **hasta 100 veces más rápido** que MapReduce.
+    
+- **Limitación:** Necesita un tiempo inicial (_cold start_) para cargar los datos en memoria antes de poder empezar a procesar a alta velocidad.
+    
+
+#### 💡 Aprendizajes de los Data Lakes (El Problema)
+
+Los Data Lakes lograron almacenar todo tipo de datos de forma barata, pero no resolvieron el problema de **hacer que esos datos fueran valiosos**.
+
+- **Desafíos:**
+    
+    - **Latencia:** Las consultas no eran lo suficientemente rápidas.
+        
+    - **Falta de Transaccionalidad (ACID):** No podían garantizar la integridad de los datos ni soportar actualizaciones fáciles como un Data Warehouse.
+        
+    - **Complejidad:** La solución terminó siendo tener el **Data Lake** para almacenar lo crudo y el **Data Warehouse** para el consumo final, lo que es costoso y difícil de mantener (el "patrón de dos niveles").
+
 
 ## Una Breve Historia de la Arquitectura Lakehouse
 
