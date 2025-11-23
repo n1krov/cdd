@@ -93,11 +93,15 @@ El texto menciona el **"Modern Data Stack"** como el problema clave hoy en día.
 
 Es un patrón de diseño de datos utilizado para organizar lógicamente los datos, generalmente en un *Lakehouse*. Su objetivo es mejorar incremental y progresivamente la estructura y calidad de los datos a medida que fluyen a través de tres capas principales.
 
-| Capa | Descripción y Función |
-| :--- | :--- |
-| **Bronze (Bronce)** | Almacena datos crudos (raw) de varias fuentes en su estructura nativa. Sirve como registro histórico y almacenamiento inicial confiable. |
-| **Silver (Plata)** | Refina y estandariza los datos crudos. Aplica deduplicación, limpieza y validación. Actúa como etapa transicional para datos granulares y consistentes. |
-| **Gold (Oro)** | Optimiza los datos refinados para insights de negocio específicos. Agrega, resume y enriquece datos para reportes de alto nivel y analítica, priorizando el rendimiento. |
+Es una forma de **organizar el flujo de datos** en tu sistema, dividiéndolo en **tres niveles de calidad y refinamiento** (como si fueran medallas) que se construyen incrementalmente.
+
+El objetivo es **mejorar progresivamente los datos** a medida que pasan de una capa a la siguiente, asegurando que el producto final sea de **alta calidad y fácil de usar**.
+
+| **Capa**   | **Función Clave**                                                                                                                               | **Medalla**   |
+| ---------- | ----------------------------------------------------------------------------------------------------------------------------------------------- | ------------- |
+| **Bronze** | Es la **Zona de Datos Crudos (Raw Data)**. Los datos se almacenan **tal cual** como vienen de la fuente.                                        | 🟠 **Bronce** |
+| **Silver** | Es la **Zona de Limpieza y Estandarización**. Los datos se **limpian**, se **validan** y se **estructuran** (se les da un formato consistente). | ⚪ **Plata**   |
+| **Gold**   | Es la **Zona de Datos de Negocio**. Los datos se **agregan**, se **resumen** y se **optimizan** para la analítica y los reportes finales.       | 🟡 **Oro**    |
 
 ![Figura 1-2: Una arquitectura Medallion, que organiza los datos en tres capas, mejorando la estructura y calidad de los datos a medida que avanza a través de las capas](f12%202.png)
 
