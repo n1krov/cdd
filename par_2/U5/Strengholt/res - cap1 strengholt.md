@@ -312,30 +312,44 @@ Los Data Lakes lograron almacenar todo tipo de datos de forma barata, pero no re
 
 ## Una Breve Historia de la Arquitectura Lakehouse
 
-La arquitectura **Lakehouse** combina lo mejor de ambos mundos: la escalabilidad y flexibilidad del Data Lake (almacenamiento en objetos en la nube barato) con la confiabilidad y rendimiento del Data Warehouse (transacciones ACID).
+La arquitectura **Lakehouse** es la solución moderna que intenta tomar lo mejor de dos mundos:
+
+- La **flexibilidad y el bajo costo** del **Data Lake** (almacenamiento masivo en la nube).
+    
+- La **confiabilidad y el alto rendimiento** del **Data Warehouse** (gracias a las transacciones ACID).
+    
+
 
 ![Figura 1-8: Arquitectura típica de lakehouse, con una representación de las capas Bronce, Plata y Oro incluidas](f18%201.png)
 
 ### Fundadores de Spark y Databricks
-Los creadores de Spark fundaron **Databricks** en 2013. A diferencia de sus competidores (Cloudera/Hortonworks que se enfocaron en on-premise), Databricks apostó por la **Nube** y la separación de cómputo y almacenamiento.
 
-### Evolución Tecnológica
-*   **Almacenamiento de Objetos:** Reemplazo de HDFS por S3 (AWS), ADLS (Azure), GCS (Google). Más barato y escala a petabytes.
-*   **Spark en la Nube:** Clusters elásticos que se crean y destruyen según demanda (Kubernetes), sin estar atados a un cluster físico gigante.
+Los creadores de **Spark** fundaron **Databricks** y apostaron por la **Nube** (AWS, Azure, Google) para resolver las limitaciones de Hadoop:
 
-### Emergencia de Formatos de Tabla Abiertos (Open Table Formats)
-Para solucionar la falta de transacciones ACID y la gestión de metadatos en los Data Lakes, surgieron nuevos formatos:
+- **Almacenamiento de Objetos:** Se abandonó HDFS por servicios de almacenamiento en la nube (S3, ADLS), que son **más baratos** y escalan a volúmenes masivos.
+    
+- **Cómputo Separado:** Spark se ejecuta en clusters elásticos que se crean y destruyen según se necesite, separando el costo de procesamiento del costo de almacenamiento.
+    
 
-1.  **Apache Hudi (2017, Uber):** Enfocado en upserts eficientes.
-2.  **Apache Iceberg (2018, Netflix):** Enfocado en corrección y rendimiento en grandes escalas.
-3.  **Delta Lake (2019, Databricks):** Trajo transacciones ACID, manejo escalable de metadatos, unificación de batch/streaming y "Time Travel". Usa archivos **Parquet** más una capa de metadatos transaccionales.
 
-#### Cómo funciona Delta Lake
-Usa un **Transaction Log (DeltaLog)**.
+### 🧱 La Solución: Formatos de Tabla Abiertos
 
-*   Cada cambio (insert, update, delete) se registra como un commit atómico en archivos JSON secuenciales (`000000.json`).
-*   Permite **Time Travel**: Consultar cómo estaba la tabla en el pasado.
-*   Usa archivos Parquet para los datos físicos.
+El problema del Data Lake era la **falta de transacciones ACID** (no podías actualizar o borrar datos fácilmente sin reescribir todo). La solución vino con los **Formatos de Tabla Abiertos**.
+
+Estos formatos son una **capa de software** que se sienta sobre los archivos almacenados (como Parquet) y les añade las funciones que antes solo tenía un Data Warehouse:
+
+- **Delta Lake (Databricks), Apache Hudi, y Apache Iceberg** son los principales.
+
+#### Cómo Funciona Delta Lake
+
+Delta Lake usa un **Registro de Transacciones (DeltaLog)** para gestionar todos los cambios, no los datos en sí.
+
+- **Datos Físicos:** Se guardan en archivos **Parquet** (un formato eficiente).
+    
+- **Transaction Log:** Es una secuencia de archivos **JSON** que registran cada cambio (**commit atómico**). Esto significa que la operación se completa por completo o no se hace nada, garantizando la consistencia.
+    
+- **Ventaja Clave: Time Travel:** Al guardar el historial de todos los commits en el Log, puedes consultar la tabla tal como estaba en cualquier momento del pasado.
+    
 
 ![Figura 1-7: Ejemplo de cómo Delta Lake estructura sus datos y registro de transacciones](f17%201.png)
 
@@ -347,12 +361,20 @@ El mercado ha adoptado el concepto:
 *   **Snowflake, AWS, Google:** También han adoptado terminología y funcionalidades Lakehouse.
 *   **Cloudera, Dremio, Starburst:** Ofrecen plataformas sobre estos formatos abiertos.
 
-## Arquitectura Medallion y sus Desafíos Prácticos
-Databricks y Microsoft promueven la Arquitectura Medallion como la mejor práctica para organizar datos en este entorno.
-Sin embargo, el libro señala un problema crítico: **Falta de orientación práctica**.
 
-*   Aunque los términos Bronce/Plata/Oro suenan bien, no hay consenso universal sobre qué transformación exacta ocurre en cada capa.
-*   La confusión sobre el modelado de datos persiste. ¿Dónde aplico reglas de negocio? ¿Dónde hago *joins*?
+### 🥇 El Estándar de Organización: Arquitectura Medallion
+
+La mejor práctica para organizar los datos dentro de un Lakehouse es la **Arquitectura Medallion** (Bronce, Plata, Oro).
+
+- **Propósito:** Sirve como un marco para **incrementar la calidad y el valor** del dato a medida que fluye por el Lakehouse.
+    
+
+> [!warning] El Desafío Práctico
+> 
+> La principal confusión hoy en día es la falta de orientación clara sobre qué transformaciones de modelado de datos (reglas de negocio, joins) deben aplicarse exactamente en la capa Plata y cuáles en la capa Oro. La arquitectura da el marco, pero la disciplina de modelado sigue siendo esencial.
+
+El **Lakehouse** busca ser el lugar central que soporta tanto el análisis tradicional de BI como las cargas de trabajo de Machine Learning, todo con una arquitectura simple y escalable.
+
 
 ### Conclusión del Capítulo
 Hemos evolucionado de almacenes rígidos on-premise a sistemas distribuidos y flexibles en la nube.
