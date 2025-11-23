@@ -72,7 +72,7 @@ Una buena práctica de ingeniería de software para simplificar la lógica compl
 
 El objetivo final es desacoplar un gran componente en múltiples elementos más pequeños pero conectados que se ejecutarán secuencialmente. La dependencia entre tareas debe organizarse de acuerdo con las dependencias del conjunto de datos.
 
-![Figura 6-1: Secuenciador Local versus tarea única](./f61.png)
+![Figura 6-1: Secuenciador Local versus tarea única](f61.png)
 
 Los siguientes tres criterios deberían ayudarte a decidir si la secuencia debe basarse en la capa de orquestación de datos o en la capa de procesamiento de datos:
 
@@ -102,7 +102,7 @@ El objetivo aquí es encontrar una manera de combinar *pipelines* físicamente a
 
 Definir los límites es solo el primer paso. El segundo consiste en encontrar el mecanismo de activación. Hay dos estrategias aquí: basada en datos y basada en tareas.
 
-![Figura 6-2: Dos estrategias para implementar las dependencias entre dos pipelines](./f62.png)
+![Figura 6-2: Dos estrategias para implementar las dependencias entre dos pipelines](f62.png)
 
 #### Consecuencias
 
@@ -125,7 +125,7 @@ Tu *pipeline* genera un agregado diario de las visitas a tu blog a partir de eve
 
 El caso de uso introducido anteriormente implica una dependencia entre múltiples tareas padre y una tarea que se ejecuta después de ellas. Para resolver esta dependencia, ya sea en la capa de orquestación de datos o en la capa de procesamiento de datos, puedes usar el patrón *Aligned Fan-In*.
 
-![Figura 6-3: Aligned Fan-In en el ejemplo de agregados parciales](./f63.png)
+![Figura 6-3: Aligned Fan-In en el ejemplo de agregados parciales](f63.png)
 
 #### Consecuencias
 
@@ -153,7 +153,7 @@ La solución consiste en relajar la dependencia del resultado de los padres y tr
 
  * **Legibilidad:** El patrón *Unaligned Fan-In* puede disminuir la legibilidad y la comprensión general del flujo de datos.
 
-![Figura 6-4: Ejemplo confuso de Unaligned Fan-In](./f64.png)
+![Figura 6-4: Ejemplo confuso de Unaligned Fan-In](f64.png)
 
  * **Datos parciales:** Si decides generar el conjunto de datos a partir de padres parcialmente exitosos, es importante compartir este hecho con los consumidores del conjunto de datos.
 
@@ -178,7 +178,7 @@ El problema establece que dos operaciones diferentes dependen de una tarea padre
  * **Ejecución bloqueada:** Este inconveniente es válido para la capa de orquestación de datos y los *pipelines* dependientes del tiempo, donde cada ejecución se ejecuta solo si la anterior tuvo éxito.
  * **Hardware:** Volvamos a la capa de procesamiento de datos. Si el trabajo principal necesita generar un conjunto de datos intermedio para otros dos trabajos, entonces deberían tener las mismas expectativas de hardware.
 
-![Figura 6-5: Dividir un trabajo que trabaja en el mismo conjunto de datos base pero que requiere una capacidad de cómputo diferente (la flecha discontinua indica tareas anteriores en el pipeline que no son relevantes para este ejemplo)](./f65.png)
+![Figura 6-5: Dividir un trabajo que trabaja en el mismo conjunto de datos base pero que requiere una capacidad de cómputo diferente (la flecha discontinua indica tareas anteriores en el pipeline que no son relevantes para este ejemplo)](f65.png)
 
 ### Patrón: Elección Exclusiva (*Exclusive Choice*)
 
@@ -192,7 +192,7 @@ La migración que realizaste con el patrón *Parallel Split* funciona perfectame
 
 Como puedes ver en el enunciado del problema, todavía hay dos tareas hijas, pero esta vez, solo una debe ejecutarse a la vez. Estas son excelentes condiciones para usar el patrón *Exclusive Choice*.
 
-![Figura 6-6: Patrón Exclusive Choice sobre la capa de orquestación de datos](./f66.png)
+![Figura 6-6: Patrón Exclusive Choice sobre la capa de orquestación de datos](f66.png)
 
 #### Consecuencias
 

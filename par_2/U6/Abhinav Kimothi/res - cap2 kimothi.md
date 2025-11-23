@@ -65,7 +65,7 @@ Este proceso se destila en **cinco pasos fundamentales** que el sistema debe fac
 4.  Esta combinación (pregunta + información) se pasa al LLM.
 5.  El LLM responde con una respuesta contextual.
 
-![Figura 2.1: Pipeline de generación cubriendo los cinco pasos de RAG. El viaje desde la consulta hasta la respuesta implica búsqueda y recuperación, aumentación y generación.](./f21.png)
+![Figura 2.1: Pipeline de generación cubriendo los cinco pasos de RAG. El viaje desde la consulta hasta la respuesta implica búsqueda y recuperación, aumentación y generación.](f21%201.png)
 
 ### Requisitos previos al Pipeline de Generación
 Antes de poder ejecutar estos cinco pasos en tiempo real, hay decisiones de diseño críticas sobre la fuente externa de información. Debemos responder:
@@ -84,17 +84,17 @@ Para lograr esa consolidación, necesitamos un proceso previo llamado **Pipeline
 4.  Convertir estas piezas a un formato adecuado (embeddings).
 5.  Almacenar esta información.
 
-![Figura 2.2: Pipeline de indexación cubriendo los pasos para crear la base de conocimientos para RAG.](./f22.png)
+![Figura 2.2: Pipeline de indexación cubriendo los pasos para crear la base de conocimientos para RAG.](f22%201.png)
 
 Este pipeline es la base sobre la cual opera el sistema. Sin una base de conocimientos creada por la indexación, el pipeline de generación no tiene dónde buscar.
 
-![Figura 2.3: Los pipelines de indexación y generación juntos forman el esqueleto de un sistema RAG.](./f23.png)
+![Figura 2.3: Los pipelines de indexación y generación juntos forman el esqueleto de un sistema RAG.](f23%201.png)
 
 ## 2.2 Diseño de sistemas RAG
 
 Un sistema RAG listo para producción requiere más que solo los componentes básicos de indexación y generación. Se necesita considerar la precisión, observabilidad, escalabilidad y seguridad.
 
-![Figura 2.4: Componentes de un sistema RAG listo para producción.](./f24.png)
+![Figura 2.4: Componentes de un sistema RAG listo para producción.](f24%201.png)
 
 Podemos desglosar los componentes principales en tres grupos:
 
@@ -119,7 +119,7 @@ Incluyen evaluación, monitoreo, caché, guardrails (barreras de seguridad) y un
 
 El pipeline de indexación es, para fines prácticos, un proceso **offline o asíncrono**. No se activa cuando el usuario hace una pregunta, sino que funciona de antemano (y en intervalos definidos) para preparar la base de conocimientos.
 
-![Figura 2.5: Cuatro componentes del pipeline de indexación facilitan la creación de la base de conocimientos.](./f25.png)
+![Figura 2.5: Cuatro componentes del pipeline de indexación facilitan la creación de la base de conocimientos.](f25%201.png)
 
 Profundicemos en sus componentes clave:
 
@@ -136,7 +136,7 @@ Algunos puristas debaten si estos sistemas sin base de conocimientos propia son 
 
 Construido sobre los cimientos de la indexación, este pipeline facilita la interacción en tiempo real. Es el encargado de procesar la consulta del usuario, recuperar datos relevantes y generar la respuesta sin que el usuario interactúe con la indexación subyacente.
 
-![Figura 2.6: Tres componentes del pipeline de generación permiten el proceso de consulta-respuesta en tiempo real de un sistema RAG.](./f26.png)
+![Figura 2.6: Tres componentes del pipeline de generación permiten el proceso de consulta-respuesta en tiempo real de un sistema RAG.](f26%201.png)
 
 Sus componentes detallados son:
 
@@ -150,7 +150,7 @@ Tener los pipelines funcionando no garantiza calidad. Necesitamos saber si el si
 
 El texto destaca la **"Tríada de métricas RAG"** propuesta por TruEra, que evalúa tres dimensiones críticas:
 
-![Figura 2.7: La tríada de evaluación RAG propuesta por TruEra. Las tres dimensiones pivotales son la consulta, el contexto y la respuesta.](./f27.png)
+![Figura 2.7: La tríada de evaluación RAG propuesta por TruEra. Las tres dimensiones pivotales son la consulta, el contexto y la respuesta.](f27%201.png)
 
 Las tres comprobaciones de la tríada son:
 

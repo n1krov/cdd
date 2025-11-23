@@ -75,7 +75,7 @@ Para que el Data Mesh funcione, Daff implementó una **Plataforma de Datos de Au
 *   Automatiza la gobernanza (acceso, encriptación, descubrimiento).
 *   Ofrece una experiencia de usuario optimizada para proveedores y consumidores de datos.
 
-![Figura P-1: Escenario de creación de listas de reproducción inteligentes con data mesh](./fp1.png)
+![Figura P-1: Escenario de creación de listas de reproducción inteligentes con data mesh](fp1.png)
 
 ### Escala Ilimitada
 Data Mesh permite una escala "scale-out" (horizontal). Añadir nuevos casos de uso es tan simple como añadir más nodos (productos de datos) y conectarlos.
@@ -88,7 +88,7 @@ Daff se transformó porque sus aspiraciones de datos superaron su capacidad de e
 1.  Crecimiento rápido y aumento de la complejidad.
 2.  Necesidad de obtener valor de los datos a escala.
 
-![Figura P-2: Organización y arquitectura de Daff antes de data mesh](./fp2.png)
+![Figura P-2: Organización y arquitectura de Daff antes de data mesh](fp2.png)
 
 ---
 
@@ -126,39 +126,56 @@ Data Mesh introduce cambios multidimensionales respecto a los enfoques anteriore
 | **De Principios** | Datos como un "activo" para recolectar. | Datos como un **producto** para servir y deleitar a los usuarios. |
 | **Infraestructural** | Servicios de infraestructura fragmentados y aislados. | Plataforma integrada para sistemas operacionales y de datos. |
 
-![Figura 1-1: Dimensiones de cambio del data mesh](./f11.png)
+![Figura 1-1: Dimensiones de cambio del data mesh](img/f11.png)
 
-### Los 4 Principios del Data Mesh
-Estos principios son necesarios y suficientes; se complementan entre sí para resolver los desafíos que surgen de la descentralización.
 
-#### 1. Principio de Propiedad del Dominio (Domain Ownership)
-Descentralizar la propiedad de los datos analíticos a los dominios de negocio más cercanos a los datos (ya sea la fuente o los consumidores principales).
 
-*   **Motivación:** Escalar, optimizar para el cambio continuo, permitir agilidad y aumentar la veracidad de los datos.
+El **Data Mesh** es una forma de organizar la gestión de datos **descentralizando** la responsabilidad y tratándolos como un producto, en lugar de un recurso centralizado.
 
-#### 2. Principio de Datos como Producto (Data as a Product)
-Para evitar silos en un modelo descentralizado, los datos deben tratarse como un producto.
+#### 1. 🤝 Principio de Propiedad del Dominio (**Domain Ownership**)
 
-*   **Características de usabilidad:** Descubrible, Direccionable, Comprensible, Confiable, Accesible nativamente, Interoperable, Valioso por sí mismo, Seguro.
-*   **Data Quantum:** Nueva unidad de arquitectura lógica que encapsula datos, metadatos, código y políticas.
+- **¿Qué es?** Significa que la **responsabilidad** de los datos (su calidad, publicación y mantenimiento) pasa a los **equipos de negocio** que están más cerca de donde se crean o usan esos datos (los **dominios**).
+    
+- **¿Por qué?** Para ser **más rápidos** y que los datos sean **más correctos** porque los expertos en el tema son quienes los manejan.
+    
 
-#### 3. Principio de Plataforma de Datos de Autoservicio (Self-Serve Data Platform)
-Para evitar la duplicación de esfuerzos y altos costos de la descentralización, se necesita una plataforma que empodere a los equipos de dominio.
 
-*   **Objetivo:** Eliminar la fricción, reducir la carga cognitiva de los equipos y automatizar la gobernanza.
+#### 2. 🎁 Principio de Datos como Producto (**Data as a Product**)
 
-#### 4. Principio de Gobernanza Computacional Federada (Federated Computational Governance)
-Para mantener la interoperabilidad en un sistema distribuido, se requiere un modelo de gobernanza federado.
+- **¿Qué es?** Los datos ya no son solo un subproducto, sino un **producto de verdad**. Esto significa que deben ser **fáciles de usar** por otros.
+    
+- **Características clave:** Tienen que ser **fáciles de encontrar** (**Descubrible**), **confiables**, **comprensibles** y **accesibles**. El **Data Quantum** es la unidad que agrupa los datos, el código y las reglas asociadas.
+    
+- **¿Por qué?** Para que la gente quiera y pueda usar los datos que otros dominios ofrecen, evitando que se generen silos de información.
+    
 
-*   **Estructura:** Un equipo federado (representantes de dominios + expertos).
-*   **Ejecución:** Las políticas se codifican y automatizan en la plataforma (computacional), en lugar de depender de burocracia manual.
+#### 3. 🛠️ Principio de Plataforma de Datos de Autoservicio (**Self-Serve Data Platform**)
 
-![Figura 1-2: Cuatro principios de data mesh y su interacción](./f12.png)
+- **¿Qué es?** Es una **plataforma centralizada** que provee las herramientas (infraestructura, almacenamiento, etc.) para que los equipos de dominio (los dueños de los datos) puedan **crear, publicar y consumir sus productos de datos de forma fácil y sin ayuda** de un equipo central de datos.
+    
+- **¿Por qué?** Para **reducir el esfuerzo y el coste** que implicaría que cada equipo construya sus propias herramientas.
+    
+
+
+#### 4. ⚖️ Principio de Gobernanza Computacional Federada (**Federated Computational Governance**)
+
+- **¿Qué es?** Es la forma en que se establecen y aplican las **reglas comunes** (seguridad, formato, calidad) para que todos los productos de datos sean **compatibles e interoperables** entre sí, a pesar de estar descentralizados.
+    
+- **Ejecución:** Estas reglas se **codifican y se automatizan** en la plataforma (**computacional**) en lugar de depender de revisiones manuales y burocracia.
+    
+- **Estructura:** Un equipo compuesto por representantes de los dominios y expertos define las reglas (**Federada**).
+
+- **¿Por qué?** Para mantener el orden y la coherencia en un sistema distribuido.    
+
+
+
+
+![Figura 1-2: Cuatro principios de data mesh y su interacción](img/f12.png)
 
 ### Modelo del Data Mesh de un Vistazo
 Operacionalmente, los dominios con equipos multifuncionales comparten sus datos a través de contratos. Las políticas globales se definen federadamente y se aplican automáticamente mediante la plataforma.
 
-![Figura 1-3: Modelo operativo de los principios de data mesh](./f13.png)
+![Figura 1-3: Modelo operativo de los principios de data mesh](img/f13.png)
 
 ### Los Datos: Operacionales vs. Analíticos
 Es crucial distinguir entre estos dos modos de datos, aunque Data Mesh busca integrarlos.

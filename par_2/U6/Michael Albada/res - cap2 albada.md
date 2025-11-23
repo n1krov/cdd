@@ -67,7 +67,7 @@ Incluso para un prototipo simple, es vital implementar scripts de evaluación m�
 
 Diseñar un sistema efectivo requiere entender que un agente es más que solo un modelo de lenguaje. Es un ecosistema compuesto por cuatro pilares fundamentales que deben trabajar al unísono: **Modelo, Herramientas, Memoria y Orquestación**.
 
-![Figura 2-1: Core components of an agent system.](./f21.png)
+![Figura 2-1: Core components of an agent system.](f21%202.png)
 
 ### 1. Selección del Modelo
 El modelo es el corazón del sistema; determina cómo el agente razona, decide y aprende. No existe una elección única para todos los casos; depende de la complejidad de la tarea, la modalidad, la privacidad y el costo.

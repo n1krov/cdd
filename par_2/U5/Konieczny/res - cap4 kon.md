@@ -73,13 +73,13 @@ La operación `DELETE` puede tener un rendimiento deficiente en grandes volúmen
 
 La idea es cambiar la percepción del conjunto de datos. En lugar de verlo como una unidad monolítica, se puede pensar en él como múltiples conjuntos de datos divididos físicamente (por ejemplo, tablas semanales) que juntos forman una unidad lógica completa (expuesta a través de una vista).
 
-![Figura 4-1: Conjunto de datos físicamente aislado en tablas semanales y una vista de exposición de datos común para todas las semanas de cada año](./f41.png)
+![Figura 4-1: Conjunto de datos físicamente aislado en tablas semanales y una vista de exposición de datos común para todas las semanas de cada año](f41.png)
 
 Para lograr la idempotencia, el patrón se basa en la partición del conjunto de datos y en la orquestación de datos. Se debe definir cuidadosamente la **granularidad de la idempotencia** (por ejemplo, una semana), que a su vez define las unidades sobre las cuales se pueden aplicar las operaciones de metadatos.
 
-![Figura 4-2: Ejemplo del patrón Fast Metadata Cleaner sobre tablas semanales para los comandos TRUNCATE TABLE y DROP TABLE](./f42.png)
+![Figura 4-2: Ejemplo del patrón Fast Metadata Cleaner sobre tablas semanales para los comandos TRUNCATE TABLE y DROP TABLE](f42.png)
 
-![Figura 4-3: El Fast Metadata Cleaner y una tabla completamente cargada](./f43.png)
+![Figura 4-3: El Fast Metadata Cleaner y una tabla completamente cargada](f43.png)
 
 #### Consecuencias
 
@@ -133,7 +133,7 @@ La parte más importante de la implementación es el primer paso, cuando se defi
  * **Actualizar:** Ambos conjuntos de datos almacenan un registro determinado, pero es muy probable que el nuevo conjunto de datos proporcione una versión actualizada.
  * **Eliminar:** Este es el caso más complicado porque el patrón *Merger* no admite eliminaciones. Las eliminaciones solo son posibles si se expresan como eliminaciones lógicas (*soft deletes*).
 
-![Figura 4-4: Qué sucede durante la primera ejecución del patrón Merger con diferentes condiciones is_deleted para el caso INSERT](./f44.png)
+![Figura 4-4: Qué sucede durante la primera ejecución del patrón Merger con diferentes condiciones is_deleted para el caso INSERT](f44.png)
 
 #### Consecuencias
 
@@ -172,7 +172,7 @@ Se logró sincronizar los cambios entre dos tablas Delta Lake con la ayuda del p
 
 El patrón *Merger* no es suficiente porque solo se enfoca en la acción de fusionar. Pero existe una alternativa llamada patrón **Stateful Merger** que proporciona la capacidad de restauración de datos a través de una **tabla de estado** extra.
 
-![Figura 4-5: El flujo de trabajo del patrón Stateful Merger](./f45.png)
+![Figura 4-5: El flujo de trabajo del patrón Stateful Merger](f45.png)
 
 Para entender la lógica, comencemos con la última tarea. Una vez que la operación de fusión se completa, crea una nueva versión de la tabla fusionada. La finalización también desencadena otra tarea que recupera la versión de la tabla creada y la asocia con el tiempo de ejecución del *pipeline*. Por ejemplo, si la ejecución a las 09:00 crea la versión 5 y la ejecución a las 10:00 escribe la versión 6, la tabla de estado se verá como la **Tabla 4-3**.
 
@@ -219,12 +219,12 @@ Veamos qué sucede en cada escenario:
 
  * **Almacenes de datos versionados:** La implementación presentada requiere que su almacén de datos sea versionado (es decir, cada escritura debe crear una nueva versión de la tabla).
 
-![Figura 4-6: El patrón Stateful Merger adaptado a un almacén de datos sin capacidades de versionado](./f46.png)
+![Figura 4-6: El patrón Stateful Merger adaptado a un almacén de datos sin capacidades de versionado](f46.png)
 
  * **Operaciones de *Vacuum*:** Aunque los conjuntos de datos versionados permiten implementar la tabla de estado, también esconden una trampa. Después de la duración de retención configurada, eliminan los archivos que ya no son utilizados por el conjunto de datos.
  * **Operaciones de metadatos:** Además del *vacuum*, hay otras operaciones que pueden ejecutarse en su tabla, como la compactación, que también crea una nueva versión de la tabla.
 
-![Figura 4-7: Tabla de estado para una tabla sin operaciones de datos, como la compactación](./f47.png)
+![Figura 4-7: Tabla de estado para una tabla sin operaciones de datos, como la compactación](f47.png)
 
 ### Base de Datos
 
@@ -242,7 +242,7 @@ Tu *pipeline* de *streaming* procesa eventos de visita para generar sesiones de 
 
 En el contexto de una base de datos basada en claves, la idempotencia se aplica a la lógica de generación de claves en el lado del procesamiento de datos. En nuestro problema, resultará en la generación del mismo ID de sesión para todos los eventos de visita de un usuario dado, escribiéndolo así solo una vez.
 
-![Figura 4-8: Impacto de los datos tardíos en la generación de claves; el registro tardío de las 09:55 crea una nueva sesión para el trabajo reiniciado después de una actualización](./f48.png)
+![Figura 4-8: Impacto de los datos tardíos en la generación de claves; el registro tardío de las 09:55 crea una nueva sesión para el trabajo reiniciado después de una actualización](f48.png)
 
 #### Consecuencias
 
@@ -261,7 +261,7 @@ Uno de tus trabajos por lotes aprovecha la capacidad de cómputo no utilizada de
 
 La mejor manera de proteger a tus consumidores del problema de los datos incompletos es aprovechar las transacciones con el patrón *Transactional Writer*. Se basa en la capacidad transaccional nativa de la base de datos para que cualquiera de los cambios en progreso pero no confirmados no sea visible para los lectores *downstream*.
 
-![Figura 4-9: Vista de alto nivel de un productor que utiliza el patrón Transactional Writer, en el que los datos están disponibles para el consumidor solo después del paso de confirmación](./f49.png)
+![Figura 4-9: Vista de alto nivel de un productor que utiliza el patrón Transactional Writer, en el que los datos están disponibles para el consumidor solo después del paso de confirmación](f49.png)
 
 #### Consecuencias
 
@@ -285,7 +285,7 @@ Uno de tus trabajos por lotes genera un conjunto de datos completo cada vez. Com
 
 El requisito espera que el conjunto de datos sea inmutable y, por lo tanto, se escriba solo una vez. Para lograr esto, puedes implementar el patrón Proxy. Es un componente intermedio entre los usuarios finales y el almacenamiento físico real.
 
-![Figura 4-10: Escenarios de implementación para el patrón Proxy](./f410.png)
+![Figura 4-10: Escenarios de implementación para el patrón Proxy](f410.png)
 
 #### Consecuencias
 

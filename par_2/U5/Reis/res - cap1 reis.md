@@ -70,7 +70,7 @@ Un ingeniero de datos gestiona el **Ciclo de Vida de la Ingeniería de Datos**.
 ### El Ciclo de Vida de la Ingeniería de Datos
 Este es el concepto central del libro. Aleja la conversación de la tecnología específica y la centra en los datos y sus objetivos.
 
-![Figura 1-1: El ciclo de vida de la ingeniería de datos](./f11.png)
+![Figura 1-1: El ciclo de vida de la ingeniería de datos](f11%202.png)
 
 **Etapas del ciclo de vida:**
 
@@ -112,7 +112,7 @@ Entender la historia es vital para comprender el presente ("La historia no se re
 *   **El Ingeniero de Big Data:** Requería conocimientos de bajo nivel, infraestructura y programación (Java/Scala). Se enfocaba en mantener clusters masivos y escribir trabajos MapReduce.
 *   **Problema:** "Big Data" se volvió una víctima de su propio éxito. Muchas empresas usaban herramientas complejas para problemas de datos pequeños ("Big data is like teenage sex...").
 
-![Figura 1-2: Tendencias de Google para "big data" (Marzo 2022)](./f12.png)
+![Figura 1-2: Tendencias de Google para "big data" (Marzo 2022)](f12%201.png)
 
 ### 4. Los 2020s: Ingeniería para el ciclo de vida de datos
 *   **Tendencia:** Simplificación y abstracción. Movimiento de marcos monolíticos de bajo nivel a herramientas modulares, gestionadas y descentralizadas.
@@ -120,7 +120,7 @@ Entender la historia es vital para comprender el presente ("La historia no se re
 *   **Rol actual:** El ingeniero ya no se preocupa por los detalles sangrientos de los frameworks de Big Data, sino que se enfoca en la cadena de valor: seguridad, DataOps, arquitectura.
 *   **Cambio de actitud:** Menos enfoque en el tamaño de los datos, más enfoque en la calidad, privacidad (GDPR/CCPA) y gobernanza. Es un retorno a los temas "empresariales" pero con agilidad.
 
-![Figura 1-3: El paisaje de datos de Matt Turck en 2012 versus 2021](./f13.png)
+![Figura 1-3: El paisaje de datos de Matt Turck en 2012 versus 2021](f13%201.png)
 
 ---
 
@@ -131,12 +131,12 @@ La ingeniería de datos **es distinta** de la ciencia de datos y la analítica, 
 *   **Ubicación:** La ingeniería de datos se sitúa **aguas arriba (upstream)** de la ciencia de datos.
 *   **Función:** Los ingenieros proveen los inputs; los científicos los convierten en algo útil.
 
-![Figura 1-4: La ingeniería de datos se sitúa aguas arriba de la ciencia de datos](./f14.png)
+![Figura 1-4: La ingeniería de datos se sitúa aguas arriba de la ciencia de datos](img/f14.png)
 
 ### Jerarquía de Necesidades de la Ciencia de Datos (Monica Rogati)
 La IA y el Deep Learning están en la cima de la pirámide. La base (movimiento, almacenamiento, recolección, infraestructura) es territorio de la ingeniería de datos.
 
-![Figura 1-5: La Jerarquía de Necesidades de la Ciencia de Datos](./f15.png)
+![Figura 1-5: La Jerarquía de Necesidades de la Ciencia de Datos](img/f15.png)
 
 *   **Realidad:** Los científicos de datos a menudo pasan el 70-80% de su tiempo limpiando y recolectando datos (partes inferiores de la pirámide) debido a la falta de soporte de ingeniería.
 *   **Ideal:** Los ingenieros de datos deben construir una base sólida para que los científicos dediquen el 90% de su tiempo a la analítica y ML.
@@ -147,11 +147,11 @@ La IA y el Deep Learning están en la cima de la pirámide. La base (movimiento,
 
 El ingeniero de datos actúa como puente entre obtener datos y obtener valor de ellos.
 
-![Figura 1-6: Un ingeniero de datos obtiene datos y proporciona valor a partir de ellos](./f16.png)
+![Figura 1-6: Un ingeniero de datos obtiene datos y proporciona valor a partir de ellos](img/f16.png)
 
 Sus habilidades abarcan las "corrientes subyacentes" (seguridad, arquitectura, etc.) y el ciclo de vida. Deben optimizar constantemente a lo largo de varios ejes:
 
-![Figura 1-7: El acto de equilibrio de la ingeniería de datos](./f17.png)
+![Figura 1-7: El acto de equilibrio de la ingeniería de datos](img/f17.png)
 
 **Ejes de optimización:**
 
@@ -175,7 +175,7 @@ Sus habilidades abarcan las "corrientes subyacentes" (seguridad, arquitectura, e
 
 La complejidad del trabajo depende de la madurez de datos de la empresa (no necesariamente de su edad o ingresos).
 
-![Figura 1-8: Modelo simplificado de madurez de datos para una empresa](./f18.png)
+![Figura 1-8: Modelo simplificado de madurez de datos para una empresa](img/f18.png)
 
 ### Etapa 1: Empezando con datos (Starting with data)
 *   **Características:** Etapa temprana, objetivos difusos, equipo pequeño (generalistas).
@@ -232,22 +232,22 @@ Se propone un continuo similar al de los científicos de datos (Tipo A análisis
 
 Los ingenieros de datos no trabajan en el vacío; interactúan con personas técnicas y no técnicas y miran hacia diferentes direcciones (interna y externa).
 
-![Figura 1-9: Las direcciones que enfrenta un ingeniero de datos](./f19.png)
+![Figura 1-9: Las direcciones que enfrenta un ingeniero de datos](f19.png)
 
 ### Orientación del Ingeniero
 Dependiendo de los casos de uso finales, las responsabilidades son de cara al exterior, al interior o una mezcla:
 
 *   **De cara al exterior (External-facing):** Atiende a usuarios de aplicaciones externas (redes sociales, IoT, plataformas de e-commerce). Maneja alta concurrencia, límites de consultas y seguridad compleja (multitenencia).
 
-    ![Figura 1-10: Sistemas de ingeniería de datos orientados al exterior](./f110.png)
+    ![Figura 1-10: Sistemas de ingeniería de datos orientados al exterior](f110.png)
 
 *   **De cara al interior (Internal-facing):** Se enfoca en las necesidades del negocio y stakeholders internos (BI, dashboards, analistas).
 
-    ![Figura 1-11: Ingeniero de datos orientado al interior](./f111.png)
+    ![Figura 1-11: Ingeniero de datos orientado al interior](f111.png)
 
 ### Ingenieros de Datos y otros roles técnicos
 
-![Figura 1-12: Stakeholders técnicos clave de la ingeniería de datos](./f112.png)
+![Figura 1-12: Stakeholders técnicos clave de la ingeniería de datos](f112.png)
 
 **Aguas Arriba (Upstream Stakeholders):**
 

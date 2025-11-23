@@ -56,7 +56,7 @@ A pesar de la popularidad de este diseño de tres capas, existe un debate signif
 
 Antes de discutir los detalles de cada capa en la arquitectura Medallion, es crucial entender los propósitos y funciones de alto nivel de las tres capas primarias: Bronce, Plata y Oro. La Figura 3-1 ilustra el flujo de datos desde la capa Bronce a través de la Plata y hacia la capa Oro, destacando procesos clave como la ingesta, el procesamiento y el uso para análisis.
 
-![Figura 3-1: La arquitectura Medallion y sus tres capas: Bronce, Plata y Oro](./f31.png)
+![Figura 3-1: La arquitectura Medallion y sus tres capas: Bronce, Plata y Oro](f31%202.png)
 
 En la Figura 3-1, cada capa juega un rol distinto en la transformación y refinamiento de los datos, facilitando una progresión estructurada desde la recolección de datos crudos hasta datos que pueden ser utilizados para la creación de valor impulsada por datos. A continuación se detallan las características clave de cada capa:
 
@@ -118,7 +118,7 @@ Para asegurar una gobernanza adecuada, implementa controles de acceso estrictos 
 
 La capa Bronce sirve como la base para capturar y almacenar datos crudos en su forma más auténtica. Funciona como la capa de entrada base que ingiere y preserva de manera fiable todos los datos fuente en un estado inalterado, protegiendo contra la pérdida y corrupción de datos.
 
-![Figura 3-2: Cómo podría verse la capa Bronce en la práctica](./f32.png)
+![Figura 3-2: Cómo podría verse la capa Bronce en la práctica](f32%202.png)
 
 ## Capa Plata
 
@@ -169,13 +169,13 @@ Sigamos discutiendo los enriquecimientos. Hay un debate en curso entre los ingen
 
 La clave de la escalabilidad reside en automatizar la mayoría de tus tareas. Sin embargo, es crucial reconocer que no todos los pasos de procesamiento a través de las diversas capas de la arquitectura Medallion pueden ser fácilmente estandarizados o automatizados en el mismo grado.
 
-![Figura 3-3: Destacando las etapas fácilmente automatizadas frente a los pasos de procesamiento complejos dentro de la arquitectura Medallion](./f33.png)
+![Figura 3-3: Destacando las etapas fácilmente automatizadas frente a los pasos de procesamiento complejos dentro de la arquitectura Medallion](f33%202.png)
 
 ### La Capa Plata en la Práctica
 
 En la arquitectura Medallion, el viaje de los datos comenzó en la capa Bronce, donde los datos crudos de diversas fuentes fueron ingeridos y almacenados sin alteración para preservar su estructura e integridad originales. Al pasar a la capa Plata, se limpian, estandarizan y (ligeramente) enriquecen los datos crudos.
 
-![Figura 3-4: Cómo podría verse la capa Plata en la práctica](./f34.png)
+![Figura 3-4: Cómo podría verse la capa Plata en la práctica](f34%202.png)
 
 ## Capa Oro
 
@@ -217,7 +217,7 @@ En el ámbito de la arquitectura tecnológica, especialmente en lo que respecta 
 
 La capa Oro de la arquitectura Medallion juega un papel crucial en la optimización de los datos para la toma de decisiones y análisis de alto rendimiento. Para lograr esto, es fundamental una estrecha alineación con la gobernanza de datos para mantener el cumplimiento, la integridad y la seguridad.
 
-![Figura 3-5: Cómo podría verse la capa Oro en la práctica](./f35.png)
+![Figura 3-5: Cómo podría verse la capa Oro en la práctica](f35%202.png)
 
 ## Conclusión
 

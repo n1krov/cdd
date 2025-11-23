@@ -72,7 +72,7 @@ Uno de tus trabajos de *streaming* está sincronizando datos a un almacenamiento
 
 Para capturar cualquier error de indisponibilidad de datos y, como resultado, aumentar la confianza en tus datos, puedes confiar en el patrón *Flow Interruption Detector*. La implementación del patrón variará dependiendo del contexto técnico y el modo de procesamiento.
 
-![Figura 10-1: Detección de interrupción de flujo para datos que llegan de forma continua e irregular](./f10-1.png)
+![Figura 10-1: Detección de interrupción de flujo para datos que llegan de forma continua e irregular](f10-1.png)
 
 Sin embargo, la interrupción del flujo de datos también puede ocurrir en *pipelines* por lotes y bases de datos en reposo. Detectar la falta de disponibilidad aquí consiste en analizar la frescura de los datos de la capa de metadatos, datos o almacenamiento:
 
@@ -146,7 +146,7 @@ Tu tarea es completar un trabajo por lotes programado a las 6:00 a.m. en 40 minu
 
 Para asegurarte de que tus consumidores sean notificados sobre cualquier problema de latencia con tu trabajo por lotes, puedes usar el patrón *SLA Misses Detector*.
 
-![Figura 10-2: SLAs de tiempo de procesamiento y tiempo de evento ilustrados](./f10-2.png)
+![Figura 10-2: SLAs de tiempo de procesamiento y tiempo de evento ilustrados](f10-2.png)
 
 #### Consecuencias
 
@@ -170,9 +170,9 @@ Estás consumiendo un conjunto de datos de mala calidad. Tu trabajo por lotes fa
 
 Analizar la composición del conjunto de datos es un buen ajuste para el patrón *Dataset Tracker*. La solución crea un árbol genealógico de conjuntos de datos dentro de tu organización que puedes usar para descubrir fácilmente las dependencias entre los conjuntos de datos y, por lo tanto, también entre los equipos.
 
-![Figura 10-3: Un ejemplo de seguimiento de conjuntos de datos en el que los tres equipos son responsables de un dominio dedicado y todos los objetos de datos relacionados](./f10-3.png)
+![Figura 10-3: Un ejemplo de seguimiento de conjuntos de datos en el que los tres equipos son responsables de un dominio dedicado y todos los objetos de datos relacionados](f10-3.png)
 
-![Figura 10-4: El flujo para una implementación manual de linaje.](./f10-4.png)
+![Figura 10-4: El flujo para una implementación manual de linaje.](f10-4.png)
 
 #### Consecuencias
 
@@ -181,7 +181,7 @@ Aunque el linaje de datos se está volviendo cada vez menos oscuro hoy en día g
  * **Bloqueo de proveedor (*Vendor lock*):** Las soluciones totalmente gestionadas como las presentadas con Databricks y GCP a menudo funcionan dentro del propio alcance del servicio.
  * **Trabajo personalizado:** A veces, los *frameworks* de orquestación de datos abstraen la declaración de entrada/salida, ya que pueden deducirla de las configuraciones de las tareas.
 
-![Figura 10-5: Visualización de linaje del DAG de Apache Airflow en la interfaz de usuario de Marquez](./f10-5.png)
+![Figura 10-5: Visualización de linaje del DAG de Apache Airflow en la interfaz de usuario de Marquez](f10-5.png)
 
 ### Patrón: Rastreador de Grano Fino (*Fine-Grained Tracker*)
 
@@ -195,7 +195,7 @@ Implementaste el patrón *Denormalizer* para evitar uniones costosas en una tabl
 
 Este detalle de seguimiento a nivel de columna es un escenario ideal para usar el patrón *Fine-Grained Tracker*. Proporciona detalles de bajo nivel a nivel de columna o fila sobre el origen de los datos.
 
-![Figura 10-6: Dependencias de linaje de columnas para una consulta que concatena dos columnas (simplificado)](./f10-6.png)
+![Figura 10-6: Dependencias de linaje de columnas para una consulta que concatena dos columnas (simplificado)](f10-6.png)
 
 #### Consecuencias
 

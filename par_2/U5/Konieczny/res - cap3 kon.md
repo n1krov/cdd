@@ -75,7 +75,7 @@ Al elegir un destino para los registros *dead-letter*, se debe considerar:
 
 Buenos candidatos para este almacenamiento son los *object stores* en la nube o los *brokers* de *streaming*, ya que son altamente disponibles y fáciles de monitorear. Opcionalmente, se puede completar el patrón con un **pipeline de reproducción (*replay*)** que reingiera los registros fallidos (una vez corregidos) en el flujo de datos principal.
 
-![Figura 3-1: Componentes involucrados en el patrón Dead-Letter](./f31.png)
+![Figura 3-1: Componentes involucrados en el patrón Dead-Letter](img/f31.png)
 
 Este patrón es aplicable tanto a cargas de trabajo de *streaming* (operando registro por registro) como de *batch* (operando sobre un conjunto de registros).
 
@@ -85,7 +85,7 @@ A pesar de su beneficio, ignorar errores tiene consecuencias serias:
 
  * **Efecto de bola de nieve en el *backfilling*:** Si se decide usar el *pipeline* de reproducción, los registros reingresados pueden pertenecer a particiones ya procesadas por los consumidores. Esto requeriría una acción de *backfilling* (reprocesamiento) por su parte, lo que podría iniciar un "efecto de bola de nieve" donde sus propios consumidores también deban reprocesar los datos.
 
-![Figura 3-2: Efecto de bola de nieve en el backfilling donde el backfilling del Pipeline 1 desencadena el mismo proceso para todos los consumidores posteriores](./f32.png)
+![Figura 3-2: Efecto de bola de nieve en el backfilling donde el backfilling del Pipeline 1 desencadena el mismo proceso para todos los consumidores posteriores](img/f32.png)
 
  * **Identificación de registros *dead-lettered*:** Al reingresar los registros, es posible que se desee distinguirlos de los que se ingirieron normalmente. Se puede añadir una columna booleana (`was_dead_lettered`) o metadatos más completos.
  * **Orden y consistencia:** El patrón puede romper la consistencia del orden de los datos. Si un consumidor construye sesiones basadas en una ventana de inactividad de cinco minutos y los eventos de un usuario caen en el almacenamiento *dead-letter* durante ese tiempo, la sesión se cerrará prematuramente y será inconsistente con la realidad.
@@ -111,7 +111,7 @@ Los datos duplicados pueden llevar a resultados inconsistentes. Para evitarlo, s
  * **En *Batch*:** El alcance suele ser el conjunto de datos actual. La implementación utiliza una expresión `DISTINCT` o una función de ventana (`WINDOW`) con una condición sobre `row_number()`.
  * **En *Streaming*:** Los trabajos operan sobre un conjunto de registros no acotado. El patrón simula un conjunto de datos completo creando **ventanas basadas en tiempo**. El trabajo debe mantener un **almacén de estado (*state store*)** para recordar las claves ya procesadas dentro de la duración de la ventana.
 
-![Figura 3-3: Deduplicador con ventana para un trabajo de streaming](./f33.png)
+![Figura 3-3: Deduplicador con ventana para un trabajo de streaming](img/f33.png)
 
 Existen tres tipos de almacenes de estado, con diferentes compromisos entre rendimiento y consistencia:
 
@@ -145,7 +145,7 @@ El primer paso es definir un atributo basado en el tiempo para rastrear los dato
 
 Luego, se debe definir una estrategia de agregación de latencia que sea monotónicamente creciente (nunca retroceda en el tiempo). Por ello, la estrategia más común usa la función `MAX` sobre el tiempo del evento para cada partición. Finalmente, para permitir cierta latencia inesperada, el patrón requiere un atributo de **retraso permitido (*allowed lateness*)**. El resultado de `MAX(tiempo del evento) - retraso permitido` se llama **marca de agua (*watermark*)**, y define el tiempo mínimo de evento para considerar un evento como "a tiempo".
 
-![Figura 3-4: Diferentes estrategias de agregación aplicadas a un trabajo de procesamiento con una única fuente de datos particionada y dos fuentes de datos particionadas](./f34.png)
+![Figura 3-4: Diferentes estrategias de agregación aplicadas a un trabajo de procesamiento con una única fuente de datos particionada y dos fuentes de datos particionadas](img/f34.png)
 
 Para entender mejor el *watermark*, veamos un ejemplo en la **Tabla 3-1**.
 
@@ -190,9 +190,9 @@ Un trabajo diario genera estadísticas y los resultados se consideran aproximado
 
 Un retraso fijo para la ingesta de datos tardíos es un escenario perfecto para el patrón *Static Late Data Integrator*. La implementación comienza definiendo una **ventana de retrospectiva estática (*static lookback window*)**, es decir, qué tan atrás en el tiempo se buscarán datos tardíos en una ejecución dada.
 
-![Figura 3-5: Desplazando el problema de los datos tardíos](./f35.png)
+![Figura 3-5: Desplazando el problema de los datos tardíos](img/f35.png)
 
-![Figura 3-6: Estrategias para incluir la integración de datos tardíos en los pipelines](./f36.png)
+![Figura 3-6: Estrategias para incluir la integración de datos tardíos en los pipelines](img/f36.png)
 
 #### Consecuencias
 
@@ -209,7 +209,7 @@ Un retraso fijo para la ingesta de datos tardíos es un escenario perfecto para 
 
  * **Disparador del *pipeline*:** Los trabajos de *backfilling* deben ser parte del *pipeline* principal para evitar problemas de superposición.
 
-![Figura 3-7: Enfoques válidos e inválidos para integrar datos tardíos en el patrón Static Late Data Integrator](./f37.png)
+![Figura 3-7: Enfoques válidos e inválidos para integrar datos tardíos en el patrón Static Late Data Integrator](img/f37.png)
 
 ### Patrón: Integrador de Datos Tardíos Dinámico (*Dynamic Late Data Integrator*)
 
@@ -230,17 +230,17 @@ Para manejar la variabilidad e integrar solo las particiones con datos tardíos,
 
 Basado en esta tabla, se puede realizar una consulta para obtener las particiones a las que hacer *backfill*.
 
-![Figura 3-8: Interacción con la tabla de estado integrada en el pipeline principal](./f38.png)
+![Figura 3-8: Interacción con la tabla de estado integrada en el pipeline principal](img/f38.png)
 
 #### Consecuencias
 
  * **Concurrencia:** Si el *pipeline* admite ejecuciones concurrentes, la integración dinámica de datos tardíos puede generar ejecuciones duplicadas de integración de datos tardíos. Para evitar esto, se necesita añadir una columna extra a la tabla de estado que mantenga el estado de la partición.
 
-![Figura 3-9: Problema de concurrencia en la integración de datos tardíos](./f39.png)
+![Figura 3-9: Problema de concurrencia en la integración de datos tardíos](img/f39.png)
 
  * **Pipelines con estado y datos muy tardíos:** Para trabajos con estado (depende de ejecuciones anteriores) y se detectan datos muy tardíos (por ejemplo, de hace un mes), será necesario regenerar todas las ejecuciones desde ese punto para garantizar la corrección del conjunto de datos.
 
-![Figura 3-10: Integrador de Datos Tardíos para pipelines concurrentes](./f310.png)
+![Figura 3-10: Integrador de Datos Tardíos para pipelines concurrentes](img/f310.png)
 
 ## Filtrado
 

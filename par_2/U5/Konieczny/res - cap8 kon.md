@@ -82,7 +82,7 @@ Paradójicamente, la mayor desventaja del *Horizontal Partitioner* son... las pa
  * **Granularidad y sobrecarga de metadatos:** Una partición es una ubicación física que almacena entidades similares. Tener demasiadas particiones (por ejemplo, al particionar por un atributo de alta cardinalidad como un nombre de usuario) tendrá un impacto negativo en la base de datos, resultando en operaciones de listado lentas y muchos archivos pequeños que leer.
  * **Sesgo (*Skew*):** El particionamiento horizontal no garantiza una distribución uniforme de los datos. Las particiones sesgadas pueden ser una fuente de latencia. Por ejemplo, en un modelo de procesamiento por micro-lotes, una partición desequilibrada determinará la duración de todo el micro-lote, bloqueando a las particiones más cortas. Para mitigar esto, se puede aplicar un mecanismo de **contrapresión (*backpressure*)** que almacena los registros sobrantes de la partición sesgada en un búfer separado para procesarlos en el siguiente micro-lote. La **Figura 8-1** muestra este mecanismo.
 
-![Figura 8-1: Manejo del sesgo de datos para un bróker de streaming particionado horizontalmente](./f81.png)
+![Figura 8-1: Manejo del sesgo de datos para un bróker de streaming particionado horizontalmente](f81.png)
 
  * **Mutabilidad:** Cambiar una clave de partición es difícil. Requiere mover todos los datos ya escritos a una nueva ubicación, lo cual es costoso y consume mucho tiempo.
 
@@ -98,7 +98,7 @@ En uno de tus *pipelines*, rastreas las visitas de los usuarios a tu sitio web. 
 
 Tener dos tipos de atributos como en nuestro enunciado del problema es la condición perfecta para usar el patrón *Vertical Partitioner*. La implementación comienza con la clasificación de los datos, donde necesitas agrupar los atributos relacionados. Para el problema anunciado, dividirías los atributos en los grupos mutable e inmutable.
 
-![Figura 8-2: Una fila de visita particionada horizontal y verticalmente](./f82.png)
+![Figura 8-2: Una fila de visita particionada horizontal y verticalmente](f82.png)
 
 #### Consecuencias
 
@@ -122,7 +122,7 @@ El conjunto de datos que estás modelando tiene un atributo de negocio que se ut
 
 El hecho de que tengas una columna de alta cardinalidad que a menudo está involucrada en consultas es una buena razón para usar el patrón *Bucket*. Aunque en la superficie también almacena registros en una ubicación dedicada, a diferencia del *Horizontal Partitioner*, coubica diferentes valores en la misma área de almacenamiento.
 
-![Figura 8-3: Join distribuido sin shuffle sobre tablas idénticamente bucketizadas](./f83.png)
+![Figura 8-3: Join distribuido sin shuffle sobre tablas idénticamente bucketizadas](f83.png)
 
 #### Consecuencias
 
@@ -141,11 +141,11 @@ Decidiste almacenar los datos en tablas semanales para aprovechar el patrón *Fa
 
 Saber qué columna o columnas se usan comúnmente en el ordenamiento o filtrado es una buena manera de implementar el patrón *Sorter* para optimizar el acceso a los datos. Gracias al almacenamiento ordenado, cualquier consulta que apunte a la(s) columna(s) de ordenamiento podrá omitir bloques de datos irrelevantes, muy a menudo gracias a la información de metadatos asociada a cada uno de ellos.
 
-![Figura 8-4: Información de metadatos para el salto de datos](./f84.png)
+![Figura 8-4: Información de metadatos para el salto de datos](f84.png)
 
-![Figura 8-5: Bloques de datos leídos para un predicado y conjuntos de datos ordenados de dos columnas](./f85.png)
+![Figura 8-5: Bloques de datos leídos para un predicado y conjuntos de datos ordenados de dos columnas](f85.png)
 
-![Figura 8-6: Una tabla ordenada por visit_time y page, y las filas impactadas al consultar ambas columnas (lado izquierdo) o solo una de las columnas (lado derecho)](./f86.png)
+![Figura 8-6: Una tabla ordenada por visit_time y page, y las filas impactadas al consultar ambas columnas (lado izquierdo) o solo una de las columnas (lado derecho)](f86.png)
 
 #### Consecuencias
 
@@ -169,7 +169,7 @@ Particionaste tu conjunto de datos JSON horizontalmente por tiempo de evento, co
 
 Una forma fácil de optimizar el tiempo de ejecución de la consulta y el costo es omitir todos los archivos de datos irrelevantes antes de cargarlos para su procesamiento. Ahí es donde entra en juego el patrón *Metadata Enhancer*. La implementación consiste en recopilar y persistir estadísticas sobre los registros almacenados en un archivo o base de datos.
 
-![Figura 8-7: Un ejemplo simplificado del pie de página de metadatos con un resumen de datos para los registros almacenados en un archivo Apache Parquet](./f87.png)
+![Figura 8-7: Un ejemplo simplificado del pie de página de metadatos con un resumen de datos para los registros almacenados en un archivo Apache Parquet](f87.png)
 
 #### Consecuencias
 
@@ -257,9 +257,9 @@ Para ayudarte a entender mejor estas formas normales (NF), veamos tres ejemplos,
 | Puzzle Tour | Studio A | Italy |
 | Runner | Studio B | Portugal |
 
-![Figura 8-8: Modelo Snowflake donde las tablas de dimensiones son descritas por otras dimensiones](./f88.png)
+![Figura 8-8: Modelo Snowflake donde las tablas de dimensiones son descritas por otras dimensiones](f88.png)
 
-![Figura 8-9: Visitas en forma normalizada](./f89.png)
+![Figura 8-9: Visitas en forma normalizada](f89.png)
 
 #### Consecuencias
 
@@ -284,9 +284,9 @@ El problema planteado es un escenario típico donde el patrón *Denormalizer* pu
 | :--- | :--- | :--- | :--- | :--- | :--- | :--- |
 | 1 | 409 | user ABC | 10000 | local computer | 2024-07-01T09:00:00Z | home.html |
 
-![Figura 8-10: Modelo de estrella con solo un nivel de tabla de dimensión](./f810.png)
+![Figura 8-10: Modelo de estrella con solo un nivel de tabla de dimensión](f810.png)
 
-![Figura 8-11: Combinando los patrones Normalizer y Denormalizer, ambos disponibles para el analista de datos](./f811.png)
+![Figura 8-11: Combinando los patrones Normalizer y Denormalizer, ambos disponibles para el analista de datos](f811.png)
 
 #### Consecuencias
 

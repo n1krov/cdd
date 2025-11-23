@@ -51,7 +51,7 @@ La IA existe desde la década de 1950 (Alan Turing), pero las limitaciones de ha
 
 Es crucial distinguir entre la IA Generativa (GenAI) y la IA tradicional. GenAI es solo un subconjunto. La IA moderna se clasifica en cuatro grupos según su alcance y capacidad:
 
-![Figura 1-1: Los cuatro tipos de IA (Fuente: Dra. Marily Nika). El diagrama destaca cómo varían en alcance y capacidad, desde tareas especializadas hasta aplicaciones transformadoras.](./f11.png)
+![Figura 1-1: Los cuatro tipos de IA (Fuente: Dra. Marily Nika). El diagrama destaca cómo varían en alcance y capacidad, desde tareas especializadas hasta aplicaciones transformadoras.](f11%204.png)
 
 ### 1. IA Tradicional (1950s–Presente)
 Son las tecnologías fundamentales diseñadas para tareas específicas mediante reglas o reconocimiento de patrones.
@@ -132,22 +132,22 @@ La gestión de productos de IA trata de convertir la investigación de IA en fun
 *   **PM Generalista:** Identifica necesidades de usuarios y las alinea con objetivos de negocio. Intersección de Negocios, UX e Ingeniería.
 *   **AI PM:** Una versión "supercargada". Se sienta en la misma intersección pero incorpora **Investigación e Ingeniería de IA/ML**.
 
-![Figura 1-2: El lugar de un PM generalista en la empresa (Negocios, UX, Ingeniería).](./f12.png)
+![Figura 1-2: El lugar de un PM generalista en la empresa (Negocios, UX, Ingeniería).](f12%203.png)
 
-![Figura 1-3: El lugar de un AI PM en la empresa (Negocios, UX, Investigación e Ingeniería de IA/ML).](./f13.png)
+![Figura 1-3: El lugar de un AI PM en la empresa (Negocios, UX, Investigación e Ingeniería de IA/ML).](f13%203.png)
 
 ### Conjunto de Habilidades del AI PM
 
 Si el rol fuera una receta, tendría cuatro ingredientes principales:
 
-![Figura 1-4: Los diferentes cubos del conjunto de habilidades del AI PM.](./f14.png)
+![Figura 1-4: Los diferentes cubos del conjunto de habilidades del AI PM.](f14%202.png)
 
 1.  **Oficio y prácticas centrales de gestión de productos:** Entender usuarios, visión, priorización (el "por qué" y el "qué").
 2.  **Fundamentos de ingeniería para PMs:** Entender aspectos técnicos para comunicarse con el equipo y establecer expectativas realistas (no necesariamente codificar).
 3.  **Habilidades esenciales de liderazgo y colaboración:** Comunicación, empatía, creatividad.
 4.  **Ciclo de vida de IA y conciencia operativa:** Entender algoritmos ML, entrenamiento, qué es posible y qué no, trade-offs y métricas de calidad.
 
-![Figura 1-5: Los diferentes sombreros de un AI PM (Desde conserje hasta científico de datos, líder de MLOps, defensor del usuario, etc.).](./f15.png)
+![Figura 1-5: Los diferentes sombreros de un AI PM (Desde conserje hasta científico de datos, líder de MLOps, defensor del usuario, etc.).](f15%202.png)
 
 ### Estructuras Organizacionales
 La ubicación del AI PM varía.

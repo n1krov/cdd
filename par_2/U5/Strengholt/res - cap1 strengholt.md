@@ -47,7 +47,7 @@ Crear una arquitectura de datos robusta es uno de los aspectos más desafiantes 
 
 A pesar de estas diferencias, el autor propone una metáfora fundamental para estructurar cualquier estrategia de datos: el **Diseño de Arquitectura de Tres Capas**.
 
-![Figura 1-1: El diseño de arquitectura de tres capas](./f11.png)
+![Figura 1-1: El diseño de arquitectura de tres capas](f11%203.png)
 
 Este diseño consta de:
 
@@ -70,7 +70,7 @@ Es un patrón de diseño de datos utilizado para organizar lógicamente los dato
 | **Silver (Plata)** | Refina y estandariza los datos crudos. Aplica deduplicación, limpieza y validación. Actúa como etapa transicional para datos granulares y consistentes. |
 | **Gold (Oro)** | Optimiza los datos refinados para insights de negocio específicos. Agrega, resume y enriquece datos para reportes de alto nivel y analítica, priorizando el rendimiento. |
 
-![Figura 1-2: Una arquitectura Medallion, que organiza los datos en tres capas, mejorando la estructura y calidad de los datos a medida que avanza a través de las capas](./f12.png)
+![Figura 1-2: Una arquitectura Medallion, que organiza los datos en tres capas, mejorando la estructura y calidad de los datos a medida que avanza a través de las capas](f12%202.png)
 
 Aunque las etiquetas son intuitivas, muchas empresas fallan al modelar sus datos dentro de estas capas, confundiendo objetivos y estrategias de gobernanza. Para entender cómo aplicar esto correctamente, es vital comprender primero la historia de las arquitecturas de datos.
 
@@ -78,7 +78,7 @@ Aunque las etiquetas son intuitivas, muchas empresas fallan al modelar sus datos
 
 En los años 90, el **Data Warehousing** surgió para crear una "versión única de la verdad" integrando datos en una colección unificada.
 
-![Figura 1-3: Arquitectura típica de un data warehouse](./f13.png)
+![Figura 1-3: Arquitectura típica de un data warehouse](f13%202.png)
 
 La arquitectura clásica fluye de izquierda a derecha:
 
@@ -119,7 +119,7 @@ Creada por Bill Inmon (diseño **Top-Down**).
 
 *   **Desventaja:** Doble esfuerzo de ETL (Fuente -> EDW Normalizado -> Data Mart Desnormalizado). Mayor tiempo de desarrollo y redundancia.
 
-![Figura 1-4: El enfoque Inmon; un diseño de arriba hacia abajo donde primero se construye un almacén de datos centralizado y luego se crean data marts a partir de este almacén central](./f14.png)
+![Figura 1-4: El enfoque Inmon; un diseño de arriba hacia abajo donde primero se construye un almacén de datos centralizado y luego se crean data marts a partir de este almacén central](f14%201.png)
 
 ### Metodología Kimball
 Creada por Ralph Kimball (diseño **Bottom-Up**). Introducida en 1996.
@@ -128,7 +128,7 @@ Creada por Ralph Kimball (diseño **Bottom-Up**). Introducida en 1996.
 *   Utiliza el **Modelo Dimensional (Esquema de Estrella)**: Tablas de Hechos (métricas) rodeadas de Tablas de Dimensiones (contexto).
 *   La capa de integración es una colección de tablas dimensionales y tablas de hechos. Los Data Marts son subconjuntos lógicos o físicos de estas tablas.
 
-![Figura 1-5: La metodología Kimball; un enfoque de abajo hacia arriba para construir el data warehouse](./f15.png)
+![Figura 1-5: La metodología Kimball; un enfoque de abajo hacia arriba para construir el data warehouse](f15%201.png)
 
 #### Dimensiones Conformadas y SCDs
 Kimball introdujo conceptos clave que aún se usan:
@@ -149,7 +149,7 @@ Aunque efectivos para datos estructurados y consultas rápidas (gracias a la int
 
 Los Data Lakes surgieron a mediados de los 2000 como solución a las limitaciones del Warehouse, impulsados por el software open source (**Hadoop**) y hardware commodity (barato).
 
-![Figura 1-6: Arquitectura típica de data lake con copias crudas de datos](./f16.png)
+![Figura 1-6: Arquitectura típica de data lake con copias crudas de datos](f16%201.png)
 
 ### Hadoop y sus Componentes
 El ecosistema Hadoop fue la base de la primera generación de Data Lakes:
@@ -183,7 +183,7 @@ Los Data Lakes son excelentes para almacenar volúmenes masivos de datos crudos 
 
 La arquitectura **Lakehouse** combina lo mejor de ambos mundos: la escalabilidad y flexibilidad del Data Lake (almacenamiento en objetos en la nube barato) con la confiabilidad y rendimiento del Data Warehouse (transacciones ACID).
 
-![Figura 1-8: Arquitectura típica de lakehouse, con una representación de las capas Bronce, Plata y Oro incluidas](./f18.png)
+![Figura 1-8: Arquitectura típica de lakehouse, con una representación de las capas Bronce, Plata y Oro incluidas](f18%201.png)
 
 ### Fundadores de Spark y Databricks
 Los creadores de Spark fundaron **Databricks** en 2013. A diferencia de sus competidores (Cloudera/Hortonworks que se enfocaron en on-premise), Databricks apostó por la **Nube** y la separación de cómputo y almacenamiento.
@@ -206,7 +206,7 @@ Usa un **Transaction Log (DeltaLog)**.
 *   Permite **Time Travel**: Consultar cómo estaba la tabla en el pasado.
 *   Usa archivos Parquet para los datos físicos.
 
-![Figura 1-7: Ejemplo de cómo Delta Lake estructura sus datos y registro de transacciones](./f17.png)
+![Figura 1-7: Ejemplo de cómo Delta Lake estructura sus datos y registro de transacciones](f17%201.png)
 
 ### Proveedores de Lakehouse
 El mercado ha adoptado el concepto:

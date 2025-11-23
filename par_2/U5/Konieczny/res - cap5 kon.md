@@ -71,11 +71,11 @@ El carácter "en reposo" (*at-rest*) del conjunto de datos a unir presenta la co
 
 Si se necesita un enriquecimiento de datos sensible al tiempo, se puede implementar como una forma de **dimensiones de cambio lento (SCD)**, que es una estrategia de modelado de datos para conjuntos de datos que cambian lentamente y que pueden soportar la evolución de una entidad a lo largo del tiempo. En nuestra solución, el conjunto de datos de enriquecimiento debería implementar SCD tipo 2 o 4, como se muestra en la **Figura 5-1**.
 
-![Figura 5-1: Tipos 2 y 4 de SCD: correos electrónicos de usuario](./f51.png)
+![Figura 5-1: Tipos 2 y 4 de SCD: correos electrónicos de usuario](f51.png)
 
 La implementación del código a menudo se expresa con una sentencia `SQL JOIN`. Además de esta manera declarativa, también se puede enriquecer el conjunto de datos desde una API programática, por ejemplo, usando una biblioteca HTTP, como se muestra en la **Figura 5-2**.
 
-![Figura 5-2: Enriquecimiento de datos estáticos con llamadas a API en tiempo real y sincronizadas](./f52.png)
+![Figura 5-2: Enriquecimiento de datos estáticos con llamadas a API en tiempo real y sincronizadas](f52.png)
 
 #### Consecuencias
 
@@ -94,7 +94,7 @@ Aunque se ha implementado el *Static Joiner* para el caso de uso de usuarios y v
 
 Como ambos conjuntos de datos están en movimiento, no se puede usar el *Static Joiner*. En su lugar, se debe considerar su alternativa, el patrón **Dynamic Joiner**, que está mejor adaptado para ese tipo de datos. La implementación comparte algunos puntos con el *Static Joiner* —a saber, la identificación de las claves y la definición del método de unión— pero hay un requisito extra: **límites de tiempo**.
 
-![Figura 5-3: Dynamic Joiner con almacenamiento en búfer para dos flujos de diferentes latencias](./f53.png)
+![Figura 5-3: Dynamic Joiner con almacenamiento en búfer para dos flujos de diferentes latencias](f53.png)
 
 #### Consecuencias
 
@@ -117,7 +117,7 @@ La capa de *streaming* procesa los datos de visitas. Las visitas provienen de di
 
 El requisito de mantener el registro original intacto reduce el alcance de la transformación. No se puede simplemente analizar la fila y generar una nueva estructura porque se perderían los valores iniciales. Para preservarlos, se debe usar el patrón *Wrapper*. La idea es añadir una abstracción extra a nivel de registro. La abstracción envuelve los valores originales con un sobre de alto nivel.
 
-![Figura 5-4: Posibles implementaciones de Wrapper para datos estructurados](./f54.png)
+![Figura 5-4: Posibles implementaciones de Wrapper para datos estructurados](f54.png)
 
 #### Consecuencias
 
@@ -175,7 +175,7 @@ Has escrito un trabajo que limpia los eventos de visita crudos de la capa Bronce
 
 Para conjuntos de datos que caben en una sola máquina, no se necesita ninguna herramienta específica para realizar la agregación. Sin embargo, en la era del big data, donde los registros relacionados pueden estar divididos en múltiples lugares físicos, este requisito no siempre se cumple. Ahí es donde ayuda el patrón *Distributed Aggregator*.
 
-![Figura 5-5: Intercambio de datos en el Agregador Distribuido](./f55.png)
+![Figura 5-5: Intercambio de datos en el Agregador Distribuido](f55.png)
 
 #### Consecuencias
 
@@ -220,7 +220,7 @@ Dado que los registros de una sesión pueden estar presentes en múltiples parti
  * Almacenamiento de sesiones completadas.
  * Almacenamiento de sesiones pendientes.
 
-![Figura 5-6: Sesionizador Incremental con tres espacios de almacenamiento](./f56.png)
+![Figura 5-6: Sesionizador Incremental con tres espacios de almacenamiento](f56.png)
 
 #### Consecuencias
 
@@ -240,13 +240,13 @@ Los *stakeholders* ahora están bastante contentos con la disponibilidad de la s
 
 Lograr la garantía de "tan pronto como sea posible" para las sesiones es difícil con los *pipelines* por lotes, pero los *pipelines* de *streaming* predeterminados tampoco ayudarán porque no tienen estado. Por esa razón, necesitas usar una versión más avanzada y resolver el problema con el patrón *Stateful Sessionizer*.
 
-![Figura 5-7: Interacción entre un trabajo de procesamiento de datos con estado y su almacén de estado](./f57.png)
+![Figura 5-7: Interacción entre un trabajo de procesamiento de datos con estado y su almacén de estado](f57.png)
 
 La lógica de procesamiento de datos puede basarse en las siguientes abstracciones de procesamiento de datos:
 
  * **Ventanas de sesión:** Una ventana de sesión es una ventana creada para cada clave de sesión. Su longitud se especifica por una duración de brecha (*gap duration*).
 
-![Figura 5-8: Dos ventanas de sesión para la misma clave donde la duración de la brecha es de 20 minutos](./f58.png)
+![Figura 5-8: Dos ventanas de sesión para la misma clave donde la duración de la brecha es de 20 minutos](f58.png)
 
  * **Procesamiento con estado arbitrario:** Este enfoque requiere más esfuerzo de implementación que la ventana de sesión, pero también proporciona más flexibilidad.
 
@@ -284,7 +284,7 @@ Tu plataforma de blogs del caso de uso permite que sitios web externos incrusten
 
 Puedes resolver el problema si entregas cada registro individualmente. Sin embargo, eso implica una sobrecarga de red significativa, ya que necesitarás inicializar tantas solicitudes como registros haya. Puedes mitigar el problema confiando en las operaciones masivas que, junto con el patrón *Bin Pack Orderer*, pueden garantizar una entrega ordenada en el contexto de *commits* parciales.
 
-![Figura 5-9: Registros del Bin packer entregados con tres solicitudes masivas](./f59.png)
+![Figura 5-9: Registros del Bin packer entregados con tres solicitudes masivas](f59.png)
 
 #### Consecuencias
 

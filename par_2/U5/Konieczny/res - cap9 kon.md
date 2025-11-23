@@ -73,7 +73,7 @@ El patrón **Audit-Write-Audit-Publish (AWAP)** es una evolución del patrón *W
 
 La idea detrás de AWAP es añadir controles (también conocidos como pasos de auditoría) para asegurar que tanto los conjuntos de datos de entrada como de salida cumplan con los requisitos técnicos y de negocio definidos, como la completitud y la exactitud.
 
-![Figura 9-1: El patrón AWAP aplicado a un pipeline](./f91.png)
+![Figura 9-1: El patrón AWAP aplicado a un pipeline](f91.png)
 
 Como puedes ver en la **Figura 9-1**, la principal diferencia entre las dos tareas de auditoría es el almacén de datos auditado:
 
@@ -82,7 +82,7 @@ Como puedes ver en la **Figura 9-1**, la principal diferencia entre las dos tare
 
 La validación en los pasos de auditoría puede operar a nivel de registros y, por lo tanto, validar atributos de registros particulares, o puede operar a nivel de conjunto de datos para verificar propiedades generales, como el volumen de datos, la distintividad de columnas particulares o incluso la proporción de NULLs en una columna.
 
-![Figura 9-2: El patrón AWAP aplicado a streaming](./f92.png)
+![Figura 9-2: El patrón AWAP aplicado a streaming](f92.png)
 
 #### Consecuencias
 
@@ -131,7 +131,7 @@ Para asegurarte de que tú, como productor de datos, no introduces ningún cambi
  * **Implícito con inserciones**
  * **Impulsado por eventos para el lenguaje de definición de datos (DDL)**
 
-![Figura 9-3: Flujos de trabajo del modo de compatibilidad de esquemas](./f93.png)
+![Figura 9-3: Flujos de trabajo del modo de compatibilidad de esquemas](f93.png)
 
 Completemos esta sección de implementación con un análisis de varios modos de compatibilidad que puedes definir para tus esquemas.
 
@@ -184,7 +184,7 @@ Comenzaste un nuevo *pipeline* de datos este mes y no has encontrado muchos prob
 
 En un escenario en el que el monitoreo no debe bloquear el flujo de trabajo de procesamiento, es mejor optar por el patrón *Offline Observer*. La implementación consiste en crear un trabajo de observabilidad de datos que analizará los registros procesados y mejorará la capa de monitoreo existente con *insights* adicionales.
 
-![Figura 9-4: Un perfil de datos para el conjunto de datos observado](./f94.png)
+![Figura 9-4: Un perfil de datos para el conjunto de datos observado](f94.png)
 
 #### Consecuencias
 
@@ -203,9 +203,9 @@ La semana pasada, tus colegas de análisis de datos se quejaron de un formato in
 
 El problema que hemos presentado es un ejemplo perfecto de las limitaciones del *Offline Observer*. Afortunadamente, superarlo es relativamente simple con el patrón opuesto, que se llama el patrón *Online Observer*.
 
-![Figura 9-5: Enfoques para implementar el Online Observer en un pipeline de lotes](./f95.png)
+![Figura 9-5: Enfoques para implementar el Online Observer en un pipeline de lotes](f95.png)
 
-![Figura 9-6: Observador de datos en línea para un trabajo de streaming](./f96.png)
+![Figura 9-6: Observador de datos en línea para un trabajo de streaming](f96.png)
 
 #### Consecuencias
 

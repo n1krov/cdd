@@ -79,7 +79,7 @@ En ingeniería de datos, se puede particionar un conjunto de datos horizontal o 
 
 El primer paso consiste en identificar las columnas a dividir y un atributo que se utilizará para volver a unir las filas divididas. Luego, se adapta el trabajo de ingesta de datos para dividir cada fila en dos partes y escribir cada una en un espacio de almacenamiento separado.
 
-![Figura 7-1: Particionador Vertical extrayendo y escribiendo PII y atributos inmutables en un almacenamiento dedicado](./f71.png)
+![Figura 7-1: Particionador Vertical extrayendo y escribiendo PII y atributos inmutables en un almacenamiento dedicado](f71.png)
 
 #### Consecuencias
 
@@ -87,7 +87,7 @@ El primer paso consiste en identificar las columnas a dividir y un atributo que 
  * **Complejidad de las consultas:** La separación de datos también introduce una complejidad extra en las consultas.
  * **Complejidad en un mundo políglota:** Otro desafío afecta al mundo de la persistencia políglota, donde un conjunto de datos vive en diferentes tipos de almacenamiento al mismo tiempo.
 
-![Figura 7-2: Persistencia políglota con particionamiento vertical](./f72.png)
+![Figura 7-2: Persistencia políglota con particionamiento vertical](f72.png)
 
  * **Datos crudos:** Si necesitas mantener los datos crudos (no divididos) durante algún tiempo, necesitarás una solución complementaria para lidiar con la eliminación de datos.
 
@@ -103,7 +103,7 @@ Heredaste un sistema heredado en el que terabytes de datos se almacenan en parti
 
 La arquitectura y la falta de recursos para la refactorización te dejan sin otra opción que aplicar el patrón *In-Place Overwriter*. La implementación depende en gran medida de la tecnología de almacenamiento de datos.
 
-![Figura 7-3: Eliminación de datos con un almacenamiento intermedio (también conocido como staging)](./f73.png)
+![Figura 7-3: Eliminación de datos con un almacenamiento intermedio (también conocido como staging)](f73.png)
 
 #### Consecuencias
 
@@ -144,7 +144,7 @@ Una auditoría de seguridad detectó permisos demasiado amplios en tu cuenta de 
 
 La buena noticia para ti es que todos los principales proveedores de la nube —incluidos AWS, Azure y GCP— vienen con una implementación del principio de privilegio mínimo, que es la columna vertebral del patrón *Fine-Grained Accessor for Resources*.
 
-![Figura 7-4: Ilustración simplificada de los controles de acceso basados en recursos y en identidad](./f74.png)
+![Figura 7-4: Ilustración simplificada de los controles de acceso basados en recursos y en identidad](f74.png)
 
 #### Consecuencias
 
@@ -168,7 +168,7 @@ Después de implementar políticas de acceso de grano fino tanto para tus tablas
 
 Una forma de reducir este riesgo de intrusión de datos es con el patrón *Encryptor*. Como se requieren dos niveles de protección, el patrón tiene dos implementaciones.
 
-![Figura 7-5: Flujo de trabajo de encriptación para el servicio de encriptación del lado del servidor de datos en reposo con un almacén de claves de encriptación](./f75.png)
+![Figura 7-5: Flujo de trabajo de encriptación para el servicio de encriptación del lado del servidor de datos en reposo con un almacén de claves de encriptación](f75.png)
 
 #### Consecuencias
 
@@ -269,7 +269,7 @@ Uno de los equipos de tu organización ha comenzado a integrar un nuevo servicio
 
 Si trabajas con servicios en la nube y no quieres gestionar las credenciales, puedes implementar el patrón *Secretless Connector*. ¿Cómo? Hay dos enfoques principales.
 
-![Figura 7-6: Un flujo de trabajo de acceso sin credenciales generalizado con un servicio en la nube](./f76.png)
+![Figura 7-6: Un flujo de trabajo de acceso sin credenciales generalizado con un servicio en la nube](f76.png)
 
 #### Consecuencias
 

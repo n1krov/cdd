@@ -92,7 +92,7 @@ El libro se estructura siguiendo un flujo de datos típico, desde la ingesta has
 
 Para facilitar la comprensión de los patrones, el libro los introduce en el contexto de un caso de estudio: una plataforma de análisis de datos para un blog. El proyecto se divide en las capas presentadas en la siguiente figura.
 
-![Figura 1-1: Plataforma de analítica de blogs utilizada en el caso de estudio](./f11.png)
+![Figura 1-1: Plataforma de analítica de blogs utilizada en el caso de estudio](f11%201.png)
 
 Este proyecto destaca tres partes importantes:
 
