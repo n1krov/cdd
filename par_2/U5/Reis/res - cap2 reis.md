@@ -106,7 +106,7 @@ El esquema define la organización jerárquica de los datos.
 - **Sin esquema (Schemaless):** La aplicación define el esquema al escribir (ej. MongoDB, logs).
 - **Esquema fijo:** La base de datos fuerza la estructura (ej. RDBMS SQL).
 
-El trabajo del ingeniero a menudo implica transformar datos crudos del esquema de la fuente a un formato valioso para analítica.
+>[!important] El **trabajo del ingeniero a menudo implica transformar datos crudos del esquema de la fuente a un formato valioso para analítica**.
 
 ---
 
@@ -133,7 +133,7 @@ Elegir la solución de almacenamiento es clave y complejo. A menudo se usan múl
 
 ## 3. Ingesta (Ingestion)
 
-Es el proceso de mover datos desde la fuente al almacenamiento o sistema de procesamiento. Suele ser el mayor cuello de botella por la falta de control sobre la fuente.
+Es el proceso de **mover datos desde la fuente al almacenamiento o sistema de procesamiento**. Suele ser el mayor cuello de botella por la falta de control sobre la fuente.
 
 ### Consideraciones clave:
 
