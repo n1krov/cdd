@@ -186,7 +186,7 @@ La complejidad del trabajo depende de la madurez de datos de la empresa (no nece
   - Definir la arquitectura de datos correcta.
   - Identificar y auditar datos clave.
   - Construir una base sólida para futuros analistas.
-- **Consejos:** Buscar victorias rápidas (quick wins) pero gestionar la deuda técnica; evitar trabajar en silos; usar soluciones "llave en mano" en lugar de construir complejidad innecesaria.
+- **Consejos:** Buscar victorias rápidas (quick wins) pero gestionar la deuda técnica; evitar trabajar en [[Silos]]; usar soluciones "llave en mano" en lugar de construir complejidad innecesaria.
 
 > [!tip] Una solución llave en mano —en inglés, *"turnkey solution"*— es una herramienta (generalmente SaaS) que abstrae la complejidad técnica de la infraestructura para que el ingeniero de datos pueda resolver problemas de negocio inmediatamente, en lugar de perder tiempo configurando servidores o escribiendo código base repetitivo.
 
