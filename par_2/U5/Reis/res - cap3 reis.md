@@ -51,7 +51,7 @@ La ingeniería de datos exitosa se construye sobre una arquitectura de datos só
 ### Arquitectura Empresarial Definida
 La arquitectura empresarial tiene muchos subconjuntos, incluidos el negocio, la técnica, la aplicación y los datos.
 
-![Figura 3-1: La arquitectura de datos es un subconjunto de la arquitectura empresarial](./f31.png)
+![Figura 3-1: La arquitectura de datos es un subconjunto de la arquitectura empresarial](f31%203.png)
 
 El libro revisa definiciones de líderes de pensamiento:
 
@@ -89,7 +89,7 @@ Aspectos de la arquitectura de datos:
 *   **Arquitectura Operacional (El "Qué"):** Requisitos funcionales, personas, procesos. ¿Qué procesos de negocio sirve el dato? ¿Cuál es el requisito de latencia?
 *   **Arquitectura Técnica (El "Cómo"):** Cómo se ingesta, almacena, transforma y sirve el dato.
 
-![Figura 3-2: Arquitectura de datos operacional y técnica](./f32.png)
+![Figura 3-2: Arquitectura de datos operacional y técnica](f32%203.png)
 
 ## "Buena" Arquitectura de Datos
 
@@ -168,7 +168,7 @@ Responsabilidad compartida y seguridad de confianza cero (*Zero-Trust*).
     *   Un dominio puede contener múltiples servicios.
     *   Consejo: Para definir un dominio, habla con los usuarios y stakeholders, no copies ciegamente a otras empresas.
 
-![Figura 3-3: Dos dominios (ventas y contabilidad) comparten un servicio común (facturas)](./f33.png)
+![Figura 3-3: Dos dominios (ventas y contabilidad) comparten un servicio común (facturas)](f33%203.png)
 
 ### Sistemas Distribuidos
 Para lograr escalabilidad y fiabilidad, se usan sistemas distribuidos.
@@ -176,7 +176,7 @@ Para lograr escalabilidad y fiabilidad, se usan sistemas distribuidos.
 *   **Escalado horizontal:** Añadir más máquinas (nodos trabajadores) coordinadas por un nodo líder.
 *   Provee redundancia (si una máquina muere, otra toma el trabajo).
 
-![Figura 3-4: Un sistema distribuido horizontal simple utilizando una arquitectura líder-seguidor](./f34.png)
+![Figura 3-4: Un sistema distribuido horizontal simple utilizando una arquitectura líder-seguidor](f34%203.png)
 
 ### Acoplamiento Fuerte vs. Débil (Tight vs. Loose Coupling)
 
@@ -184,14 +184,14 @@ Para lograr escalabilidad y fiabilidad, se usan sistemas distribuidos.
 
 1.  **Capa Única (Single Tier):** Base de datos y aplicación en el mismo servidor. Simple pero riesgosa para producción (si falla el servidor, falla todo). No recomendada para producción.
 
-    ![Figura 3-5: Arquitectura de capa única](./f35.png)
+    ![Figura 3-5: Arquitectura de capa única](f35%203.png)
 
 2.  **Multicapa (Multitier):** Separa datos, aplicación y lógica.
     *   **Arquitectura de tres capas:** Capa de datos, Capa de aplicación/lógica, Capa de presentación.
     *   **Shared-nothing architecture:** Nodos independientes que no comparten memoria ni disco (reduce contención).
     *   **Shared-disk architecture:** Nodos comparten disco (útil para fallos de nodos).
 
-    ![Figura 3-6: Una arquitectura de tres capas](./f36.png)
+    ![Figura 3-6: Una arquitectura de tres capas](f36%202.png)
 
 **Monolitos:**
 
@@ -200,7 +200,7 @@ Para lograr escalabilidad y fiabilidad, se usan sistemas distribuidos.
 *   Difícil de mantener, actualizar o reutilizar componentes.
 *   A menudo degenera en una "gran bola de lodo" (*big ball of mud*).
 
-![Figura 3-7: Una arquitectura extremadamente monolítica corre toda la funcionalidad dentro de una única base de código](./f37.png)
+![Figura 3-7: Una arquitectura extremadamente monolítica corre toda la funcionalidad dentro de una única base de código](f37%202.png)
 
 **Microservicios:**
 
@@ -224,9 +224,9 @@ El negocio no es estático; ocurren "eventos" (nueva orden, nuevo cliente).
 *   Workflow: Producción de evento -> Enrutamiento -> Consumo.
 *   Ventaja: Desacopla servicios. Si un servicio cae, el evento sigue en la cola.
 
-![Figura 3-8: En un flujo de trabajo orientado a eventos, un evento es producido, enrutado y luego consumido](./f38.png)
+![Figura 3-8: En un flujo de trabajo orientado a eventos, un evento es producido, enrutado y luego consumido](f38%202.png)
 
-![Figura 3-9: En una arquitectura orientada a eventos, los eventos se pasan entre servicios débilmente acoplados](./f39.png)
+![Figura 3-9: En una arquitectura orientada a eventos, los eventos se pasan entre servicios débilmente acoplados](f39%202.png)
 
 ### Proyectos Brownfield vs. Greenfield
 1.  **Brownfield (Campo marrón):** Refactorizar o reorganizar una arquitectura existente (legada).
@@ -246,20 +246,20 @@ Hub central para reportes y análisis. Datos altamente estructurados y limpios.
 *   **Arquitectura Organizacional:** Separa OLAP (análisis) de OLTP (transacción). Centraliza datos.
 *   **Flujo Tradicional:** ETL (Extract, Transform, Load). Equipos de DBAs y desarrolladores ETL.
 
-![Figura 3-10: Data warehouse básico con ETL](./f310.png)
+![Figura 3-10: Data warehouse básico con ETL](f310%202.png)
 
 *   **Arquitectura Técnica:** Sistemas MPP (Procesamiento Masivo Paralelo). Han evolucionado a almacenamiento columnar.
 *   **Data Warehouse en la Nube:** (BigQuery, Snowflake, Redshift). Separan cómputo de almacenamiento. Escalabilidad masiva y pago por uso.
 *   **ELT (Extract, Load, Transform):** Cargar datos crudos al warehouse y transformar allí usando su poder de cómputo.
 
-![Figura 3-11: ELT—extract, load, and transform](./f311.png)
+![Figura 3-11: ELT—extract, load, and transform](f311%201.png)
 
 **Data Marts:**
 Subconjunto del warehouse enfocado en una sola línea de negocio (ej. Marketing, Ventas).
 
 *   Facilitan el acceso y mejoran el rendimiento (datos pre-agregados).
 
-![Figura 3-12: ETL o ELT más data marts](./f312.png)
+![Figura 3-12: ETL o ELT más data marts](f312%201.png)
 
 ### Data Lake (Lago de Datos)
 Surgió con el Big Data. Repositorio central para todos los datos (estructurados y no estructurados) a bajo costo (Object Storage).
@@ -280,7 +280,7 @@ Arquitectura de analítica de moda.
 *   **Ventajas:** Autoservicio, gestión ágil, barreras de entrada bajas.
 *   La comunidad es un aspecto central.
 
-![Figura 3-13: Componentes básicos del modern data stack](./f313.png)
+![Figura 3-13: Componentes básicos del modern data stack](f313%201.png)
 
 ### Arquitectura Lambda
 Respuesta temprana al problema de unir Batch y Streaming.
@@ -288,7 +288,7 @@ Respuesta temprana al problema de unir Batch y Streaming.
 *   Tres capas: Batch (histórico, preciso), Speed (tiempo real, baja latencia), Serving (combina ambas vistas).
 *   **Problema:** Complejo de mantener (dos bases de código diferentes para batch y speed).
 
-![Figura 3-14: Arquitectura Lambda](./f314.png)
+![Figura 3-14: Arquitectura Lambda](f314%201.png)
 
 ### Arquitectura Kappa
 Respuesta a las deficiencias de Lambda.
@@ -297,7 +297,7 @@ Respuesta a las deficiencias de Lambda.
 *   Elimina la capa de Batch separada. Se reprocesan datos reproduciendo el stream.
 *   **Problema:** Streaming es complejo y caro para grandes volúmenes históricos. No se ha adoptado masivamente.
 
-![Figura 3-15: Arquitectura Kappa](./f315.png)
+![Figura 3-15: Arquitectura Kappa](f315%201.png)
 
 ### Modelo Dataflow y Unificación Batch/Streaming
 Enfoque moderno (Google, Apache Beam, Flink, Spark).
@@ -312,9 +312,9 @@ Enfoque moderno (Google, Apache Beam, Flink, Spark).
 *   **Servicio:** Detección de anomalías en tiempo real o reportes batch.
 *   **Patrón:** Datos se procesan y se envían de vuelta al dispositivo para optimizarlo (similar a Reverse ETL).
 
-![Figura 3-16: Un enjambre de dispositivos, gateways IoT y cola de mensajes](./f316.png)
+![Figura 3-16: Un enjambre de dispositivos, gateways IoT y cola de mensajes](f316%201.png)
 
-![Figura 3-17: Patrón de servicio IoT para casos de uso downstream](./f317.png)
+![Figura 3-17: Patrón de servicio IoT para casos de uso downstream](f317%201.png)
 
 ### Data Mesh (Malla de Datos)
 Respuesta a los fallos de plataformas monolíticas centralizadas.
@@ -327,7 +327,7 @@ Respuesta a los fallos de plataformas monolíticas centralizadas.
     4.  Gobernanza computacional federada.
 *   Invierte el modelo: en lugar de fluir a un lago central, los dominios hospedan y sirven sus propios datasets ("Data Products").
 
-![Figura 3-18: Ejemplo simplificado de una arquitectura data mesh](./f318.png)
+![Figura 3-18: Ejemplo simplificado de una arquitectura data mesh](f318%201.png)
 
 ## ¿Quién está involucrado en el diseño?
 La arquitectura de datos ya no se diseña en una torre de marfil.
