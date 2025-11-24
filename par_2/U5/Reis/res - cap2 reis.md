@@ -56,7 +56,7 @@ Se divide en **cinco etapas principales**:
 4.  **Transformación**
 5.  **Servicio (Serving)**
 
-![Figura 2-1: Componentes y corrientes subyacentes del ciclo de vida de la ingeniería de datos](img/f21.png)
+![Figura 2-1: Componentes y corrientes subyacentes del ciclo de vida de la ingeniería de datos](./f21.png)
 
 Aunque se presentan como etapas distintas, en la práctica pueden superponerse o ocurrir fuera de orden. El diagrama muestra el **Almacenamiento** como una base que sustenta a las demás etapas, ya que los datos se almacenan a lo largo de todo el ciclo.
 
@@ -72,7 +72,7 @@ Además, existen las **corrientes subyacentes (undercurrents)**, que son ideas c
 ### El Ciclo de Vida de los Datos vs. El Ciclo de Vida de la Ingeniería de Datos
 Hay una distinción sutil. El ciclo de vida de los datos abarca toda la vida útil del dato. El ciclo de vida de la ingeniería de datos es un **subconjunto** que se enfoca en las etapas que el ingeniero de datos controla directamente.
 
-![Figura 2-2: El ciclo de vida de la ingeniería de datos es un subconjunto del ciclo de vida completo de los datos](img/f22.png)
+![Figura 2-2: El ciclo de vida de la ingeniería de datos es un subconjunto del ciclo de vida completo de los datos](./f22.png)
 
 ---
 
@@ -86,11 +86,11 @@ Es crucial entender cómo funciona la fuente: frecuencia, velocidad y variedad d
 
 1.  **Base de datos de aplicación:** Servidores conectados a una base de datos relacional (RDBMS).
 
-    ![Figura 2-3: Ejemplo de sistema fuente: una base de datos de aplicación](img/f23.png)
+    ![Figura 2-3: Ejemplo de sistema fuente: una base de datos de aplicación](./f23.png)
 
 2.  **Enjambre IoT (IoT Swarm):** Flota de dispositivos enviando mensajes a una cola central.
 
-    ![Figura 2-4: Ejemplo de sistema fuente: un enjambre IoT y cola de mensajes](img/f24.png)
+    ![Figura 2-4: Ejemplo de sistema fuente: un enjambre IoT y cola de mensajes](./f24.png)
 
 ### Consideraciones clave al evaluar fuentes:
 *   **Características:** ¿Es una aplicación, IoT, web?
@@ -179,7 +179,7 @@ La etapa final: entregar valor a los usuarios. Los datos no consumidos son "proy
     *   **Analítica Operacional:** Detalles de grano fino en tiempo real para acción inmediata (ej. monitoreo de servidores).
     *   **Analítica Embebida:** Datos para clientes dentro de un producto (SaaS). Requiere seguridad robusta y multitenencia.
 
-    ![Figura 2-5: Tipos de analítica](img/f25.png)
+    ![Figura 2-5: Tipos de analítica](./f25.png)
 
 2.  **Machine Learning (ML):**
     *   Los ingenieros de datos proveen la infraestructura para entrenar y servir modelos.
@@ -189,7 +189,7 @@ La etapa final: entregar valor a los usuarios. Los datos no consumidos son "proy
     *   Mover datos procesados *desde* el almacén de datos *hacia* sistemas operativos (ej. Salesforce, Google Ads).
     *   Permite "operacionalizar" los insights analíticos.
 
-    ![Figura 2-6: Reverse ETL](img/f26.png)
+    ![Figura 2-6: Reverse ETL](./f26.png)
 
 ---
 
@@ -197,7 +197,7 @@ La etapa final: entregar valor a los usuarios. Los datos no consumidos son "proy
 
 Son prácticas transversales esenciales que soportan el ciclo de vida.
 
-![Figura 2-7: Las principales corrientes subyacentes de la ingeniería de datos](img/f27.png)
+![Figura 2-7: Las principales corrientes subyacentes de la ingeniería de datos](./f27.png)
 
 ### 1. Seguridad
 Es la prioridad número uno. Principio de **menor privilegio** (dar acceso solo a lo necesario).
@@ -228,7 +228,7 @@ Aplicación de prácticas ágiles, DevOps y control estadístico a los datos.
     2.  **Observabilidad y Monitoreo:** Detectar problemas antes que el usuario.
     3.  **Respuesta a Incidentes:** Resolver fallos rápidamente y sin culpa.
 
-![Figura 2-8: Los tres pilares de DataOps](f28.png)
+![Figura 2-8: Los tres pilares de DataOps](./f28.png)
 
 ### 4. Arquitectura de Datos
 Diseño de sistemas que soportan las necesidades a largo plazo.
