@@ -160,11 +160,24 @@ Es el proceso de **mover datos desde la fuente al almacenamiento o sistema de pr
 
 Aquí es donde los datos comienzan a generar valor. Se convierten de su forma original a algo útil para análisis o ML. Sin transformación, los datos son inertes.
 
+> [!info] Es la etapa donde datos “crudos” (tal cual vienen de sistemas fuente) se convierten en datos “útiles” y confiables para responder preguntas, medir el negocio y entrenar modelos. Sin transformación: hay ruido, inconsistencias, duplicados y definiciones ambiguas.
+
 **Tipos de transformación:**
 
 - **Básica:** Mapeo de tipos de datos, estandarización de formatos.
 - **Normalización/Modelado:** Estructuración según lógica de negocio (Data Modeling).
 - **Agregación/Featurization:** Resumen para reportes o creación de *features* para ML.
+> [!info] Tipos de transformación (explicación muy breve)
+
+| Tipo                     | Qué hace                                                                   | Para qué sirve                         | Ejemplo conceptual                                                          |
+| ------------------------ | -------------------------------------------------------------------------- | -------------------------------------- | --------------------------------------------------------------------------- |
+| *Básica*                   | Limpia y uniforma lo mínimo (tipos, formatos, duplicados)                  | Quitar ruido inicial                   | Convertir “2024-01-01” (texto) a fecha; poner todo en MAYÚSCULAS donde debe |
+| *Normalización / Modelado* | Organiza según la lógica del negocio (separa entidades, define relaciones) | Consultas claras y métricas coherentes | Crear tablas: clientes, órdenes, productos; definir claves                  |
+| *Agregación*               | Resume datos detallados                                                    | Métricas rápidas y reportes            | Ventas por día, promedio semanal                                            |
+| *Featurización*            | Transforma comportamiento en “señales” numéricas/categóricas               | Entrenar modelos de ML                 | “Compras últimos 30 días”, “días desde última visita”                       |
+
+> [!tip] Idea clave  
+> Básica prepara, Modelado da forma, Agregación sintetiza, Featurización convierte en señales para predicción.
 
 ### Consideraciones clave:
 
