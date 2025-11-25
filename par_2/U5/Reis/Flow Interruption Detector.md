@@ -1,153 +1,242 @@
 
-Quiero que actúes como un asistente especializado en mejorar y embellecer mis apuntes de **Ciencia de Datos** en Obsidian.
-### Reglas de formato:
+# Patrón: Flow Interruption Detector (Detector de Interrupción de Flujo)
 
-- Usa **Markdown** y todas las herramientas nativas de Obsidian:
-    - Encabezados jerárquicos (#, ##, ###…)
-    - Negritas, cursivas, tachado
-    - Listas ordenadas y no ordenadas
-    - Tablas comparativas (ejemplo: métodos de pandas, funciones de NumPy, tipos de gráficos de Matplotlib/Seaborn).
-    - Callouts (`> [!info]`, `> [!tip]`, `> [!warning]`, `> [!example]`, etc.) para resaltar definiciones, tips de código y errores comunes.
-    - Diagramas con **Mermaid** (diagramas de flujo para pipelines de datos, ETL, modelos de ML).
-    - Bloques de código con resaltado (Python, SQL, Bash).
-    - Separadores `---` para estructurar módulos o secciones.
+> [!info] Objetivo
+> Detectar a tiempo la falta de llegada de datos (data unavailability) antes de que los consumidores se quejen. Aumenta la confianza y la observabilidad del pipeline.
 
-### Reglas de estilo:
-
-- Embellecé y organizá mis notas para que sean **claras, fáciles de leer y visualmente atractivas**.
-    
-- Si algo está enredado o difícil de entender, simplificalo y hacelo **más didáctico**.
-    
-- Agregá **ejemplos prácticos** (snippets de pandas, NumPy, limpieza de datos, gráficos).
-    
-- Respetá los **enlaces, referencias y datasets** que yo incluya. No borres ni inventes datasets/enlaces.
-    
-- Podés usar:
-    
-    - **Tablas** para comparar funciones o métodos.
-        
-    - **Diagramas de flujo (Mermaid)** para mostrar procesos de análisis de datos o ETL.
-        
-    - **Checklists** (`- [ ]`) para pasos de un análisis.
-        
-- El resultado final debe ser un apunte EN ESPAÑOL **técnico, claro y útil para estudiar Ciencia de Datos**.
-
-Cuando te pase un texto (código, notas del profe o de libros), transformalo siguiendo estas reglas.
-
-aqui va el texto:
+> [!summary] Idea central
+> Si un flujo (streaming o batch) deja de generar nuevos datos pero el job no falla, se produce una interrupción silenciosa. Este patrón establece mecanismos para alertar cuando el flujo esperado se detiene según umbrales definidos.
 
 ---
 
-Pattern: Flow Interruption Detector
-The first serious data-related issue is dataset unavailability. This
-issue will have a strong impact on your systems because without any
-data, your data processing job will not run, leading to data
-unavailability in its downstream dependencies.
-Problem
-One of your streaming jobs is synchronizing data to an object store.
-The synchronized dataset is the data source for many batch jobs
-managed by different teams. It ran great for seven months until one
-day, it processed the input records without writing them to the
-object store.
-Because the job didn’t fail, you didn’t notice the issue. You only
-realized something was wrong when one of your consumers
-complained about the lack of new data to process. Instead of relying
-on consumer feedback, which is not good for your reputation, you
-want to introduce a new observability mechanism to detect this data
-unavailability scenario.
-Solution
-To capture any data unavailability errors, and as a result, increase
-trust in your data, you can rely on the Flow Interruption Detector
-pattern.
-The implementation of the pattern will vary depending on the
-technical context and processing mode. Let’s start with the stream
-processing introduced in the problem statement. Basically, you can
-have two different data ingestion modes here:
-Continuous data delivery
-In this mode, you expect to get at least one record every unit
-of time, like a minute or a second. In that context, the Flow
-Interruption Detector consists of triggering an alert whenever
-there are no new data points registered for the specified unit
-of time, like no data coming in for one minute.
-Irregular data delivery
-Here, you expect to see some delivery interruptions that have
-nothing to do with errors. For example, you might assume that
-no data will come in for five consecutive minutes. The
-pattern’s implementation in that context consists of analyzing
-time windows instead of data points and raising an alert
-whenever the period without the data is longer than the
-accepted no-data window duration. Since the data flow is
-irregular, using the continuous data delivery assumption would
-result in many false-positive alarms that might lead to alarm
-fatigue.1
-Figure 10-1 compares the two approaches. As you’ll notice, the only
-difference between them is the data evaluation period. Continuous
-data delivery analyzes a specific unit of time (a minute in the
-example), while for irregular data delivery it monitors multiple
-consecutive points in time.
-![[Pasted image 20251125093927.png]]
-Figure 10-1. Flow interruption detection for continuously arriving and irregularly arriving data
-However, data flow interruption can also occur in batch pipelines and
-data-at-rest databases. Spotting unavailability here consists of
-analyzing the data freshness of the metadata, data, or storage layer:
-Metadata layer
-This layer stores all additional information about the observed
-table, such as creation time and last modification time. A flow
-might be interrupted when the modification time hasn’t been
-changed according to the configured threshold. For example, a
-table with new data ingested hourly could trigger an alert
-whenever no changes are observed for more than one hour.
-Data layer
-Generally, interactions with the metadata layer will be less
-expensive in most scenarios due to more direct access to the
-information and thus the lack of data processing needs.
-Unfortunately, your data store may not have the metadata
-layer available or the update information may be missing. In
-that situation, you may need to enrich the table with the
-modification time column to detect a flow interruption if the
-last update passed the configured threshold. If adding this
-column is not possible, you can count the number of rows in
-each evaluation time period and compare the results to see
-whether there is new data. For example, in our hourly job, if
-the count doesn’t change in two consecutive hours, it’ll be a
-sign of flow interruption. This count-based approach may also
-require some extra storage to preserve the count statistics for
-past runs.Storage layer
-The last flow interruption detection strategy is based on the
-storage layer. Typically, you could use it with any file format,
-including raw JSON files or more advanced table file formats.
-The implementation here consists of monitoring the time when
-the last file was written in a storage space and raising an
-interruption alert whenever there are no updates within the
-expected threshold.
-Consequences
-Flow interruption detection may look simple, but unfortunately, the
-implementation hides some traps such as the threshold, metadata,
-and false positives.
-Threshold
-Finding the perfect threshold for both per-minute and per-window
-implementations is not easy. Expecting at least one record per
-minute, as in our previous example, is an easy choice but may not
-be realistic. If you expect to process hundreds of events or more per
-minute, you will need to choose a different number.
-Relying on the volume observed in the past may be a tempting way
-to define the threshold. It’s often used as the solution to this
-threshold-finding problem, but it also has a gotcha. From time to
-time, it can generate false positives, for example, whenever a
-marketing operation generates more activity than usual.
-Metadata
-The solution based on the metadata is cheap but may not be
-perfect. First, this metadata layer with the last modification time or
-the number of rows may simply not be available for your database.
-Second, even if the layer is there, the modification can include not
-only data operations but also metadata changes, such as schema
-evolution, which obviously doesn’t add any new records. You must
-be careful when evaluating it for the purpose of the Flow
-Interruption Detector pattern.
-False positives for storage
-If you rely on the storage layer for flow interruption detection,
-beware of all housekeeping operations, such as compaction. This
-operation does indeed create new files, but it doesn’t produce new
-datasets. Instead, compaction simply merges existing data blocks.
-From the storage’s perspective, there is activity, but it will not count
-as flow continuity since the dataset remains unchanged.
+## 1. Problema
+
+Un job de streaming sincroniza datos hacia un objeto de almacenamiento. Muchos procesos batch dependen de ese dataset. El job sigue “corriendo” pero deja de escribir nuevos datos. Nadie lo nota hasta que un consumidor reclama.
+
+> [!warning] Riesgo
+> Sin detector: el sistema aparenta salud (sin errores) pero los downstream pierden frescura, generando retrasos, métricas vacías y pérdida de confianza.
+
+---
+
+## 2. Solución (Patrón)
+
+Implementar mecanismos que verifiquen actividad y “frescura” del flujo y generen alertas si faltan datos dentro de un intervalo aceptable.
+
+### Modos principales de llegada de datos (Streaming)
+
+| Modo | Supuesto | Qué evaluar | Disparo de alerta |
+|------|----------|-------------|-------------------|
+| Entrega continua | Siempre al menos 1 evento por unidad de tiempo (seg/min) | Ausencia de eventos en la unidad | 1 minuto sin eventos (ejemplo) |
+| Entrega irregular | Puede haber pausas benignas | Ventanas de tiempo (N unidades consecutivas) | Ausencia > ventana aceptada |
+
+> [!tip] Selección de modo
+> Si el flujo es naturalmente errático, usar entrega continua genera falsos positivos y fatiga de alertas.
+
+![[Pasted image 20251125094232.png]]
+
+Figura 10-1. Comparación entre monitoreo continuo y irregular.
+
+---
+
+## 3. Extensión a Batch y Data-at-Rest
+
+La interrupción también se detecta chequeando la “frescura” en distintas capas:
+
+| Capa | Qué se observa | Estrategia | Ejemplo |
+|------|----------------|-----------|---------|
+| Metadata | Timestamps de creación/modificación | Alerta si last_modified > umbral | Tabla que debería cambiar cada hora |
+| Datos (contenido) | Columna de timestamp, conteo de filas | Comparar actualización o variación | Mismo count dos horas seguidas |
+| Storage (archivos) | Hora del último archivo escrito | Monitorear aparición de nuevos archivos | No se escribe un .parquet en 3 horas |
+
+> [!warning] Precaución
+> Operaciones internas (compaction, schema changes) pueden actualizar metadata o archivos sin añadir datos nuevos → falsos positivos o negativos.
+
+---
+
+## 4. Flujo conceptual del detector
+
+```mermaid
+flowchart LR
+  A["Fuente / Job"] --> B[Escrituras]
+  B --> C[Capas observables]
+  C --> C1[Metadata]
+  C --> C2[Datos]
+  C --> C3[Storage]
+  C1 --> D[Evaluación de frescura]
+  C2 --> D
+  C3 --> D
+  D -->|Condición OK| E[Estado: Flujo sano]
+  D -->|Umbral excedido| F[Alerta: Interrupción]
+  F --> G["Acción (Investigación / Auto-remediación)"]
+```
+
+---
+
+## 5. Umbrales (Thresholds)
+
+> [!info] Definición
+> El umbral es el límite de tiempo/volumen que determina cuándo considerar que el flujo se interrumpió.
+
+| Desafío | Detalle | Riesgo |
+|---------|---------|-------|
+| Elegir valor | Minuto, 5 min, hora, X% variación | Demasiado estricto → ruido |
+| Basado en histórico | Promedio pasado vs. actual | Estacionalidad rompe el modelo |
+| Eventos atípicos | Picos por campañas | Falsos positivos/negativos |
+
+> [!tip] Recomendación
+> - Usar percentiles (p5–p95) de variación histórica.  
+> - Ajustar por día/hora (patrones cronológicos).  
+> - Revisar umbrales cada ciclo (ej. mensual).
+
+---
+
+## 6. Falsos Positivos Comunes
+
+| Situación | Causa | Mitigación |
+|-----------|-------|------------|
+| Compaction | Reescritura de archivos sin nuevos datos | Filtrar operaciones técnicas |
+| Schema evolution | Cambios de estructura actualizan metadata | Diferenciar escritura de datos vs. metadatos |
+| Ventanas irregulares | Flujo naturalmente intermitente | Usar ventanas agregadas |
+| Picos de marketing | Volumen extremo temporal | Modelos de baseline robustos |
+
+> [!warning] Alerta de fatiga
+> Demasiadas alertas irrelevantes llevan a ignorar las críticas.
+
+---
+
+## 7. Estrategias de Implementación por Capa
+
+| Capa | Técnica | Ventajas | Limitaciones |
+|------|---------|----------|--------------|
+| Metadata | Leer last_modified | Barato y rápido | Puede incluir cambios no de datos |
+| Datos | Columna de update o conteo incremental | Preciso sobre contenido | Costoso para tablas grandes |
+| Storage | Timestamp de archivo | Universal (cualquier formato) | Engaños por housekeeping |
+
+---
+
+## 8. Checklists de Implementación
+
+### Streaming continuo
+- [ ] Determinar unidad de tiempo (seg/min)
+- [ ] Obtener dimensión de volumen esperado
+- [ ] Definir umbral (ej. 0 eventos en 1 min)
+- [ ] Configurar alerta (Slack, PagerDuty, etc.)
+- [ ] Registrar historiales para ajuste futuro
+
+### Streaming irregular
+- [ ] Calcular ventanas sin datos históricas aceptables
+- [ ] Establecer “no-data-window” (ej. hasta 5 min)
+- [ ] Alerta si > ventana tolerada
+- [ ] Validar contra períodos de baja natural
+
+### Batch / Data-at-rest
+- [ ] Identificar frecuencia esperada (horaria, diaria)
+- [ ] Preferir capa metadata (si existe)
+- [ ] Fallback: conteo filas o timestamp columna
+- [ ] Filtrar operaciones técnicas (compaction, vacuum)
+- [ ] Registrar última ejecución + estatus
+
+---
+
+## 9. Métricas útiles
+
+| Métrica | Qué mide | Uso |
+|--------|----------|-----|
+| Data Freshness | Tiempo desde último dato | SLA/SLO |
+| Arrival Rate | Eventos / unidad tiempo | Anomalías |
+| Idle Window | Duración sin datos | Interrupciones |
+| False Alert Rate | % alertas no útiles | Calidad monitoreo |
+| Recovery Time | Tiempo desde alerta a resolución | Eficiencia operativa |
+
+---
+
+## 10. Ejemplos de reglas (conceptual)
+
+| Regla | Descripción |
+|-------|-------------|
+| “Si no hay nuevos archivos .parquet en la carpeta X en 30 min → alerta crítica.” |
+| “Si el conteo de registros se mantiene igual 2 corridas consecutivas en job horario → alerta.” |
+| “Si llegada de eventos < p5 histórico durante 10 min → alerta de degradación (no crítica).” |
+| “Si last_modified > SLA (1h) → alerta de frescura.” |
+
+---
+
+## 11. Anti-patrones
+
+> [!warning] Evitar
+> - Umbrales fijos sin revisión.
+> - Mezclar cambios técnicos con cambios de datos.
+> - Alertar cada minuto sin consolidación (spam).
+> - Falta de clasificación de severidad (todo crítico).
+> - No registrar causa raíz y resolución (no se aprende).
+
+---
+
+## 12. Buenas prácticas
+
+> [!tip] Recomendaciones
+> - Clasificar alertas: informativa, warning, crítica.
+> - Correlacionar con logs de pipeline (¿falló upstream?).
+> - Mantener un historial de interrupciones y tiempos de recuperación.
+> - Simular interrupciones para validar que el detector funciona.
+> - Documentar dónde se mide la frescura (capa y método).
+
+---
+
+## 13. Diagrama de decisión de alerta (simplificado)
+
+```mermaid
+flowchart TD
+  S[Inicio evaluación] --> T{Tipo de flujo}
+  T -->|Streaming continuo| C1[¿Eventos en última unidad?]
+  T -->|Streaming irregular| C2[¿Duración sin datos > ventana?]
+  T -->|Batch| C3[¿Última actualización > SLA?]
+
+  C1 -->|Sí| OK[OK]
+  C1 -->|No| AL[Alerta]
+  C2 -->|No| OK
+  C2 -->|Sí| AL
+  C3 -->|No| OK
+  C3 -->|Sí| AL
+
+  AL --> CL[Clasificar severidad]
+  CL --> AC[Acción: investigar / reintentar]
+```
+
+---
+
+## 14. Resumen Final
+
+> [!info] En una frase
+> El Flow Interruption Detector verifica sistemáticamente la continuidad y frescura del flujo de datos (streaming o batch) usando umbrales calibrados en metadata, contenido o almacenamiento para alertar antes de que el negocio sufra.
+
+---
+
+## 15. Recordatorio rápido (mini ficha)
+
+| Aspecto | Clave |
+|---------|-------|
+| Qué | Detectar interrupciones silenciosas |
+| Dónde | Streaming + Batch + Data-at-rest |
+| Cómo | Umbrales sobre eventos, timestamps, conteos, archivos |
+| Riesgos | Falsos positivos (compaction, schema), umbral mal calibrado |
+| Métrica central | Data Freshness |
+| Objetivo | Confianza y reacción temprana |
+
+---
+
+## 16. Checklist de salud del detector
+
+- [ ] Umbrales revisados último mes
+- [ ] Clasificación de alertas funcionando
+- [ ] Historial de incidentes documentado
+- [ ] Pruebas de simulación realizadas
+- [ ] Falsos positivos < X% aceptable
+- [ ] Integración con canal de respuesta (On-call)
+
+---
+
+> [!quote] Esencial
+> “Un pipeline que ‘corre’ pero no produce datos es tan problemático como uno que falla; la diferencia es que uno grita y el otro guarda silencio.”
+
+---
