@@ -61,7 +61,7 @@ El libro revisa definiciones de líderes de pensamiento:
 
 **Definición de los autores:**
 
-> La arquitectura empresarial es el diseño de sistemas para **soportar el cambio** en la empresa, logrado mediante **decisiones flexibles y reversibles** alcanzadas a través de una evaluación cuidadosa de las **compensaciones (trade-offs)**.
+>[!important] La arquitectura empresarial es el diseño de sistemas para **soportar el cambio** en la empresa, logrado mediante **decisiones flexibles y reversibles** alcanzadas a través de una evaluación cuidadosa de las **compensaciones (trade-offs)**.
 
 Puntos clave de esta definición:
 
