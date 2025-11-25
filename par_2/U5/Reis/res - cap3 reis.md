@@ -51,7 +51,7 @@ La ingeniería de datos exitosa se construye sobre una arquitectura de datos só
 ### Arquitectura Empresarial Definida
 La arquitectura empresarial tiene muchos subconjuntos, incluidos el negocio, la técnica, la aplicación y los datos.
 
-![Figura 3-1: La arquitectura de datos es un subconjunto de la arquitectura empresarial](par_2/U5/Reis%201/f31.png)
+![Figura 3-1: La arquitectura de datos es un subconjunto de la arquitectura empresarial](par_2/U5/Reis/f31.png)
 
 El libro revisa definiciones de líderes de pensamiento:
 
@@ -89,7 +89,7 @@ Aspectos de la arquitectura de datos:
 *   **Arquitectura Operacional (El "Qué"):** Requisitos funcionales, personas, procesos. ¿Qué procesos de negocio sirve el dato? ¿Cuál es el requisito de latencia?
 *   **Arquitectura Técnica (El "Cómo"):** Cómo se ingesta, almacena, transforma y sirve el dato.
 
-![Figura 3-2: Arquitectura de datos operacional y técnica](par_2/U5/Reis%201/f32.png)
+![Figura 3-2: Arquitectura de datos operacional y técnica](par_2/U5/Reis/f32.png)
 
 ## "Buena" Arquitectura de Datos
 
@@ -168,7 +168,7 @@ Responsabilidad compartida y seguridad de confianza cero (*Zero-Trust*).
     *   Un dominio puede contener múltiples servicios.
     *   Consejo: Para definir un dominio, habla con los usuarios y stakeholders, no copies ciegamente a otras empresas.
 
-![Figura 3-3: Dos dominios (ventas y contabilidad) comparten un servicio común (facturas)](par_2/U5/Reis%201/f33.png)
+![Figura 3-3: Dos dominios (ventas y contabilidad) comparten un servicio común (facturas)](par_2/U5/Reis/f33.png)
 
 ### Sistemas Distribuidos
 Para lograr escalabilidad y fiabilidad, se usan sistemas distribuidos.
@@ -176,7 +176,7 @@ Para lograr escalabilidad y fiabilidad, se usan sistemas distribuidos.
 *   **Escalado horizontal:** Añadir más máquinas (nodos trabajadores) coordinadas por un nodo líder.
 *   Provee redundancia (si una máquina muere, otra toma el trabajo).
 
-![Figura 3-4: Un sistema distribuido horizontal simple utilizando una arquitectura líder-seguidor](par_2/U5/Reis%201/f34.png)
+![Figura 3-4: Un sistema distribuido horizontal simple utilizando una arquitectura líder-seguidor](par_2/U5/Reis/f34.png)
 
 ### Acoplamiento Fuerte vs. Débil (Tight vs. Loose Coupling)
 
@@ -184,14 +184,14 @@ Para lograr escalabilidad y fiabilidad, se usan sistemas distribuidos.
 
 1.  **Capa Única (Single Tier):** Base de datos y aplicación en el mismo servidor. Simple pero riesgosa para producción (si falla el servidor, falla todo). No recomendada para producción.
 
-    ![Figura 3-5: Arquitectura de capa única](par_2/U5/Reis%201/f35.png)
+    ![Figura 3-5: Arquitectura de capa única](par_2/U5/Reis/f35.png)
 
 2.  **Multicapa (Multitier):** Separa datos, aplicación y lógica.
     *   **Arquitectura de tres capas:** Capa de datos, Capa de aplicación/lógica, Capa de presentación.
     *   **Shared-nothing architecture:** Nodos independientes que no comparten memoria ni disco (reduce contención).
     *   **Shared-disk architecture:** Nodos comparten disco (útil para fallos de nodos).
 
-    ![Figura 3-6: Una arquitectura de tres capas](par_2/U5/Reis%201/f36.png)
+    ![Figura 3-6: Una arquitectura de tres capas](par_2/U5/Reis/f36.png)
 
 **Monolitos:**
 
@@ -200,7 +200,7 @@ Para lograr escalabilidad y fiabilidad, se usan sistemas distribuidos.
 *   Difícil de mantener, actualizar o reutilizar componentes.
 *   A menudo degenera en una "gran bola de lodo" (*big ball of mud*).
 
-![Figura 3-7: Una arquitectura extremadamente monolítica corre toda la funcionalidad dentro de una única base de código](par_2/U5/Reis%201/f37.png)
+![Figura 3-7: Una arquitectura extremadamente monolítica corre toda la funcionalidad dentro de una única base de código](par_2/U5/Reis/f37.png)
 
 **Microservicios:**
 
@@ -224,9 +224,9 @@ El negocio no es estático; ocurren "eventos" (nueva orden, nuevo cliente).
 *   Workflow: Producción de evento -> Enrutamiento -> Consumo.
 *   Ventaja: Desacopla servicios. Si un servicio cae, el evento sigue en la cola.
 
-![Figura 3-8: En un flujo de trabajo orientado a eventos, un evento es producido, enrutado y luego consumido](par_2/U5/Reis%201/f38.png)
+![Figura 3-8: En un flujo de trabajo orientado a eventos, un evento es producido, enrutado y luego consumido](par_2/U5/Reis/f38.png)
 
-![Figura 3-9: En una arquitectura orientada a eventos, los eventos se pasan entre servicios débilmente acoplados](par_2/U5/Reis%201/f39.png)
+![Figura 3-9: En una arquitectura orientada a eventos, los eventos se pasan entre servicios débilmente acoplados](par_2/U5/Reis/f39.png)
 
 ### Proyectos Brownfield vs. Greenfield
 1.  **Brownfield (Campo marrón):** Refactorizar o reorganizar una arquitectura existente (legada).
@@ -510,7 +510,7 @@ Según **Reis & Housley**, los **ejemplos y tipos de arquitectura de datos** má
 * El **Dataflow model** y la idea de **batch como caso especial de streaming**.
 * Otros patrones: **data fabric, data hub, metadata-first, event-driven, live data stack**, etc.
 
-![Figura 3-10. *Basic data warehouse with ETL*](par_2/U5/Reis%201/f310.png)
+![Figura 3-10. *Basic data warehouse with ETL*](par_2/U5/Reis/f310.png)
 
 - **Qué muestra:**  
   Un esquema clásico de *data warehouse* centralizado donde los datos se extraen desde múltiples sistemas fuente, se transforman en una capa de procesamiento intermedio y luego se cargan en el data warehouse (ETL: *Extract–Transform–Load*).
@@ -519,7 +519,7 @@ Según **Reis & Housley**, los **ejemplos y tipos de arquitectura de datos** má
 
 ---
 
-![Figura 3-11. *ELT—extract, load, and transform*](par_2/U5/Reis%201/f311.png)
+![Figura 3-11. *ELT—extract, load, and transform*](par_2/U5/Reis/f311.png)
 
 - **Qué muestra:**  
   Una variante moderna donde los datos se **extraen y se cargan primero** en el data warehouse o en un entorno de almacenamiento escalable, y **las transformaciones se ejecutan después** dentro de ese entorno (ELT: *Extract–Load–Transform*).
@@ -528,7 +528,7 @@ Según **Reis & Housley**, los **ejemplos y tipos de arquitectura de datos** má
 
 ---
 
-![Figura 3-12. *ETL or ELT plus data marts*](par_2/U5/Reis%201/f312.png)
+![Figura 3-12. *ETL or ELT plus data marts*](par_2/U5/Reis/f312.png)
 
 - **Qué muestra:**  
   Un data warehouse central sobre el cual se construyen **data marts** específicos para distintas áreas de negocio (finanzas, marketing, etc.), alimentados mediante ETL o ELT desde el warehouse.
@@ -537,7 +537,7 @@ Según **Reis & Housley**, los **ejemplos y tipos de arquitectura de datos** má
 
 ---
 
-![Figura 3-13. *Basic components of the modern data stack*](par_2/U5/Reis%201/f313.png)
+![Figura 3-13. *Basic components of the modern data stack*](par_2/U5/Reis/f313.png)
 
 - **Qué muestra:**  
   Los componentes principales de un **modern data stack**: herramientas de ingestión, almacenamiento (warehouse/lake/lakehouse), capa de transformación, catálogo/metadata, herramientas de orquestación/observabilidad y capas de consumo (BI, notebooks, ML, etc.).
@@ -546,7 +546,7 @@ Según **Reis & Housley**, los **ejemplos y tipos de arquitectura de datos** má
 
 ---
 
-![Figura 3-14. *Lambda architecture*](par_2/U5/Reis%201/f314.png)
+![Figura 3-14. *Lambda architecture*](par_2/U5/Reis/f314.png)
 
 - **Qué muestra:**  
   La **Lambda architecture** con sus tres capas:  
@@ -558,7 +558,7 @@ Según **Reis & Housley**, los **ejemplos y tipos de arquitectura de datos** má
 
 ---
 
-![Figura 3-15. *Kappa architecture*](par_2/U5/Reis%201/f315.png)
+![Figura 3-15. *Kappa architecture*](par_2/U5/Reis/f315.png)
 
 - **Qué muestra:**  
   La **Kappa architecture**, en la que todos los datos se tratan como un **stream de eventos**.  
@@ -568,7 +568,7 @@ Según **Reis & Housley**, los **ejemplos y tipos de arquitectura de datos** má
 
 ---
 
-![Figura 3-16. *A device swarm (circles), IoT gateways, and message queue with messages*](par_2/U5/Reis%201/f316.png)
+![Figura 3-16. *A device swarm (circles), IoT gateways, and message queue with messages*](par_2/U5/Reis/f316.png)
 
 - **Qué muestra:**  
   Un **enjambre de dispositivos IoT** (sensores, actuadores) que se conectan a **gateways IoT**, los cuales a su vez publican datos en una **cola de mensajes** (message queue).
@@ -577,7 +577,7 @@ Según **Reis & Housley**, los **ejemplos y tipos de arquitectura de datos** má
 
 ---
 
-![Figura 3-17. *IoT serving pattern for downstream use cases*](par_2/U5/Reis%201/f317.png)
+![Figura 3-17. *IoT serving pattern for downstream use cases*](par_2/U5/Reis/f317.png)
 
 - **Qué muestra:**  
   Cómo los datos IoT, una vez ingeridos y procesados, se distribuyen hacia distintos **casos de uso downstream**:  
@@ -590,7 +590,7 @@ Según **Reis & Housley**, los **ejemplos y tipos de arquitectura de datos** má
 
 ---
 
-![Figura 3-18. *Simplified example of a data mesh architecture*](par_2/U5/Reis%201/f318.png)
+![Figura 3-18. *Simplified example of a data mesh architecture*](par_2/U5/Reis/f318.png)
 
 - **Qué muestra:**  
   Un **ejemplo simplificado de arquitectura de data mesh**, con varios dominios de negocio que exponen **data products** propios, apoyados por una **plataforma de datos self-service** y una **gobernanza federada**.
