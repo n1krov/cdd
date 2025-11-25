@@ -106,7 +106,7 @@ Una buena arquitectura de datos sirve a los requisitos del negocio con un conjun
 Los autores expanden los pilares de *AWS Well-Architected Framework* y los principios de *Google Cloud* para proponer **9 Principios de la Arquitectura de Ingeniería de Datos**:
 
 ### Principio 1: Elegir componentes comunes sabiamente
-El ingeniero debe seleccionar componentes y prácticas que puedan usarse ampliamente en la organización para facilitar la colaboración y evitar silos.
+El ingeniero debe ***seleccionar componentes y prácticas que puedan usarse ampliamente en la organización para facilitar la colaboración*** y evitar silos.
 
 *   Ejemplos: Almacenamiento de objetos, sistemas de control de versiones, orquestación.
 *   **Equilibrio:** Usar componentes comunes para facilitar la interoperabilidad, pero evitar forzar soluciones "talla única" que obstaculicen la productividad en dominios específicos. Las plataformas en la nube son ideales para adoptar componentes comunes.
@@ -130,6 +130,7 @@ Los arquitectos deben ser técnicamente competentes pero delegar el trabajo indi
 
 *   No deben ser "cuellos de botella" que toman todas las decisiones (estilo comando y control).
 *   **Architectus Oryzus (Martin Fowler):** El arquitecto ideal mentora al equipo de desarrollo para que puedan resolver problemas complejos ellos mismos.
+	* Chupalaa martin Downler
 
 ### Principio 5: Siempre estar arquitectando (Always Be Architecting)
 La arquitectura no es un estado estático; es un proceso continuo.
@@ -151,7 +152,7 @@ Responsabilidad compartida y seguridad de confianza cero (*Zero-Trust*).
 
 *   **Zero-Trust:** El perímetro endurecido (firewall tradicional) ya no es suficiente. Se asume que las amenazas pueden ser internas y externas.
 *   **Modelo de Responsabilidad Compartida:** El proveedor de la nube asegura la infraestructura ("seguridad *de* la nube"), el usuario asegura lo que pone dentro ("seguridad *en* la nube").
-*   Todos los ingenieros de datos son ingenieros de seguridad.
+*   Todos los ingenieros de datos son ingenieros de seguridad. (*MMMMMMM.....*)
 
 ### Principio 9: Abrazar FinOps
 *FinOps* es la gestión financiera en la nube.
