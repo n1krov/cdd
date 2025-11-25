@@ -181,8 +181,9 @@ Aquí es donde los datos comienzan a generar valor. Se convierten de su forma or
 
 ### Consideraciones clave:
 
-- **Costo/ROI:** ¿Vale la pena el proceso?
-- **Lógica de negocio:** La transformación traduce reglas de negocio (ej. qué define una "venta") en código reutilizable. Es vital para tener una "única fuente de verdad".
+>[!IMPORTANT]
+> - **Costo/ROI:** ¿Vale la pena el proceso?
+> - **Lógica de negocio:** La transformación traduce reglas de negocio en código reutilizable. Es vital para tener una "única fuente de verdad".
 
 ---
 
