@@ -56,9 +56,9 @@ Se divide en **cinco etapas principales**:
 4.  **Transformación**
 5.  **Servicio (Serving)**
 
-![Figura 2-1: Componentes y corrientes subyacentes del ciclo de vida de la ingeniería de datos](f21%203.png)
+![Figura 2-1: Componentes y corrientes subyacentes del ciclo de vida de la ingeniería de datos](par_2/U5/Reis/f21.png)
 
-Aunque se presentan como etapas distintas, en la práctica pueden superponerse o ocurrir fuera de orden. El diagrama muestra el **Almacenamiento** como una base que sustenta a las demás etapas, ya que los datos se almacenan a lo largo de todo el ciclo.
+Aunque se presentan como etapas distintas, en la práctica pueden superponerse u ocurrir fuera de orden. El diagrama muestra el **Almacenamiento** como una base que sustenta a las demás etapas, ya que los datos se almacenan a lo largo de todo el ciclo.
 
 Además, existen las **corrientes subyacentes (undercurrents)**, que son ideas críticas que atraviesan todas las etapas:
 
@@ -72,7 +72,7 @@ Además, existen las **corrientes subyacentes (undercurrents)**, que son ideas c
 ### El Ciclo de Vida de los Datos vs. El Ciclo de Vida de la Ingeniería de Datos
 Hay una distinción sutil. El ciclo de vida de los datos abarca toda la vida útil del dato. El ciclo de vida de la ingeniería de datos es un **subconjunto** que se enfoca en las etapas que el ingeniero de datos controla directamente.
 
-![Figura 2-2: El ciclo de vida de la ingeniería de datos es un subconjunto del ciclo de vida completo de los datos](f22%202.png)
+![Figura 2-2: El ciclo de vida de la ingeniería de datos es un subconjunto del ciclo de vida completo de los datos](par_2/U5/Reis/f22.png)
 
 ---
 
@@ -86,11 +86,11 @@ Es crucial entender cómo funciona la fuente: frecuencia, velocidad y variedad d
 
 1.  **Base de datos de aplicación:** Servidores conectados a una base de datos relacional (RDBMS).
 
-    ![Figura 2-3: Ejemplo de sistema fuente: una base de datos de aplicación](f23%202.png)
+    ![Figura 2-3: Ejemplo de sistema fuente: una base de datos de aplicación](par_2/U5/Reis/f23.png)
 
 2.  **Enjambre IoT (IoT Swarm):** Flota de dispositivos enviando mensajes a una cola central.
 
-    ![Figura 2-4: Ejemplo de sistema fuente: un enjambre IoT y cola de mensajes](f24%202.png)
+    ![Figura 2-4: Ejemplo de sistema fuente: un enjambre IoT y cola de mensajes](par_2/U5/Reis/f24.png)
 
 ### Consideraciones clave al evaluar fuentes:
 *   **Características:** ¿Es una aplicación, IoT, web?
@@ -179,7 +179,7 @@ La etapa final: entregar valor a los usuarios. Los datos no consumidos son "proy
     *   **Analítica Operacional:** Detalles de grano fino en tiempo real para acción inmediata (ej. monitoreo de servidores).
     *   **Analítica Embebida:** Datos para clientes dentro de un producto (SaaS). Requiere seguridad robusta y multitenencia.
 
-    ![Figura 2-5: Tipos de analítica](f25%202.png)
+    ![Figura 2-5: Tipos de analítica](par_2/U5/Reis/f25.png)
 
 2.  **Machine Learning (ML):**
     *   Los ingenieros de datos proveen la infraestructura para entrenar y servir modelos.
@@ -189,68 +189,75 @@ La etapa final: entregar valor a los usuarios. Los datos no consumidos son "proy
     *   Mover datos procesados *desde* el almacén de datos *hacia* sistemas operativos (ej. Salesforce, Google Ads).
     *   Permite "operacionalizar" los insights analíticos.
 
-    ![Figura 2-6: Reverse ETL](f26%202.png)
+    ![Figura 2-6: Reverse ETL](par_2/U5/Reis/f26.png)
 
 ---
 
 ## Corrientes Subyacentes (Undercurrents)
 
-Son prácticas transversales esenciales que soportan el ciclo de vida.
+Son las **disciplinas transversales** necesarias para garantizar que el ciclo de vida de la ingeniería de datos sea **confiable, escalable, seguro y mantenible**. No son pasos secuenciales, sino prácticas continuas que deben aplicarse en todo momento, desde que el dato se genera hasta que se sirve.
 
-![Figura 2-7: Las principales corrientes subyacentes de la ingeniería de datos](f27%202.png)
+![Figura 2-7: Las principales corrientes subyacentes de la ingeniería de datos](par_2/U5/Reis/f27.png)
 
-### 1. Seguridad
-Es la prioridad número uno. Principio de **menor privilegio** (dar acceso solo a lo necesario).
+### 1. Seguridad (Security)
+Es la corriente más importante ("Seguridad Primero"). Antes era responsabilidad del departamento de TI; hoy, **todo ingeniero de datos es un ingeniero de seguridad**.
 
-*   La seguridad es técnica (encriptación, control de acceso) y cultural (educar a la gente).
-*   Incluye gestión de identidad (IAM), seguridad de red, enmascaramiento de datos.
+*   **Concepto Clave:** El **Principio de Menor Privilegio** (*Principio del menor privilegio*).
+    *   Significa dar acceso a un usuario o sistema **solo** a lo que necesita estrictamente para hacer su trabajo, y solo por el tiempo necesario.
+*   **Aplicación en el Ciclo:**
+    *   *Ingesta:* ¿Quién tiene permiso para leer la base de datos fuente?
+    *   *Almacenamiento:* ¿Están los datos encriptados en reposo (en el disco)?
+    *   *Servicio:* ¿Están enmascarados los datos sensibles (PII) antes de mostrarlos en un dashboard?
+*   **Responsabilidad Compartida (Nube):** El proveedor (AWS/Azure) asegura la nube (el hardware), tú aseguras lo que pones dentro (tus datos y accesos).
 
 ### 2. Gestión de Datos (Data Management)
-Prácticas para asegurar que los datos son un activo valioso, seguro y accesible.
+Es el conjunto de prácticas para tratar los datos como un activo corporativo valioso. Convierte el "caos de datos" en orden. Incluye varios sub-componentes:
 
-*   **Gobernanza de Datos:** Asegurar calidad, integridad y seguridad. Categorías:
-    *   *Descubribilidad:* Hacer que los datos sean fáciles de encontrar (Catálogos de datos).
-    *   *Metadatos:* "Datos sobre los datos". Crucial para la gobernanza.
-        *   *Metadatos de Negocio:* Definiciones, dueños.
-        *   *Metadatos Técnicos:* Esquemas, linaje, pipelines.
-        *   *Metadatos Operacionales:* Logs de ejecución, errores.
-    *   *Responsabilidad (Accountability):* Asignar dueños a los datos.
-    *   *Calidad de Datos:* Precisión, Completitud, Oportunidad (Timeliness).
-*   **Master Data Management (MDM):** Crear "Golden Records" (definiciones únicas) de entidades como clientes o productos.
-*   **Linaje de Datos:** Rastro de auditoría de dónde viene el dato y cómo se transformó.
+*   **Gobernanza de Datos:** Las políticas y reglas. ¿Quién es el dueño de este dataset? ¿Cuánto tiempo debemos guardarlo por ley?
+*   **Descubribilidad:** Catálogos de Datos. Permite que los analistas encuentren los datos sin tener que preguntar por Slack "¿dónde está la tabla de ventas?".
+*   **Calidad de Datos:** Asegurar que el dato sea preciso, completo y oportuno. (Validación de esquemas, checks de nulos).
+*   **Linaje (Lineage):** El rastro de auditoría. ¿De dónde salió este dato? ¿Qué transformaciones sufrió? Si el reporte final está mal, el linaje te permite rastrear el error hacia atrás hasta la fuente.
+*   **Ética y Privacidad:** Cumplir con GDPR/CCPA. Manejo de datos personales.
 
 ### 3. DataOps
-Aplicación de prácticas ágiles, DevOps y control estadístico a los datos.
+Es la aplicación de la filosofía **DevOps** y las prácticas *Lean* (manufactura esbelta) al mundo de los datos. Busca **agilidad y automatización**.
 
-*   **Objetivo:** Innovación rápida, alta calidad, colaboración.
-*   **Tres pilares técnicos:**
-    1.  **Automatización:** CI/CD, control de versiones, infraestructura como código.
-    2.  **Observabilidad y Monitoreo:** Detectar problemas antes que el usuario.
-    3.  **Respuesta a Incidentes:** Resolver fallos rápidamente y sin culpa.
+Tiene tres pilares técnicos fundamentales:
 
-![Figura 2-8: Los tres pilares de DataOps](f28%201.png)
+1.  **Automatización:** Eliminar el trabajo manual. Usar **CI/CD** (Integración y Despliegue Continuo) para desplegar pipelines automáticamente. Usar **Infraestructura como Código** (Terraform) para no configurar servidores a mano.
+2.  **Observabilidad y Monitoreo:** No basta con que el pipeline corra. Tienes que saber *cómo* corrió. ¿Fue lento? ¿Hubo latencia? ¿Llegaron menos datos de lo normal? La observabilidad te avisa antes de que el usuario se queje.
+3.  **Respuesta a Incidentes:** Cuando algo falla (y fallará), tener un proceso claro y sin culpa (*blameless*) para arreglarlo rápido.
 
 ### 4. Arquitectura de Datos
-Diseño de sistemas que soportan las necesidades a largo plazo.
+Es el plano de diseño. Implica tomar las decisiones estructurales de alto nivel basándose en los requisitos del negocio.
 
-*   El ingeniero debe traducir requisitos de negocio en diseños técnicos, balanceando costo y simplicidad (Trade-offs).
+*   **Trade-offs (Compensaciones):** El arquitecto (o ingeniero) debe decidir qué sacrificar. ¿Queremos velocidad extrema (Streaming) o bajo costo (Batch)? ¿Queremos flexibilidad (Data Lake) o estructura (Warehouse)?
+*   **Diseño:** Aquí es donde decides si usar una arquitectura Lambda, Kappa, o Lakehouse.
+*   **Evolución:** Una buena arquitectura no es estática; es flexible y permite cambiar componentes (Principio de decisiones reversibles).
 
 ### 5. Orquestación
-El proceso de coordinar múltiples trabajos (jobs) para que se ejecuten eficiente y puntualmente.
+Es el "Director de la Orquesta". Es el sistema que coordina el flujo de trabajo para que las cosas pasen en el orden y tiempo correctos.
 
-*   Herramientas como **Airflow**, Dagster, Prefect.
-*   Gestiona dependencias (DAGs), reintentos, backfilling y alertas.
+*   **El Problema:** Tienes una tarea que baja datos, otra que limpia, otra que entrena un modelo. No pueden correr todas a la vez.
+*   **La Solución:** Herramientas como **Airflow**, **Dagster** o **Prefect**.
+    *   Usan **DAGs** (Grafos Acíclicos Dirigidos) para definir dependencias: "La Tarea B solo arranca si la Tarea A terminó con éxito".
+    *   Gestionan reintentos (retries) si algo falla y alertas.
 
 ### 6. Ingeniería de Software
-Habilidad central. Los ingenieros de datos deben escribir código de calidad, usar control de versiones y pruebas.
+Esta es la base técnica del rol moderno. Según Reis, **"Los ingenieros de datos son ingenieros de software especializados en datos"**.
 
-*   **Código de procesamiento:** SQL, Python, Spark.
-*   **Infraestructura como Código (IaC):** Gestionar nubes mediante código (Terraform).
-*   **Pipelines como Código:** Definir flujos de orquestación en código.
+*   **El cambio de mentalidad:** Ya no se trata de escribir scripts SQL sueltos o usar herramientas "arrastrar y soltar" (ETL visuales) sin control.
+*   **Prácticas:**
+    *   Escribir código limpio y modular (Python, Scala, SQL).
+    *   Usar Control de Versiones (**Git**).
+    *   Escribir Pruebas (**Testing**): Unitarias, de integración y de datos.
+    *   Hacer *Code Reviews* (revisiones de código).
 
 ---
 
 ## Conclusión
 El capítulo establece que la ingeniería de datos no es solo usar herramientas, sino gestionar un ciclo de vida complejo para entregar valor.
+
 El modelo mental es:
-**Etapas (Generación -> Almacenamiento -> Ingesta -> Transformación -> Servicio) + Corrientes Subyacentes (Seguridad, DataOps, etc.).**
+
+**Etapas (Generación $\Rightarrow$ Almacenamiento $\Rightarrow$ Ingesta $\Rightarrow$ Transformación $\Rightarrow$ Servicio) + Corrientes Subyacentes (Seguridad, DataOps, etc.).**
