@@ -120,9 +120,9 @@ Este es un concepto estadístico clave que te dice qué tipo de operaciones mate
     *   **Ejemplos**: La **escala de Likert** ("Totalmente en desacuerdo", "En desacuerdo", "Neutral", "De acuerdo", "Totalmente de acuerdo"). Niveles de satisfacción ("Muy insatisfecho", "Insatisfecho", "Satisfecho"). Tallas de ropa (S, M, L).
     *   **¿Qué puedes hacer?**: Contar frecuencias y calcular la **mediana** o la moda. **No puedes calcular el promedio** (no tiene sentido promediar "Satisfecho" y "Neutral").
 
-![Figura: Ejemplos de la escala de Likert utilizada para medir sentimientos o satisfacción en una escala ordinal.](./m1.png)
+![Figura: Ejemplos de la escala de Likert utilizada para medir sentimientos o satisfacción en una escala ordinal.](m1.png)
 
-![Figura: Otro ejemplo de la escala de Likert.](./m2.png)
+![Figura: Otro ejemplo de la escala de Likert.](m2.png)
 
 3.  **Escala de Intervalo**:
     *   **¿Qué es?**: Los valores tienen un orden y la **distancia entre ellos es uniforme y medible**, pero **no hay un cero absoluto**.
@@ -134,7 +134,7 @@ Este es un concepto estadístico clave que te dice qué tipo de operaciones mate
     *   **Ejemplos**: Altura, peso, edad, ingresos. Un peso de 0 kg significa "ausencia de peso". Aquí sí puedes decir que alguien que gana $100,000 gana "el doble" que alguien que gana $50,000.
     *   **¿Qué puedes hacer?**: Todas las operaciones matemáticas.
 
-![Tabla: Resumen de los tipos de datos y las operaciones permitidas para cada escala de medición (Nominal, Ordinal, Intervalo, Ratio).](./m3.png)
+![Tabla: Resumen de los tipos de datos y las operaciones permitidas para cada escala de medición (Nominal, Ordinal, Intervalo, Ratio).](m3.png)
 
 ---
 
@@ -142,7 +142,7 @@ Este es un concepto estadístico clave que te dice qué tipo de operaciones mate
 
 El autor compara el EDA con los enfoques clásico y bayesiano para resaltar su característica única.
 
-![Figura: Diagramas de flujo que comparan los pasos de los enfoques de análisis de datos Clásico, Exploratorio y Bayesiano.](./m4.png)
+![Figura: Diagramas de flujo que comparan los pasos de los enfoques de análisis de datos Clásico, Exploratorio y Bayesiano.](m4.png)
 
 *   **Análisis Clásico**: `Definición del Problema` -> `Recolección de Datos` -> `Desarrollo del Modelo` -> `Análisis de Datos`. Aquí, el modelo se impone *antes* de analizar los datos en profundidad.
 *   **Análisis Exploratorio (EDA)**: `Definición del Problema` -> `Recolección de Datos` -> `Análisis de Datos` -> `Desarrollo del Modelo`. **¡El cambio clave!** El análisis de los datos (la exploración) viene *antes* de decidir qué modelo usar. El foco está en los datos mismos, no en un modelo predeterminado.

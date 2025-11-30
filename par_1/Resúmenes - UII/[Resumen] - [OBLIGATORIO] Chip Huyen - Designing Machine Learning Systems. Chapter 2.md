@@ -61,7 +61,7 @@ Este es el punto de partida y, según la autora, el error más común en proyect
 
 A veces, la única forma de saber si un modelo mejora el negocio es a través de la experimentación (como las pruebas A/B). Y hay que ser realistas: **el ML no es magia**. No transformará un negocio de la noche a la mañana. Google ha tardado décadas en perfeccionar sus sistemas. El retorno de la inversión depende mucho de la madurez de la empresa en la adopción de ML.
 
-![Figura 2-1. El tiempo que le toma a una empresa llevar un modelo a producción es proporcional al tiempo que lleva usando ML. Fuente: Adaptado de una imagen de Algorithmia.](./chf2-1.png)
+![Figura 2-1. El tiempo que le toma a una empresa llevar un modelo a producción es proporcional al tiempo que lleva usando ML. Fuente: Adaptado de una imagen de Algorithmia.](chf2-1.png)
 
 ---
 
@@ -96,7 +96,7 @@ La autora cuenta su experiencia construyendo un modelo para predecir si se debe 
 
 Este ciclo caótico se puede simplificar en un proceso de 6 etapas interconectadas:
 
-![Figura 2-2. El proceso de desarrollo de un sistema de ML se parece más a un ciclo con muchas idas y venidas entre los pasos.](./chf2-2.png)
+![Figura 2-2. El proceso de desarrollo de un sistema de ML se parece más a un ciclo con muchas idas y venidas entre los pasos.](chf2-2.png)
 
 1.  **Definición del Alcance del Proyecto (Project Scoping)**: Definir objetivos, restricciones y recursos.
 2.  **Ingeniería de Datos (Data Engineering)**: La base de todo. Recolectar, limpiar y etiquetar los datos.
@@ -124,14 +124,14 @@ Esta es una de las habilidades más importantes de un ingeniero de ML: traducir 
 
 El tipo de **salida** que necesitas define el tipo de tarea de ML.
 
-![Figura 2-3. Tipos de tareas comunes en ML.](./chf2-3.png)
+![Figura 2-3. Tipos de tareas comunes en ML.](chf2-3.png)
 
 *   **Regresión vs. Clasificación**:
     *   **Regresión**: La salida es un valor numérico continuo (ej: el precio de una casa).
     *   **Clasificación**: La salida es una categoría (ej: el correo es *spam* o *no spam*).
     *   **Intercambiables**: Un problema puede enmarcarse de ambas maneras. La predicción de precios puede convertirse en una clasificación si agrupas los precios en rangos (ej: "100k-200k", "200k-300k").
 
-![Figura 2-4. La tarea de clasificación de correo electrónico también se puede enmarcar como una tarea de regresión.](./chf2-4.png)
+![Figura 2-4. La tarea de clasificación de correo electrónico también se puede enmarcar como una tarea de regresión.](chf2-4.png)
 
 *   **Subtipos de Clasificación**:
     *   **Binaria**: Dos clases posibles (ej: *fraude* o *no fraude*).
@@ -144,11 +144,11 @@ La forma en que enmarcas el problema tiene un impacto enorme en la dificultad y 
 *   **Ejemplo**: Predecir la próxima app que un usuario abrirá.
     *   **Enfoque Ingenuo (Clasificación)**: La entrada son las características del usuario, y la salida es una probabilidad para CADA app instalada en el teléfono. **Problema**: Cada vez que se instala una nueva app, ¡tienes que reentrenar todo el modelo!
 
-	![Figura 2-5. Dado el problema de predecir la próxima aplicación que un usuario abrirá, puedes enmarcarlo como un problema de clasificación. La entrada son las características del usuario y del entorno. La salida es una distribución sobre todas las aplicaciones del teléfono.](./chf2-5.png)
+	![Figura 2-5. Dado el problema de predecir la próxima aplicación que un usuario abrirá, puedes enmarcarlo como un problema de clasificación. La entrada son las características del usuario y del entorno. La salida es una distribución sobre todas las aplicaciones del teléfono.](chf2-5.png)
 
     *   **Mejor Enfoque (Regresión)**: La entrada son las características del usuario + las características de **una app específica**. La salida es un solo número (la probabilidad de que esa app sea abierta). **Ventaja**: Si se instala una nueva app, simplemente la pasas como una nueva entrada al modelo existente, sin necesidad de reentrenar.
 
-	![Figura 2-6. Dado el problema de predecir la próxima aplicación que un usuario abrirá, puedes enmarcarlo como un problema de regresión. La entrada son las características del usuario, del entorno y de una aplicación. La salida es un único valor entre 0 y 1 que denota la probabilidad de que el usuario abra la aplicación dado el contexto.](./chf2-6.png)
+	![Figura 2-6. Dado el problema de predecir la próxima aplicación que un usuario abrirá, puedes enmarcarlo como un problema de regresión. La entrada son las características del usuario, del entorno y de una aplicación. La salida es un único valor entre 0 y 1 que denota la probabilidad de que el usuario abra la aplicación dado el contexto.](chf2-6.png)
 
 ### Funciones Objetivo
 Un modelo de ML necesita una **función objetivo** (o *loss function*) para aprender. El objetivo es minimizar la pérdida causada por las predicciones incorrectas.
@@ -169,11 +169,11 @@ El capítulo termina con un debate filosófico fundamental en el ML: **¿Qué es
 *   **Equipo "Mente sobre Datos" (Mind-over-Data)**: Liderado por figuras como Judea Pearl, argumentan que "los datos son profundamente tontos". Se necesitan diseños inteligentes y modelos causales para lograr un verdadero entendimiento.
 *   **Equipo "Datos sobre Mente" (Data-over-Mind)**: Liderado por figuras como Richard Sutton ("The Bitter Lesson") y Peter Norvig de Google. Su argumento es que, históricamente, los métodos generales que aprovechan la computación masiva y grandes volúmenes de datos siempre terminan superando a los enfoques que dependen del conocimiento humano y diseños intrincados. La famosa cita de Norvig sobre el éxito de la búsqueda de Google es: **"No tenemos mejores algoritmos. Simplemente tenemos más datos."**
 
-![Figura 2-7. La jerarquía de necesidades de la ciencia de datos. Fuente: Adaptado de una imagen de Monica Rogati.](./chf2-7.png)
+![Figura 2-7. La jerarquía de necesidades de la ciencia de datos. Fuente: Adaptado de una imagen de Monica Rogati.](chf2-7.png)
 
 La pirámide de Monica Rogati (Figura 2-7) ilustra perfectamente este punto: la IA y el *deep learning* están en la cima, pero se sustentan sobre una base masiva de recolección, almacenamiento, limpieza y etiquetado de datos. Sin una base sólida, la cima se derrumba.
 
-![Figura 2-8. El tamaño de los conjuntos de datos (escala logarítmica) utilizados para modelos de lenguaje a lo largo del tiempo.](./chf2-8.png)
+![Figura 2-8. El tamaño de los conjuntos de datos (escala logarítmica) utilizados para modelos de lenguaje a lo largo del tiempo.](chf2-8.png)
 
 **Conclusión de la autora**: Independientemente de quién tenga la razón a largo plazo, hoy en día **los datos son esenciales**. La tendencia de la última década muestra que el éxito del ML depende cada vez más de la calidad y la cantidad de los datos. Sin embargo, más datos no siempre es mejor; datos de mala calidad pueden incluso dañar el rendimiento de un modelo.
 

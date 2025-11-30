@@ -54,7 +54,7 @@ Para lograr esto, los autores proponen el **"Drivetrain Approach" (Enfoque de Tr
 
 Este es el corazón del método. En lugar de empezar por los datos o los algoritmos, se empieza por el final: el objetivo.
 
-![Figura 1. Los cuatro pasos del Drivetrain Approach: Objetivo Definido, Palancas (Levers), Datos y Modelos.](./orf1.png)
+![Figura 1. Los cuatro pasos del Drivetrain Approach: Objetivo Definido, Palancas (Levers), Datos y Modelos.](orf1.png)
 
 1.  **Paso 1: Definir un Objetivo Claro (Defined Objective)**
     *   **La Pregunta**: *¿Qué resultado estoy tratando de lograr?*
@@ -83,7 +83,7 @@ Para explicar el Paso 4 en detalle, los autores usan un caso de estudio real de 
 
 El objetivo era **maximizar el beneficio a largo plazo por cada cliente**. Para lograrlo, no bastaba con predecir el riesgo de accidente de una persona. Construyeron una "línea de ensamblaje" con tres estaciones:
 
-![Figura 2. Drivetrain Paso 4: La Línea de Ensamblaje de Modelos (Model Assembly Line). El diagrama muestra cómo los datos brutos pasan a través de un Modelador, un Simulador y un Optimizador para producir un resultado accionable.](./orf2.png)
+![Figura 2. Drivetrain Paso 4: La Línea de Ensamblaje de Modelos (Model Assembly Line). El diagrama muestra cómo los datos brutos pasan a través de un Modelador, un Simulador y un Optimizador para producir un resultado accionable.](orf2.png)
 
 1.  **El Modelador (Modeler)**:
     *   **Función**: Crea los modelos predictivos individuales.
@@ -125,7 +125,7 @@ El enfoque se puede extender a toda la estrategia de marketing.
 *   **Palancas**: Recomendaciones, descuentos personalizados, promociones por email, etc.
 *   **Datos**: Se pueden recolectar de formas creativas. El ejemplo de Zafu, una tienda de jeans online, es genial: en lugar de mostrar el catálogo, primero le hacen preguntas a la clienta sobre su tipo de cuerpo y sus preferencias. Convierten la experiencia de compra en un mecanismo de recolección de datos.
 
-![Figura 3. Un vistazo dentro del Modelador. El diagrama muestra varios sub-modelos que componen el Modelador, como un modelo de 'productos que le gustarán al cliente', 'elasticidad de precio', 'probabilidad de compra sin recomendación', 'modelo de causalidad de secuencia de compra' y 'modelo de paciencia'.](./orf3.png)
+![Figura 3. Un vistazo dentro del Modelador. El diagrama muestra varios sub-modelos que componen el Modelador, como un modelo de 'productos que le gustarán al cliente', 'elasticidad de precio', 'probabilidad de compra sin recomendación', 'modelo de causalidad de secuencia de compra' y 'modelo de paciencia'.](orf3.png)
 
 ---
 

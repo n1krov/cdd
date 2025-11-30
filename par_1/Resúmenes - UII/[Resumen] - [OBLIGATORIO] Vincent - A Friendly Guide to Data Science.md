@@ -61,7 +61,7 @@ El autor nos da un breve recorrido histórico para poner todo en contexto.
 
 *   **Desde la Antigüedad**: El análisis de datos ha existido desde que existen los datos. El objetivo siempre ha sido el mismo: entender mejor lo que representan.
 
-![Figura 5-1. Antigua tablilla sumeria de circa 2,500 a.C. que registra cantidades de varias mercancías (cebada, harina, pan y cerveza).](./vin5-1.png)
+![Figura 5-1. Antigua tablilla sumeria de circa 2,500 a.C. que registra cantidades de varias mercancías (cebada, harina, pan y cerveza).](vin5-1.png)
 
 *   **La Revolución del Ordenador**: Antes de los ordenadores, el análisis se hacía a mano y con cantidades muy pequeñas de datos. La llegada del ordenador lo cambió todo, permitiendo analizar grandes volúmenes de datos.
     *   **Primeras Herramientas**: Se crearon lenguajes y programas específicos para el análisis estadístico, como **SAS** (muy usado en seguros) y **SPSS** (muy usado en ciencias sociales).
@@ -87,7 +87,7 @@ Para ilustrar el poder del análisis, el autor presenta dos ejemplos muy diferen
 *   **El Análisis de Datos de John Snow**: El doctor John Snow tuvo una idea revolucionaria. En lugar de especular, creó un **mapa** de la ciudad y marcó con una barra la ubicación de cada muerte por cólera.
 *   **El Resultado**: La visualización mostró claramente que las muertes se concentraban masivamente alrededor de una bomba de agua específica en Broad Street. Snow usó esta evidencia para convencer a las autoridades de que clausuraran la bomba. La epidemia se detuvo casi de inmediato. Este es uno de los ejemplos más famosos de la historia de cómo la visualización y el análisis de datos pueden resolver problemas del mundo real y salvar vidas.
 
-![Figura 5-2. El mapa creado por John Snow que muestra las muertes por la epidemia de cólera de 1854.](./vin5-2.png)
+![Figura 5-2. El mapa creado por John Snow que muestra las muertes por la epidemia de cólera de 1854.](vin5-2.png)
 
 ---
 
@@ -130,7 +130,7 @@ Aunque cada proyecto es diferente, la mayoría sigue un ciclo de vida general. E
 
 Es un proceso **iterativo**, lo que significa que constantemente vas y vienes entre los pasos. No es una línea recta.
 
-![Figura 5-3. El proceso de análisis de datos CRISP-DM.](./vin5-3.png)
+![Figura 5-3. El proceso de análisis de datos CRISP-DM.](vin5-3.png)
 
 Los 6 pasos son:
 

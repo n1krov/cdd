@@ -61,7 +61,7 @@ Piensa en un supermercado:
 
 Las características de estos dos sistemas son opuestas:
 
-![Tabla 1-1. Comparando las características de los sistemas operacionales y analíticos.](./kt1-1.png)
+![Tabla 1-1. Comparando las características de los sistemas operacionales y analíticos.](img/kt1-1.png)
 
 Debido a estas diferencias, es una muy mala idea usar la misma base de datos para ambos propósitos. Las consultas analíticas (OLAP) son muy pesadas y si se ejecutan en la base de datos operacional (OLTP), harían que la aplicación para los clientes se vuelva extremadamente lenta.
 
@@ -75,7 +75,7 @@ Para resolver esto, se inventaron los **Data Warehouses** (Almacenes de Datos):
     2.  **Transformar**: Se limpian, se estructuran y se modelan en un formato amigable para el análisis.
     3.  **Cargar (Load)**: Se cargan en el Data Warehouse.
 
-	![Figura 1-1. Esquema simplificado del proceso ETL hacia un data warehouse.](./kf1-1.png)
+	![Figura 1-1. Esquema simplificado del proceso ETL hacia un data warehouse.](img/kf1-1.png)
 
 Con el tiempo, los Data Warehouses se mostraron demasiado rígidos para los científicos de datos, que necesitaban trabajar con datos menos estructurados (como texto o imágenes) y usar herramientas más allá de SQL. Así nació el **Data Lake**:
 
@@ -109,7 +109,7 @@ Este es el trade-off de "construir vs. comprar" o "alquilar vs. poseer".
     *   **Ventaja**: Es más rápido empezar, es elástico (puedes escalar hacia arriba o abajo según la demanda) y externalizas la gestión básica.
     *   **Desventaja**: La mayor desventaja es la **pérdida de control**. Si el servicio se cae, solo puedes esperar. Si tiene un bug, no puedes arreglarlo. Si el proveedor sube los precios o descontinúa el servicio, estás a su merced (**vendor lock-in**).
 
-![Figura 1-2. Un espectro de tipos de software y sus operaciones.](./kf1-2.png)
+![Figura 1-2. Un espectro de tipos de software y sus operaciones.](img/kf1-2.png)
 
 ### El Gran Cambio: Arquitectura Nativa de la Nube
 Los sistemas diseñados desde cero para la nube ("cloud-native") han introducido un cambio arquitectónico fundamental: la **separación de almacenamiento y cómputo**.
@@ -117,7 +117,7 @@ Los sistemas diseñados desde cero para la nube ("cloud-native") han introducido
 *   **En el modelo tradicional**, un servidor tiene su CPU, RAM y sus discos. Almacenamiento y cómputo están unidos.
 *   **En el modelo cloud-native**, el almacenamiento (ej: Amazon S3) y el cómputo (máquinas virtuales para procesar) son servicios separados. Esto permite escalar cada uno de forma independiente, lo cual es mucho más eficiente y barato.
 
-![Tabla 1-2. Ejemplos de sistemas de bases de datos auto-alojados y nativos de la nube.](./kt1-2.png)
+![Tabla 1-2. Ejemplos de sistemas de bases de datos auto-alojados y nativos de la nube.](img/kt1-2.png)
 
 ---
 

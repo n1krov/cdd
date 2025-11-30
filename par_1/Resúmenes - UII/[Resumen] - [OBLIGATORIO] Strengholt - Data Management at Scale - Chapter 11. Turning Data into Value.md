@@ -65,7 +65,7 @@ Para evitar esto, necesitamos un enfoque estructurado para el lado del consumido
 
 El autor nos recuerda el diagrama conceptual que ha estado usando:
 
-![Figura 11-1. Colaboración descentralizada de proveedores y consumidores de datos.](./sp11-1.png)
+![Figura 11-1. Colaboración descentralizada de proveedores y consumidores de datos.](sp11-1.png)
 
 *   **Lado Izquierdo (Proveedores)**: Son los "dominios orientados a la fuente". Su trabajo es tomar los datos de los sistemas originales (sus *golden sources*) y empaquetarlos en **productos de datos** limpios, confiables y fáciles de usar. Su objetivo es la **estabilidad y la estandarización**.
 *   **Lado Derecho (Consumidores)**: Son los "dominios orientados al consumidor". Su trabajo es tomar uno o varios productos de datos, **combinarlos, transformarlos y crear valor** para un caso de uso de negocio específico (ej: un modelo de predicción de fraude, un *dashboard* de ventas). Su objetivo es la **flexibilidad y la especificidad**.
@@ -106,14 +106,14 @@ Dentro de un DDS, los datos ya no son "productos de datos" puros. El autor propo
 2.  **Datos Integrados (Integrated Data)**: Datos que han sido consumidos, combinados y transformados en un nuevo contexto. Están diseñados específicamente para el caso de uso del consumidor. **¡Importante!** Estos datos integrados no deben ser compartidos directamente con otros dominios, porque son frágiles y específicos.
 3.  **Nuevo Producto de Datos (Newly created data product data)**: Si un dato integrado resulta ser tan valioso que otros dominios quieren consumirlo, primero debe ser "promovido" y convertido en un producto de datos formal, siguiendo todos los principios de estabilidad y gobernanza.
 
-![Figura 11-2. Domain data stores.](./sp11-2.png)
+![Figura 11-2. Domain data stores.](sp11-2.png)
 
-![Figura 11-3. Un consumidor puede convertirse en un proveedor, lo que puede resultar en una cadena de consumo y distribución de datos.](./sp11-3.png)
+![Figura 11-3. Un consumidor puede convertirse en un proveedor, lo que puede resultar en una cadena de consumo y distribución de datos.](sp11-3.png)
 
 ### DDS vs. Productos de Datos: ¿Juntos o Separados?
 Un mismo dominio puede ser a la vez consumidor (usando un DDS) y proveedor (creando productos de datos). El autor presenta dos patrones de diseño para organizar esto:
 
-![Figura 11-4. Los DDS y los productos de datos pueden gestionarse juntos o de forma independiente.](./sp11-4.png)
+![Figura 11-4. Los DDS y los productos de datos pueden gestionarse juntos o de forma independiente.](sp11-4.png)
 
 *   **Dominio A (Separados)**: El dominio tiene dos arquitecturas distintas: una para su DDS (consumir y crear valor) y otra para desarrollar sus productos de datos (proveer datos a otros). Esto **desacopla las preocupaciones** y es más limpio, pero puede duplicar esfuerzos.
 *   **Dominio B (Combinados)**: El dominio usa una única arquitectura combinada tanto para consumir como para proveer. Esto crea **sinergias** (se pueden reutilizar servicios de ETL, por ejemplo), pero aumenta el riesgo de acoplamiento y hace más difícil distinguir qué datos son para consumo interno y cuáles para compartir.
@@ -178,7 +178,7 @@ De esta manera, entendemos entonces que el objetivo del BI es hacer que los dato
     2.  **Fase de Operacionalización**: Automatizar todo el *pipeline* (desde la ingesta de datos hasta el despliegue del modelo) para que sea robusto y repetible.
     3.  **Fase de Monitoreo**: Vigilar el rendimiento del modelo, detectar si se degrada y reentrenarlo automáticamente.
 
-![Figura 11-5. Proceso MLOps recomendado para gestionar proyectos de machine learning de extremo a extremo.](./sp11-5.png)
+![Figura 11-5. Proceso MLOps recomendado para gestionar proyectos de machine learning de extremo a extremo.](sp11-5.png)
 
 ---
 

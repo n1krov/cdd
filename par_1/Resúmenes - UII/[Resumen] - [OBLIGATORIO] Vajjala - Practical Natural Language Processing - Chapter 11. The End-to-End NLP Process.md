@@ -70,7 +70,7 @@ Desplegar no es solo "encender" el modelo. Es integrarlo en un sistema de softwa
 2.  **Servicio del Modelo (Model serving)**: El modelo se pone a disposición de otros servicios. La forma más común es exponerlo como un **servicio web (API)**. Otros componentes del software pueden "llamar" a esta API para obtener predicciones.
 3.  **Escalado del Modelo (Model scaling)**: El sistema debe ser capaz de manejar un gran volumen de peticiones. Las plataformas en la nube (como AWS, Azure, Google Cloud) ofrecen herramientas para escalar automáticamente.
 
-![Figura 11-1. AWS Cloud y SageMaker para servir clasificación de texto.](./vf11-1.png)
+![Figura 11-1. AWS Cloud y SageMaker para servir clasificación de texto.](vf11-1.png)
 
 ### Ejemplo Práctico: Un Clasificador de Comentarios Abusivos
 
@@ -99,11 +99,11 @@ Para mantener un sistema de NLP maduro y útil, hay que abordar seis temas clave
     *   **Análisis de Errores**: Es fundamental analizar dónde se equivoca el modelo.
     *   **Herramientas de Interpretabilidad**: Herramientas como **TFMA (TensorFlow Model Analysis)**, **Lime** y **Shap** nos ayudan a entender *por qué* el modelo toma ciertas decisiones, tanto a nivel global como para predicciones individuales.
 
-![Figura 11-2. Análisis de Modelo de TensorFlow (TFMA).](./vf11-2.png)
+![Figura 11-2. Análisis de Modelo de TensorFlow (TFMA).](vf11-2.png)
 
-![Figura 11-3. Lime para el análisis de modelos de NLP.](./vf11-3.png)
+![Figura 11-3. Lime para el análisis de modelos de NLP.](vf11-3.png)
 
-![Figura 11-4. Estadísticas de características en TensorFlow Extended.](./vf11-4.png)
+![Figura 11-4. Estadísticas de características en TensorFlow Extended.](vf11-4.png)
 
 5.  **Minimizar la Deuda Técnica**: En ML, la deuda técnica se acumula rápidamente. Características que ya no se usan, modelos demasiado complejos para la ganancia que aportan, etc. La regla de oro es: **opta por el modelo más simple que ofrezca un rendimiento comparable**.
 6.  **Automatizar el Proceso de ML**: A medida que el sistema madura, los procesos manuales se vuelven insostenibles. Aquí es donde entra la automatización.
@@ -119,7 +119,7 @@ AutoML es un área del ML que busca automatizar las partes más tediosas del pro
     *   **auto-sklearn**: Una biblioteca que busca automáticamente el mejor modelo de Scikit-learn para un problema dado.
     *   **Google Cloud AutoML**: Un servicio en la nube que permite entrenar modelos de alta calidad (para clasificación de texto, traducción, etc.) simplemente subiendo los datos etiquetados.
 
-![Figura 11-5. Red generada por AutoML.](./vf11-5.png)
+![Figura 11-5. Red generada por AutoML.](vf11-5.png)
 
 ---
 
@@ -130,7 +130,7 @@ Más allá de los pasos técnicos, es vital seguir un proceso de gestión de pro
 1.  **El Proceso KDD (Knowledge Discovery in Databases)**:
     *   Creado en los años 90, es uno de los procesos más antiguos y respetados. Consiste en una serie de pasos iterativos: entender el dominio, seleccionar y preprocesar los datos, aplicar algoritmos de minería de datos, interpretar los resultados y consolidar el conocimiento.
 
-![Figura 11-6. El proceso KDD.](./vf11-6.png)
+![Figura 11-6. El proceso KDD.](vf11-6.png)
 
 2.  **Microsoft Team Data Science Process (TDSP)**:
     *   Es un proceso más moderno, ágil e iterativo, diseñado para equipos de ciencia de datos en empresas. Define un ciclo de vida con 5 etapas:
@@ -140,7 +140,7 @@ Más allá de los pasos técnicos, es vital seguir un proceso de gestión de pro
         4.  Despliegue
         5.  Aceptación del Cliente
 
-![Figura 11-7. El ciclo de vida del TDSP de Microsoft.](./vf11-7.png)
+![Figura 11-7. El ciclo de vida del TDSP de Microsoft.](vf11-7.png)
 
 ---
 
@@ -153,7 +153,7 @@ Según Gartner, más del 85% de los proyectos de IA fracasan. ¿Por qué? No es 
     *   No todos los problemas son problemas de IA. A veces, una solución basada en reglas es mejor.
     *   Gestionar las expectativas es crucial. La IA no es magia, no es 100% precisa. La realidad del rendimiento de la IA sigue una **curva en S**, mientras que las expectativas suelen ser una línea que sube infinitamente.
 
-![Figura 11-8. Expectativa versus realidad en el rendimiento de la IA.](./vf11-8.png)
+![Figura 11-8. Expectativa versus realidad en el rendimiento de la IA.](vf11-8.png)
 
 *   **Los Datos y el Timing Correctos**: Tener petabytes de datos no significa que estés listo para la IA. Se necesitan **datos de alta calidad, representativos y etiquetados**. La analogía es perfecta: los datos brutos son petróleo crudo; los modelos de IA son aviones de combate. Necesitas una refinería (un largo y costoso proceso de ingeniería de datos) para convertir el petróleo en combustible de aviación.
 *   **Un Buen Proceso**:
@@ -163,9 +163,9 @@ Según Gartner, más del 85% de los proyectos de IA fracasan. ¿Por qué? No es 
 
 *   **Otros Aspectos**: Considera el **costo computacional** (el entrenamiento de modelos grandes puede costar millones de dólares) y el **ROI** (retorno de la inversión).
 
-![Figura 11-9. La automatización completa puede ser difícil.](./vf11-9.png)
+![Figura 11-9. La automatización completa puede ser difícil.](vf11-9.png)
 
-![Figura 11-10. Ciclo de vida de un proyecto de IA.](./vf11-10.png)
+![Figura 11-10. Ciclo de vida de un proyecto de IA.](vf11-10.png)
 
 ---
 
@@ -175,7 +175,7 @@ El capítulo concluye reflexionando sobre la evolución del ML, destacando dos p
 
 *   **La Académica/Científica**: Enfocada en construir máquinas verdaderamente inteligentes y aplicar la IA para el bien social.
 
-![Figura 11-11. Ejemplo de una tarea ARC para la inteligencia general de [66](https://www.oreilly.com/library/view/practical-natural-language/9781492054047/ch11.html#footnote_11_52)](./vf11-11.png)
+![Figura 11-11. Ejemplo de una tarea ARC para la inteligencia general de [66](vf11-11.png)
 
 *   **La Empresarial**: Enfocada en el impacto práctico, los modelos de negocio y la creación de valor.
 
