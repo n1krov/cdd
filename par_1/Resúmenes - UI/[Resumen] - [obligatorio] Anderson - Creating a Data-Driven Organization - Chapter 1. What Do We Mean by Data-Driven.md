@@ -11,12 +11,12 @@ El autor, Carl Anderson, nos llevará en un viaje para entender qué significa e
 
 Antes de poder siquiera soñar con ser "data-driven", necesitas dos cosas básicas:
 
-### Prerrequisito #1: Debes Recolectar Datos (¡Pero de los Buenos!)
+### Prerrequisito #1: Debes RECOLECTAR DATOS (¡Pero de los Buenos!)
 
 *   **No se trata de la cantidad, sino de la calidad**: De nada sirve tener petabytes de datos "basura". Un puñado de datos limpios, precisos, relevantes y, sobre todo, **confiables**, es infinitamente más valioso.
 *   **La dura realidad**: Los datos casi siempre están sucios y desordenados. El autor menciona la famosa "regla del 80/20": los científicos de datos pasan el 80% de su tiempo limpiando y preparando los datos, y solo el 20% analizándolos. Tener buenos datos es un trabajo difícil y costoso, pero es la base de todo.
 
-### Prerrequisito #2: Los Datos Deben Ser Accesibles y "Utilizables"
+### Prerrequisito #2: Los DATOS DEBEN SER ACCESIBLES Y "UTILIZABLES"
 
 Tener datos guardados en un rincón no sirve de nada. Deben ser accesibles y tener tres características clave:
 
