@@ -49,7 +49,7 @@ Piensa en ello como una "ficha de catálogo" o la tarjeta de un libro en una bib
 
 Esta ficha lógica no contiene los datos, solo los describe y te dice dónde encontrarlos. Un mismo producto de datos lógico puede apuntar a múltiples representaciones físicas (por ejemplo, los mismos datos de clientes pueden estar en formato Parquet y en formato Delta Lake).
 
-![Figura 4-1. Puntos de vista separados para gestionar los datos y la tecnología.](img/psf4-1.png)
+![Figura 4-1. Puntos de vista separados para gestionar los datos y la tecnología.](psf4-1%201.png)
 
 ---
 
@@ -63,9 +63,9 @@ Por eso, el autor dice que la arquitectura de productos de datos debe inspirarse
 *   **¿Por qué?**: Las operaciones de escritura son lentas y complejas (requieren bloqueos, validaciones, etc.). Las de lectura son más sencillas. Al separarlas, podemos crear una base de datos específica y optimizada solo para leer, que no interfiere con el sistema principal.
 *   **Conexión con los Productos de Datos**: Los **productos de datos son, en esencia, estas réplicas de solo lectura optimizadas**. Son copias de los datos del sistema original, pero limpias, transformadas y listas para ser consumidas intensivamente.
 
-![Figura 4-2. Una aplicación que utiliza CQRS separa consultas y comandos mediante dos modelos de datos diferentes: un modelo de comando para las transacciones y un modelo de consulta para las lecturas.](img/psf4-2.png)
+![Figura 4-2. Una aplicación que utiliza CQRS separa consultas y comandos mediante dos modelos de datos diferentes: un modelo de comando para las transacciones y un modelo de consulta para las lecturas.](psf4-2%201.png)
 
-![Figura 4-3. Colaboración descentralizada de proveedores y consumidores de datos.](img/psf4-3.png)
+![Figura 4-3. Colaboración descentralizada de proveedores y consumidores de datos.](psf4-3%201.png)
 
 ---
 
@@ -88,7 +88,7 @@ El capítulo presenta una lista larga pero fundamental de principios. Aquí est�
 *   **No Externalizar la Lógica de Negocio**: La lógica de negocio (ej: cómo se calcula el "ingreso total") debe permanecer en el dominio que la posee. No se debe obligar al producto de datos a incluir cálculos que no le corresponden.
 *   **Establecer un Metamodelo**: Crear un modelo claro de cómo se relacionan las distintas entidades (dominios, productos de datos, dueños, datos físicos) en el catálogo de datos.
 
-![Figura 4-4. Metodología de Data Vault comparada con un esquema de estrella simple (fuente: PhData).](img/psf4-4.png)
+![Figura 4-4. Metodología de Data Vault comparada con un esquema de estrella simple (fuente: PhData).](psf4-4%201.png)
 
 ---
 
@@ -99,7 +99,7 @@ El capítulo presenta una lista larga pero fundamental de principios. Aquí est�
 *   **Enfoque totalmente centralizado**: Un equipo central controla todo. Es ordenado pero lento y rígido.
 *   **La solución recomendada**: Un **enfoque de gobernanza central con plataformas estandarizadas**. Un equipo central provee "plantillas" o "blueprints" de infraestructura, pero cada dominio las utiliza para construir y gestionar sus propios productos de datos de forma aislada.
 
-![Figura 4-5. Ejemplo de arquitectura de un producto de datos.](img/psf4-5.png)
+![Figura 4-5. Ejemplo de arquitectura de un producto de datos.](psf4-5%201.png)
 
 ### Ejemplo del Mundo Real: Una Arquitectura Lakehouse en Azure
 Para hacerlo concreto, el autor diseña una arquitectura en Azure:
@@ -115,9 +115,9 @@ Para hacerlo concreto, el autor diseña una arquitectura en Azure:
     *   **Gobernanza**: Microsoft Purview para el catálogo de datos y el linaje.
 *   **Publicación y Autoservicio**: Los dominios publican sus productos de datos (los de la capa Gold) en el catálogo de forma automatizada (usando una función que se ejecuta en sus pipelines de CI/CD). Los consumidores pueden descubrir y solicitar acceso a través de este catálogo.
 
-![Figura 4-6. Ejemplos de cómo se ven los datos cuando se particionan con instantáneas dimensionales completas o con dimensiones de cambio lento (tipo 2).](img/psf4-6.png)
+![Figura 4-6. Ejemplos de cómo se ven los datos cuando se particionan con instantáneas dimensionales completas o con dimensiones de cambio lento (tipo 2).](psf4-6%201.png)
 
-![Figura 4-7. Una arquitectura de producto de datos simple utilizando un diseño de lakehouse: presenta servicios para la ingesta de datos, la creación de productos de datos y la gobernanza de datos.](img/psf4-7.png)
+![Figura 4-7. Una arquitectura de producto de datos simple utilizando un diseño de lakehouse: presenta servicios para la ingesta de datos, la creación de productos de datos y la gobernanza de datos.](psf4-7%201.png)
 
 ### Alineación con Cuentas de Almacenamiento y Pipelines (Consideraciones de Escalado)
 *   **Cuentas de Almacenamiento**: Recomienda un **enfoque híbrido**. Cada dominio tiene una cuenta de almacenamiento interna y dedicada para su procesamiento (Bronze y Silver), y luego publica el resultado final (Gold) en una cuenta de almacenamiento central compartida para la distribución.

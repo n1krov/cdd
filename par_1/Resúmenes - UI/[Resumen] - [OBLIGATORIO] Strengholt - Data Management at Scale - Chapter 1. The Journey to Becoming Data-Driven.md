@@ -46,7 +46,7 @@ Imagina que los datos de una empresa están guardados en un único y gigantesco 
 
 Este capítulo explica que **este modelo centralizado ya no funciona**. El mundo digital es demasiado rápido, complejo y competitivo. Las empresas que sobrevivirán y prosperarán son las que tratan los datos como el corazón de su negocio, no como algo guardado en un sótano.
 
-![Figure 1-2. Centralized architectures are a bottleneck for many organizations: one team must wait for another team to finish its work](./Figure 1-2. Centralized architectures are a bottleneck for many organizations.png)
+
 
 El viaje para convertirse en una "organización impulsada por los datos" consiste en **desmantelar ese sótano centralizado y darle a cada equipo (o "dominio") la responsabilidad y las herramientas para gestionar sus propios datos**. Sin embargo, para evitar el caos, se necesita una estrategia clara que equilibre esta nueva autonomía con estándares y una visión común. En resumen, el futuro es la **descentralización**, pero una descentralización organizada.
 

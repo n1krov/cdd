@@ -11,12 +11,12 @@ El autor, Carl Anderson, nos llevará en un viaje para entender qué significa e
 
 Antes de poder siquiera soñar con ser "data-driven", necesitas dos cosas básicas:
 
-### Prerrequisito #1: Debes RECOLECTAR DATOS (¡Pero de los Buenos!)
+### Prerrequisito #1: Debes Recolectar Datos (¡Pero de los Buenos!)
 
 *   **No se trata de la cantidad, sino de la calidad**: De nada sirve tener petabytes de datos "basura". Un puñado de datos limpios, precisos, relevantes y, sobre todo, **confiables**, es infinitamente más valioso.
 *   **La dura realidad**: Los datos casi siempre están sucios y desordenados. El autor menciona la famosa "regla del 80/20": los científicos de datos pasan el 80% de su tiempo limpiando y preparando los datos, y solo el 20% analizándolos. Tener buenos datos es un trabajo difícil y costoso, pero es la base de todo.
 
-### Prerrequisito #2: Los DATOS DEBEN SER **ACCESIBLES** Y "**UTILIZABLES**"
+### Prerrequisito #2: Los Datos Deben Ser Accesibles y "Utilizables"
 
 Tener datos guardados en un rincón no sirve de nada. Deben ser accesibles y tener tres características clave:
 
@@ -55,9 +55,9 @@ El análisis va un paso más allá. Intenta explicar **POR QUÉ** algo pasó y, 
 
 ---
 
-![Tabla 1-1. Comparación entre los atributos clave de *reporting* y *analysis*.](table1-1_repovsanaly%201.png)
+![Tabla 1-1. Comparación entre los atributos clave de *reporting* y *analysis*.](table1-1_repovsanaly%202.png)
 
-![Tabla 1-2. Preguntas clave que, según la hipótesis de Davenport, aborda la analítica (modificado de Davenport et al., 2010). D) es analítica valiosa, pero solo E) y F) son data-driven, y solo si se actúa sobre la base de la información (más explicación en el texto).](1-2_daven_key_quest%201.png)
+![Tabla 1-2. Preguntas clave que, según la hipótesis de Davenport, aborda la analítica (modificado de Davenport et al., 2010). D) es analítica valiosa, pero solo E) y F) son data-driven, y solo si se actúa sobre la base de la información (más explicación en el texto).](1-2_daven_key_quest%202.png)
 
 > *Aquí podemos ver las actividades insight-driving en la fila inferior. Como señalé anteriormente, el reporting (A) y las alertas (B) simplemente no son data-driven: declaran lo que sucedió en el pasado o que algo inusual o indeseable está sucediendo ahora; no hay explicación de por qué está sucediendo o por qué sucedió, y no hay recomendaciones sobre cómo resolver o reproducir la situación. Profundizar para entender los factores causales a través de modelos o experimentos (D) es un precursor de ser data-driven. Solo al entender por qué algo sucedió se puede formular un plan o un conjunto de recomendaciones (E). E) y F) son verdaderamente data-driven, pero única y exclusivamente si se actúa en base a la información —explicado en detalle más adelante. 
 (C es una zona de peligro: puede ser bastante fácil extender una tendencia percibida hacia el futuro —en Excel, hacer clic en «Gráfico» y luego en «Agregar línea de tendencia»— es decir, extrapolar más allá del rango de datos actual y hacer una predicción ingenua. Incluso al tomar una decisión sensata sobre la forma funcional para el modelo, hay muchas razones por las que esa predicción puede ser engañosa o simplemente errónea. Para tener confianza en esas predicciones, se debe aspirar a tener un modelo causal. Los tipos de análisis se cubren en el Capítulo 5.)
@@ -79,7 +79,7 @@ Aquí llega el punto más crucial de todo el capítulo. Puedes tener los mejores
 La **Cadena de Valor del Análisis** lo resume perfectamente:
 **Datos → Reportes → Análisis → Decisión/Acción → Valor**
 
-![Figura 1-3. *The analytics value chain*](1-3_analitycs_value_chain%201.png)
+![Figura 1-3. *The analytics value chain*](1-3_analitycs_value_chain%202.png)
 
 Si la cadena se rompe antes de llegar a la **Acción**, todo el esfuerzo anterior fue en vano. El verdadero desafío es **cultural**: crear un entorno donde los líderes confíen en los análisis y estén dispuestos a actuar basándose en ellos.
 
@@ -100,7 +100,7 @@ El autor introduce un modelo para medir qué tan "avanzada" es una organización
 7.  **Modelado Predictivo**: ¿Qué es lo más probable que pase después?
 8.  **Optimización**: ¿Cuál es la mejor decisión posible?
 
-![Figura 1-4. "Business intelligence and analytics."](1-4_business_intelligence_and_analytics%201.png)
+![Figura 1-4. "Business intelligence and analytics."](1-4_business_intelligence_and_analytics%202.png)
 
 **Este esquema se asocia comúnmente con la "Madurez Analítica" (*Analytics Maturity*), PERO Anderson argumenta que es un error verlo así.**
 

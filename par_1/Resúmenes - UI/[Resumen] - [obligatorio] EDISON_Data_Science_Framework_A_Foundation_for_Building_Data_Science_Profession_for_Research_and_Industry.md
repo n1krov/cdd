@@ -40,7 +40,7 @@ El EDSF es la solución propuesta. Piensa en él como un kit de herramientas par
     4.  **Métodos de Investigación/Científicos**: Saber formular una hipótesis y diseñar experimentos (¡la otra gran área olvidada!).
     5.  **Conocimiento del Dominio**: Entender el negocio o el campo de investigación en el que se aplican los datos (finanzas, biología, marketing, etc.).
 
-![Figure 2. Data Science competence groups](f2_data_science_competence_groups%201.png)
+![Figure 2. Data Science competence groups](f2_data_science_competence_groups%202.png)
 
 ### 2. Cuerpo de Conocimiento (DS-BoK: Data Science Body of Knowledge)
 
