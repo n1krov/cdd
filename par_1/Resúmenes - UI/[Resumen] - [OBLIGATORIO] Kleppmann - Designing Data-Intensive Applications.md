@@ -99,7 +99,11 @@ Pero los sistemas distribuidos introducen un mundo de **problemas nuevos y compl
 
 Finalmente, el capítulo nos recuerda que diseñar sistemas de datos no es solo un problema técnico. Tenemos una **responsabilidad ética y legal**.
 
-> *Un sistema de datos es el conjunto de diferentes herramientas y componentes de software que trabajan juntos para almacenar, procesar y servir datos, con el fin de cumplir los objetivos de una aplicación.*
+>[!note] Un **SISTEMA DE DATOS** es el conjunto de diferentes herramientas y componentes de software que trabajan juntos para 
+> - Almacenar
+> - Procesar 
+> - Servir datos
+> con el fin de cumplir los objetivos de una aplicación.
 
 *   Regulaciones como el **GDPR** en Europa otorgan a los usuarios derechos sobre sus datos, como el **"derecho al olvido"** (pedir que sus datos sean borrados).
 *   Esto crea un gran desafío técnico para sistemas que están diseñados para ser **inmutables** (donde los datos no se borran, solo se añaden versiones nuevas).
