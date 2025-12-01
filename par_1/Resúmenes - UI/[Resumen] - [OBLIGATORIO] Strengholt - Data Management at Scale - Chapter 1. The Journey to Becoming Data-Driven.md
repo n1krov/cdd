@@ -60,10 +60,14 @@ Sin embargo, el autor critica que DAMA-DMBOK se ha quedado anticuado en algunos 
 
 Por eso, han surgido nuevos enfoques que sí lo hacen:
 
-*   **Data Mesh**: Es una visión **socio-técnica** (enfocada en las personas y la organización). Propone que los datos sean propiedad de los equipos de negocio que los generan ("dominios"). Estos equipos tratan sus datos como productos y los ofrecen al resto de la empresa a través de una plataforma de autoservicio.
-*   **Data Fabric**: Es una visión más **tecnológica**. Propone usar metadatos e inteligencia artificial para crear una capa "inteligente" que automatiza y simplifica el acceso, la integración y el gobierno de los datos, sin importar dónde estén físicamente.
+*   **Data Mesh**: Es una visión **socio-técnica** (*enfocada en las personas y la organización*). 
+	* Propone que los **datos sean propiedad de los equipos de negocio que los generan** ("*dominios*"). 
+	* **Estos equipos tratan sus datos como *productos*** y los ofrecen al resto de la empresa a través de una *plataforma de autoservicio*.
 
-El autor aclara que no son técnicas rígidas y que pueden (y deben) coexistir y complementar las inversiones ya existentes.
+*   **Data Fabric**: Es una visión más **tecnológica**.
+	* Propone usar ***metadatos e inteligencia artificial*** para *crear una capa "inteligente"* que automatiza y *simplifica el acceso*, la integración y el gobierno de los datos, sin importar dónde estén físicamente.
+
+> El autor aclara que no son técnicas rígidas y que pueden (y deben) coexistir y complementar las inversiones ya existentes.
 
 ---
 
@@ -71,7 +75,7 @@ El autor aclara que no son técnicas rígidas y que pueden (y deben) coexistir y
 
 No se puede pasar a un modelo impulsado por los datos sin un plan. Una **estrategia de datos** es el mapa que guía la transformación de la cultura, la gente, los procesos y la tecnología. El capítulo termina con una guía detallada de 16 puntos sobre cómo crear esta estrategia. Aquí están los pasos más importantes resumidos:
 
->[!important]
+
 > 1.  **Empezar por el Negocio, no por la Tecnología**: La estrategia debe responder a: "¿Cómo nos ayudarán los datos a alcanzar nuestros objetivos de negocio?".
 > 2.  **Equilibrar "Defensa" y "Ataque"**:
  >    **Defensa**: Proteger los datos, cumplir con regulaciones, asegurar la calidad (control total).
