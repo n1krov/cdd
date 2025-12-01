@@ -39,11 +39,11 @@ Para resolver esto, se inventaron los **Data Warehouses** (Almacenes de Datos):
 Con el tiempo, los Data Warehouses se mostraron demasiado rígidos para los científicos de datos, que necesitaban trabajar con datos menos estructurados (como texto o imágenes) y usar herramientas más allá de SQL. Así nació el **Data Lake**:
 
 *   Un **Data Lake** es un repositorio donde se "arrojan" todos los datos en su **formato crudo**, sin transformar. El lema es el "principio del sushi": los datos crudos son mejores, porque cada equipo (analistas, científicos de datos) puede "cocinarlos" (transformarlos) a su manera.
-*   Una evolución más reciente es el **Data Lakehouse**, que intenta combinar la flexibilidad de un Data Lake con las capacidades de gestión y consulta de un Data Warehouse.
+*   Una evolución más reciente es el **Data Lakehouse**, que intenta **combinar la flexibilidad de un *Data Lake* con las capacidades de gestión y consulta de un *Data Warehouse***.
 
 ### Sistemas de Registro vs. Datos Derivados
 
-Este es otro concepto clave para entender cómo fluyen los datos.
+Este es otro concepto clave para entender *cómo fluyen los datos*.
 
 *   **Sistema de Registro (Source of Truth - Fuente de la Verdad)**: Es el lugar donde reside la versión **autoritativa y canónica** de un dato. Si hay una discrepancia, este sistema tiene la razón por definición. Por ejemplo, la base de datos principal de clientes de un banco. Cada dato importante debe tener un único sistema de registro.
 
